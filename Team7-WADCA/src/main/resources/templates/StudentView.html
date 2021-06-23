@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+
+	<h1>Student Information</h1>
+	<!-- Add Hyperlink -->
+
+	<h2>Past Courses</h2>
+	<table>
+		<tr>
+			<th >Course ID</th>
+			<th >Course Name</th>
+			<th >Credits</th>
+			<th >Grade</th>
+		</tr>
+		<tr th:each="module:${modules}" class="table-row">
+			<td th:text=${modules.id}>Id</td>
+			<td th:text=${modules.name}>Course Name</td>
+			<td th:text=${modules.credits}>Credits</td>
+			<td th:text=${modules.grade}>Grade</td>
+		</tr>
+	</table>
+	
+	<h2>Current GPA</h2>
+	<table>
+		<tr>
+			<th >GPA</th>
+
+		</tr>
+		<tr th:each="student:${students}" class="table-row">
+			<td th:text=${student.gpa}>GPA</td>
+		</tr>
+	</table>
+	
+    <br/>
+	<div th:replace="fragments/general.html :: footer"></div>
+</body>
+</html>
