@@ -1,9 +1,12 @@
 package sg.edu.iss.caps.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Student {
@@ -22,7 +25,8 @@ public class Student {
 	
 	private int creditsTaken;
 	
-	//private Course coursesTaken;
+	@OneToMany
+	private List<Course> coursesTaken;
 
 	public Student(String firstName, String secondName, String major, double gpa, int creditsTaken) {
 		super();
@@ -77,7 +81,13 @@ public class Student {
 	public void setCreditsTaken(int creditsTaken) {
 		this.creditsTaken = creditsTaken;
 	}
-
+	public List<Course> getCoursesTaken() {
+		return coursesTaken;
+	}
+	public void setCoursesTaken(List<Course> coursesTaken) {
+		this.coursesTaken = coursesTaken;
+	}
+	
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", major=" + major

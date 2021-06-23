@@ -9,7 +9,7 @@
 	<div th:replace="fragments/general.html :: menu"></div>
 
 	<h1>Student Information</h1>
-	<!-- Add Hyperlink -->
+	<h1 th:text="${message}">default</h1>
 
 	<h2>Past Courses</h2>
 	<table>
@@ -19,11 +19,11 @@
 			<th >Credits</th>
 			<th >Grade</th>
 		</tr>
-		<tr th:each="module:${modules}" class="table-row">
-			<td th:text=${modules.id}>Id</td>
-			<td th:text=${modules.name}>Course Name</td>
-			<td th:text=${modules.credits}>Credits</td>
-			<td th:text=${modules.grade}>Grade</td>
+		<tr th:each="course:${courses}" class="table-row">
+			<td th:text=${course.id}>Id</td>
+			<td th:text=${course.name}>Course Name</td>
+			<td th:text=${course.credits}>Credits</td>
+			<td th:text=${course.grade}>Grade</td>
 		</tr>
 	</table>
 	
@@ -31,10 +31,9 @@
 	<table>
 		<tr>
 			<th >GPA</th>
-
 		</tr>
-		<tr th:each="student:${students}" class="table-row">
-			<td th:text=${student.gpa}>GPA</td>
+		<tr class="table-row">
+			<td th:text=${studentinfo.gpa}>GPA</td>
 		</tr>
 	</table>
 	
