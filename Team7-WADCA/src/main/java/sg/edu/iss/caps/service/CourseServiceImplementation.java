@@ -3,10 +3,12 @@ package sg.edu.iss.caps.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.repo.CourseRepository;
 
+@Service
 public class CourseServiceImplementation implements CourseService {
 	
 	@Autowired

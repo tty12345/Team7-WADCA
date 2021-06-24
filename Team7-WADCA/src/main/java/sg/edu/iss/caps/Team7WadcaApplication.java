@@ -1,5 +1,8 @@
 package sg.edu.iss.caps;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -7,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import sg.edu.iss.caps.domain.Course;
+import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
 import sg.edu.iss.caps.service.StudentServiceImplementation;
@@ -105,7 +109,15 @@ public class Team7WadcaApplication {
 //			crepo.save(c20);
 //			crepo.save(c21);
 			
+//			List<Course> m1 = new ArrayList<Course>();
+//			m1.add(c15);
+//			m1.add(c4);
+//			m1.add(c8);
+			//Student test = srepo.findStudentById(1);
 			
+			
+//			Student s15 = new Student("Peter", "Quill", "Business Studies");
+//			srepo.save(s15);
 		};
 	}
 }

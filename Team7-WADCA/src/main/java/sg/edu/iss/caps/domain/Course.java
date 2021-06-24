@@ -43,6 +43,10 @@ public class Course {
 		this.name = name;
 	}
 
+	public Course() {
+		super();
+	}
+
 	public int getId() {
 		return id;
 	}
