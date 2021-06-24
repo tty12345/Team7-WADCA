@@ -51,8 +51,14 @@ public class loginContoller {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("usession");
-		return "index";
+		if (session.getAttribute("usession") == null)
+			return "login";
+		else
+		{
+			session.invalidate();
+			return "index";
+		}
+		
 	}
 }
 

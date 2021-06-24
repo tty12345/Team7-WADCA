@@ -1,5 +1,7 @@
 package sg.edu.iss.caps.domain;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +13,10 @@ public class Coursedetail {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int courseCapacity;
+	
 	@OneToMany(mappedBy = "detail")
-	private Course course;
+	private Collection<Course> course;
+	
 	@Override
 	public String toString() {
 		return "Coursedetail [courseCapacity=" + courseCapacity + ", course=" + course + "]";
@@ -23,10 +27,10 @@ public class Coursedetail {
 	public void setCourseCapacity(int courseCapacity) {
 		this.courseCapacity = courseCapacity;
 	}
-	public Course getCourse() {
+	public Collection<Course> getCourse() {
 		return course;
 	}
-	public void setCourse(Course course) {
+	public void setCourse(Collection<Course> course) {
 		this.course = course;
 	}
 	@Override
@@ -55,7 +59,7 @@ public class Coursedetail {
 			return false;
 		return true;
 	}
-	public Coursedetail(int courseCapacity, Course course) {
+	public Coursedetail(int courseCapacity, Collection<Course> course) {
 		super();
 		this.courseCapacity = courseCapacity;
 		this.course = course;
