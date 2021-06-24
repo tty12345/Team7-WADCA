@@ -12,6 +12,7 @@ import sg.edu.iss.caps.domain.RoleType;
 import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
 import sg.edu.iss.caps.service.StudentServiceImplementation;
+import sg.edu.iss.caps.repo.accountsrepository;
 
 @SpringBootApplication
 public class Team7WadcaApplication {
@@ -24,6 +25,9 @@ public class Team7WadcaApplication {
 	
 	@Autowired
 	CourseRepository crepo;
+	
+	@Autowired
+	accountsrepository urepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Team7WadcaApplication.class, args);

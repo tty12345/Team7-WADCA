@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import sg.edu.iss.Product.service.UserInterface;
+import sg.edu.iss.caps.service.UserInterface;
 import sg.edu.iss.caps.domain.Accounts;
 import sg.edu.iss.caps.repo.accountsrepository;
 @Service
