@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Accounts {
@@ -14,6 +15,22 @@ public class Accounts {
 	private String username;
 	private String password;
 	private RoleType role;
+	@OneToOne
+	private Student student;
+	@OneToOne
+	private Lecturer lecturer;
+	@OneToOne
+	private Admin admin;
+	public Accounts(String username, String password, RoleType role, Student student, Lecturer lecturer, Admin admin) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.student = student;
+		this.lecturer = lecturer;
+		this.admin = admin;
+	}
+	
 	public Accounts(String username, String password, RoleType role) {
 		super();
 		this.username = username;
@@ -21,11 +38,44 @@ public class Accounts {
 		this.role = role;
 	}
 	
+	
 	public Accounts() {
 		super();
 	}
-
-
+	@Override
+	public String toString() {
+		return "Accounts [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role
+				+ ", student=" + student + "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Accounts other = (Accounts) obj;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
 	public int getId() {
 		return id;
 	}
@@ -50,37 +100,26 @@ public class Accounts {
 	public void setRole(RoleType role) {
 		this.role = role;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
+	public Student getStudent() {
+		return student;
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Accounts other = (Accounts) obj;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		return true;
+	public void setStudent(Student student) {
+		this.student = student;
 	}
+	public Lecturer getLecturer() {
+		return lecturer;
+	}
+	public void setLecturer(Lecturer lecturer) {
+		this.lecturer = lecturer;
+	}
+	public Admin getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+	
+	
 
 	
 }
