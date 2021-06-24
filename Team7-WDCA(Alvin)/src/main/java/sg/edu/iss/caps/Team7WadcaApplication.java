@@ -1,8 +1,5 @@
 package sg.edu.iss.caps;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,10 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
-import sg.edu.iss.Product.model.Accounts;
-import sg.edu.iss.Product.model.RoleType;
-import sg.edu.iss.caps.domain.Course;
-import sg.edu.iss.caps.domain.Student;
+import sg.edu.iss.caps.domain.Accounts;
+import sg.edu.iss.caps.domain.RoleType;
 import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
 import sg.edu.iss.caps.service.StudentServiceImplementation;
