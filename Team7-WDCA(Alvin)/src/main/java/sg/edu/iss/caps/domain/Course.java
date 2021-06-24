@@ -1,10 +1,7 @@
 package sg.edu.iss.caps.domain;
 
-<<<<<<< HEAD
 import java.util.Collection;
-=======
 import java.util.List;
->>>>>>> stash
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +24,6 @@ public class Course {
 	@ManyToOne
 	private Student student;
 	@ManyToMany
-<<<<<<< HEAD
 	private Collection<Lecturer> lecturers;
 	@ManyToOne
 	private Coursedetail detail;
@@ -44,11 +40,6 @@ public class Course {
 		this.lecturers = lecturers;
 		this.detail = detail;
 	}
-=======
-	private List<Lecturer> lecturers;
-	@ManyToOne
-	private Coursedetail detail;
->>>>>>> stash
 	
 	public Course(String code, String name, String grade, double score, Student student) {
 		super();
