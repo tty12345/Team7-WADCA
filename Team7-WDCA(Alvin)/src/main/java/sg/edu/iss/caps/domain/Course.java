@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Course {
@@ -21,7 +22,7 @@ public class Course {
 	private String grade;
 	private double score;
 	private int credits;
-	@ManyToOne
+	@OneToOne
 	private Student student;
 	@ManyToMany
 	private Collection<Lecturer> lecturers;
@@ -50,12 +51,11 @@ public class Course {
 		this.student = student;
 	}
 	
-	public Course(String code, String name, String grade, double score) {
+	public Course(String code, String name, int credits) {
 		super();
 		this.code = code;
 		this.name = name;
-		this.grade = grade;
-		this.score = score;
+		this.credits = credits;
 	}
 
 	public Course(String code, String name) {

@@ -7,10 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.service.StudentService;
+import sg.edu.iss.caps.service.UserInterface;
 
 @Controller
 @RequestMapping("/student")
@@ -18,6 +20,9 @@ public class StudentController {
 	
 	@Autowired
 	StudentService sservice;
+	
+	@Autowired
+	UserInterface u;
 	
 	// For lecturer or admin to view full list of students
 	@GetMapping(value = "/list")

@@ -1,20 +1,21 @@
 package sg.edu.iss.caps;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
-import net.bytebuddy.build.ToStringPlugin.Exclude;
-import sg.edu.iss.caps.domain.Accounts;
-import sg.edu.iss.caps.domain.RoleType;
+import sg.edu.iss.caps.domain.Course;
+import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
-import sg.edu.iss.caps.service.StudentServiceImplementation;
 import sg.edu.iss.caps.repo.accountsrepository;
+import sg.edu.iss.caps.service.StudentServiceImplementation;
 
 @SpringBootApplication(exclude= {SecurityAutoConfiguration.class })
 public class Team7WadcaApplication {
@@ -70,27 +71,27 @@ public class Team7WadcaApplication {
 //			srepo.save(s13);
 //			srepo.save(s14);
 			
-//			Course c1 = new Course("CS1101", "Introduction To Computing", null, 4);
-//			Course c2 = new Course("MA1101", "Mathematics 1", null, 4);
-//			Course c3 = new Course("MA1102", "Mathematics 2", null, 4);
-//			Course c4 = new Course("PR1301", "Public Speaking And Presentations", null, 3);
-//			Course c5 = new Course("RB3301", "Advanced Algorithms", null, 4);
-//			Course c6 = new Course("GE1101", "Introduction To Geography", null, 4);
-//			Course c7 = new Course("GE2501", "Human Geography", null, 4);
-//			Course c8 = new Course("PS2301", "USSR: A Retrospective", null, 4);
-//			Course c9 = new Course("BA3802", "Change Management", null, 4);
-//			Course c10 = new Course("BA4201", "Business Intelligence", null, 4);
-//			Course c11 = new Course("PY4402", "Solid State Physics", null, 4);
-//			Course c12 = new Course("PY4676", "Quantum Physics", null, 4);
-//			Course c13 = new Course("ME2401", "Fluid Mechanics", null, 4);
-//			Course c14 = new Course("GS2303", "Southeast Asian Studies", null, 4);
-//			Course c15 = new Course("HS3422", "World Wars", null, 4);
-//			Course c16 = new Course("CH1150", "Organic Chemistry", null, 4);
-//			Course c17 = new Course("PR2101", "Communication In The Workplace", null, 3);
-//			Course c18 = new Course("AS3350", "Asgardian Legends", null, 4);
-//			Course c19 = new Course("AS3355", "Asgardian Folklore", null, 4);
-//			Course c20 = new Course("AC1002", "Financial Accounting", null, 4);
-//			Course c21 = new Course("MD4504", "Neurosurgery", null, 4);
+//			Course c1 = new Course("CS1101", "Introduction To Computing", 4);
+//			Course c2 = new Course("MA1101", "Mathematics 1", 4);
+//			Course c3 = new Course("MA1102", "Mathematics 2", 4);
+//			Course c4 = new Course("PR1301", "Public Speaking And Presentations", 3);
+//			Course c5 = new Course("RB3301", "Advanced Algorithms", 4);
+//			Course c6 = new Course("GE1101", "Introduction To Geography", 4);
+//			Course c7 = new Course("GE2501", "Human Geography", 4);
+//			Course c8 = new Course("PS2301", "USSR: A Retrospective", 4);
+//			Course c9 = new Course("BA3802", "Change Management", 4);
+//			Course c10 = new Course("BA4201", "Business Intelligence", 4);
+//			Course c11 = new Course("PY4402", "Solid State Physics", 4);
+//			Course c12 = new Course("PY4676", "Quantum Physics", 4);
+//			Course c13 = new Course("ME2401", "Fluid Mechanics", 4);
+//			Course c14 = new Course("GS2303", "Southeast Asian Studies", 4);
+//			Course c15 = new Course("HS3422", "World Wars", 4);
+//			Course c16 = new Course("CH1150", "Organic Chemistry", 4);
+//			Course c17 = new Course("PR2101", "Communication In The Workplace", 3);
+//			Course c18 = new Course("AS3350", "Asgardian Legends", 4);
+//			Course c19 = new Course("AS3355", "Asgardian Folklore", 4);
+//			Course c20 = new Course("AC1002", "Financial Accounting", 4);
+//			Course c21 = new Course("MD4504", "Neurosurgery", 4);
 //			crepo.save(c1);
 //			crepo.save(c2);
 //			crepo.save(c3);
@@ -113,26 +114,20 @@ public class Team7WadcaApplication {
 //			crepo.save(c20);
 //			crepo.save(c21);
 			
-//			List<Course> m1 = new ArrayList<Course>();
-//			m1.add(c15);
-//			m1.add(c4);
-//			m1.add(c8);
-			//Student test = srepo.findStudentById(1);
-			
-			
 //			Student s15 = new Student("Peter", "Quill", "Business Studies");
 //			srepo.save(s15);
+
+			//srepo.setCourses(1, c15);
 			
-			
-//			  SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
-//			  
-//			  String hashedPass = sCryptPasswordEncoder.encode("testadmin");
-//			  String hashedPass1 = sCryptPasswordEncoder.encode("testlect");
-//			  
-//			  Accounts u = new Accounts("testadmin", hashedPass, RoleType.ADMIN); 
-//			  urepo.save(u); 
-//			  Accounts u1 = new Accounts("testlect", hashedPass1, RoleType.LECTURER); 
-//			  urepo.save(u1); 
+//			SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
+//
+//			String hashedPass = sCryptPasswordEncoder.encode("testadmin");
+//			String hashedPass1 = sCryptPasswordEncoder.encode("testlect");
+//
+//			Accounts u = new Accounts("testadmin", hashedPass, RoleType.ADMIN); 
+//			urepo.save(u); 
+//			Accounts u1 = new Accounts("testlect", hashedPass1, RoleType.LECTURER); 
+//			urepo.save(u1);
 		};
 	}
 }
