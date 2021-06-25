@@ -23,12 +23,6 @@ public class Student {
 	
 	private int creditsTaken;
 	
-	//@OneToMany
-	//private List<Course> coursesTaken;
-	
-	@OneToOne(mappedBy = "student")
-	private Accounts account;
-
 	public Student(String firstName, String secondName, String major, double gpa, int creditsTaken) {
 		super();
 		this.firstName = firstName;
@@ -45,8 +39,6 @@ public class Student {
 			this.major = major;
 			this.gpa = gpa;
 			this.creditsTaken = creditsTaken;
-			//this.coursesTaken = coursesTaken;
-			this.account = account;
 		}
 	public Student(String firstName, String secondName, String major) {
 		super();
