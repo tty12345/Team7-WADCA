@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 //import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
-import org.springframework.data.querydsl.QuerydslRepositoryInvokerAdapter;
+//import org.springframework.data.querydsl.QuerydslRepositoryInvokerAdapter;
 
 import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Lecturer;
