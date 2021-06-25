@@ -5,7 +5,9 @@
 <title>Student</title>
 </head>
 <body>
-	bravo you are logged in Mr.Student
+	bravo you are logged in Mr. <span th:text="${student.firstName}">Student</span>
 	<a th:href="@{/logout}">Log out</a>
+	<br>
+	<a th:href="@{/student/info/}+${student.id}">view your courses</a>
 </body>
 </html>

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Student {
@@ -25,9 +26,30 @@ public class Student {
 	
 	private int creditsTaken;
 	
-	@OneToMany
-	private List<Course> coursesTaken;
+	@OneToOne(mappedBy = "studentacc")
+	private Accounts account;
+	
+	public Accounts getAccount() {
+		return account;
+	}
+	public void setAccount(Accounts account) {
+		this.account = account;
+	}
 
+	@OneToMany(mappedBy = "student")
+	private List<Course> coursesTaken;
+	
+	public Student(String firstName, String secondName, String major, double gpa, int creditsTaken, Accounts account,
+			List<Course> coursesTaken) {
+		super();
+		this.firstName = firstName;
+		this.secondName = secondName;
+		this.major = major;
+		this.gpa = gpa;
+		this.creditsTaken = creditsTaken;
+		this.account = account;
+		this.coursesTaken = coursesTaken;
+	}
 	public Student(String firstName, String secondName, String major, double gpa, int creditsTaken) {
 		super();
 		this.firstName = firstName;

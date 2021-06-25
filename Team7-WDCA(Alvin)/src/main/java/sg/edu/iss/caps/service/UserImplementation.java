@@ -2,11 +2,11 @@ package sg.edu.iss.caps.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import sg.edu.iss.caps.service.UserInterface;
 import sg.edu.iss.caps.domain.Accounts;
 import sg.edu.iss.caps.repo.accountsrepository;
 @Service
@@ -20,6 +20,14 @@ public class UserImplementation implements UserInterface {
 		urepo.save(user);
 	}
 
+	@Override
+	public boolean checkSession(HttpSession session, String s_name) {
+		if (session.getAttribute(s_name) != null )
+			return true;
+		else 
+			return false;
+	}
+	
 	@Override
 	public void updateUser(Accounts user) {
 		// TODO Auto-generated method stub
@@ -38,12 +46,9 @@ public class UserImplementation implements UserInterface {
 		Accounts username_object = urepo.findAccountsByUsername(user.getUsername());
 		
 		SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
+	
+		return (sCryptPasswordEncoder.matches(user.getPassword(),username_object.getPassword()));
 		
-		
-		if(sCryptPasswordEncoder.matches(user.getPassword(),username_object.getPassword()))
-			return true;
-		else
-			return false;
 	}
 
 	@Override

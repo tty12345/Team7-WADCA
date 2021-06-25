@@ -16,6 +16,11 @@ public class StudentServiceImplementation implements StudentService {
 	StudentRepository srepo;
 	
 	@Override
+	public Student findStudentByUsername(String un) { 
+		return srepo.findStudentByUsername(un);
+	}
+	
+	@Override
 	public void addStudent(Student student) {
 		srepo.save(student);
 	}

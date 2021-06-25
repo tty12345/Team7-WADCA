@@ -11,6 +11,7 @@ import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import net.bytebuddy.build.ToStringPlugin.Exclude;
 import sg.edu.iss.caps.domain.Accounts;
 import sg.edu.iss.caps.domain.RoleType;
+import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
 import sg.edu.iss.caps.service.StudentServiceImplementation;
@@ -38,6 +39,16 @@ public class Team7WadcaApplication {
 	@Bean
 	CommandLineRunner runner() {
 		return args -> {
+			
+//			Student s1 = new Student("Steve", "Rogers", "History");
+//			srepo.save(s1);
+//			
+//			SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
+//			  
+//			String hashedPass = sCryptPasswordEncoder.encode("steven");
+//			Accounts acc = new Accounts("steven", hashedPass, RoleType.STUDENT, s1);
+//			urepo.save(acc);
+			
 //			Student s1 = new Student("Steve", "Rogers", "History");
 //			Student s2 = new Student("Tony", "Stark", "Engineering");
 //			Student s3 = new Student("Natasha", "Romanov", "Global Studies");

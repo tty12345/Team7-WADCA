@@ -2,6 +2,8 @@ package sg.edu.iss.caps.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.service.StudentService;
+import sg.edu.iss.caps.service.UserInterface;
 
 @Controller
 @RequestMapping("/student")
@@ -19,6 +22,8 @@ public class StudentController {
 	@Autowired
 	StudentService sservice;
 	
+	@Autowired
+	UserInterface uservice;
 	// For lecturer or admin to view full list of students
 	@GetMapping(value = "/list")
 	public String list(Model model) {
@@ -29,7 +34,11 @@ public class StudentController {
 	
 	// For students to view their own information
 	@GetMapping(value = "/info/{id}")
-	public String info(@PathVariable(value = "id") int id, Model model) {
+	public String info(@PathVariable(value = "id") int id, Model model,HttpSession session) {
+		
+		if (!uservice.checkSession(session, "usession"))
+			return "index";
+		
 		Student current = sservice.findStudentById(id);
 		model.addAttribute("studentinfo", current);
 		return "StudentView.html";
