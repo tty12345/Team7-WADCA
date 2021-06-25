@@ -1,20 +1,27 @@
 package sg.edu.iss.caps;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
+//import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
+import org.springframework.data.querydsl.QuerydslRepositoryInvokerAdapter;
 
-import net.bytebuddy.build.ToStringPlugin.Exclude;
-import sg.edu.iss.caps.domain.Accounts;
-import sg.edu.iss.caps.domain.RoleType;
+import sg.edu.iss.caps.domain.Course;
+import sg.edu.iss.caps.domain.Lecturer;
+//import net.bytebuddy.build.ToStringPlugin.Exclude;
+//import sg.edu.iss.caps.domain.Accounts;
+//import sg.edu.iss.caps.domain.RoleType;
 import sg.edu.iss.caps.repo.CourseRepository;
+import sg.edu.iss.caps.repo.LecturerRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
-import sg.edu.iss.caps.service.StudentServiceImplementation;
 import sg.edu.iss.caps.repo.accountsrepository;
+import sg.edu.iss.caps.service.StudentServiceImplementation;
 
 @SpringBootApplication(exclude= {SecurityAutoConfiguration.class })
 public class Team7WadcaApplication {
@@ -30,6 +37,10 @@ public class Team7WadcaApplication {
 	
 	@Autowired
 	accountsrepository urepo;
+	
+	@Autowired
+	LecturerRepository lrepo;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(Team7WadcaApplication.class, args);
@@ -70,11 +81,11 @@ public class Team7WadcaApplication {
 //			srepo.save(s13);
 //			srepo.save(s14);
 			
-//			Course c1 = new Course("CS1101", "Introduction To Computing", null, 4);
-//			Course c2 = new Course("MA1101", "Mathematics 1", null, 4);
-//			Course c3 = new Course("MA1102", "Mathematics 2", null, 4);
-//			Course c4 = new Course("PR1301", "Public Speaking And Presentations", null, 3);
-//			Course c5 = new Course("RB3301", "Advanced Algorithms", null, 4);
+			Course c1 = new Course("CS1101", "Introduction To Computing", null, 4);
+			Course c2 = new Course("MA1101", "Mathematics 1", null, 4);
+			Course c3 = new Course("MA1102", "Mathematics 2", null, 4);
+			Course c4 = new Course("PR1301", "Public Speaking And Presentations", null, 3);
+			Course c5 = new Course("RB3301", "Advanced Algorithms", null, 4);
 //			Course c6 = new Course("GE1101", "Introduction To Geography", null, 4);
 //			Course c7 = new Course("GE2501", "Human Geography", null, 4);
 //			Course c8 = new Course("PS2301", "USSR: A Retrospective", null, 4);
@@ -91,11 +102,11 @@ public class Team7WadcaApplication {
 //			Course c19 = new Course("AS3355", "Asgardian Folklore", null, 4);
 //			Course c20 = new Course("AC1002", "Financial Accounting", null, 4);
 //			Course c21 = new Course("MD4504", "Neurosurgery", null, 4);
-//			crepo.save(c1);
-//			crepo.save(c2);
-//			crepo.save(c3);
-//			crepo.save(c4);
-//			crepo.save(c5);
+			crepo.save(c1);
+			crepo.save(c2);
+			crepo.save(c3);
+			crepo.save(c4);
+			crepo.save(c5);
 //			crepo.save(c6);
 //			crepo.save(c7);
 //			crepo.save(c8);
@@ -133,6 +144,14 @@ public class Team7WadcaApplication {
 //			  urepo.save(u); 
 //			  Accounts u1 = new Accounts("testlect", hashedPass1, RoleType.LECTURER); 
 //			  urepo.save(u1); 
+			List<Course> courselist= new ArrayList<Course>();
+			courselist.add(c1);courselist.add(c2);courselist.add(c3);
+			List<Course> courselist1= new ArrayList<Course>();
+			courselist1.add(c4);courselist1.add(c5);
+			Lecturer l1=new Lecturer("Au","Pro", courselist);
+			Lecturer l2=new Lecturer("Bu", "aPro",courselist1);
+			lrepo.save(l1);lrepo.save(l2);
+			
 		};
 	}
 }

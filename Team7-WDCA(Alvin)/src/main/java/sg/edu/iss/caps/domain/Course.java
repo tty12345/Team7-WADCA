@@ -1,12 +1,12 @@
 package sg.edu.iss.caps.domain;
 
-import java.util.Collection;
+//import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+//import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -22,13 +22,13 @@ public class Course {
 	private int credits;
 	@ManyToOne
 	private Student student;
-	@ManyToMany
-	private Collection<Lecturer> lecturers;
+	@ManyToOne
+	private Lecturer lecturer;
 	@ManyToOne
 	private Coursedetail detail;
 	
 	public Course(String code, String name, String grade, double score, int credits, Student student,
-			Collection<Lecturer> lecturers, Coursedetail detail) {
+			Lecturer lecturer, Coursedetail detail) {
 		super();
 		this.code = code;
 		this.name = name;
@@ -36,7 +36,7 @@ public class Course {
 		this.score = score;
 		this.credits = credits;
 		this.student = student;
-		this.lecturers = lecturers;
+		this.lecturer = lecturer;
 		this.detail = detail;
 	}
 	
@@ -99,13 +99,7 @@ public class Course {
 		this.grade = grade;
 	}
 
-	public Collection<Lecturer> getLecturers() {
-		return lecturers;
-	}
-
-	public void setLecturers(Collection<Lecturer> lecturers) {
-		this.lecturers = lecturers;
-	}
+	
 
 	public Coursedetail getDetail() {
 		return detail;
@@ -117,6 +111,16 @@ public class Course {
 
 	public double getScore() {
 		return score;
+	}
+	
+	
+
+	public Lecturer getLecturer() {
+		return lecturer;
+	}
+
+	public void setLecturer(Lecturer lecturer) {
+		this.lecturer = lecturer;
 	}
 
 	public void setScore(double score) {
