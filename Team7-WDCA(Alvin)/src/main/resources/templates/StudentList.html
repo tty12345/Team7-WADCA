@@ -12,6 +12,8 @@
 	<h1 th:text="${message}">default</h1>
 
 	<h2>Students</h2>
+	<a href="StudentForm.html"
+		th:href="@{/manageStudent/add}" th:utext="#{student.page.add}"> Add </a>
 	<table>
 		<tr>
 			<th >Student ID</th>
@@ -28,6 +30,10 @@
 			<td th:text=${student.creditsTaken}>Credits Taken</td>
 			<td th:text=${student.gpa}>Current GPA</td>
 			<td th:text=${student.major}>Major</td>
+			<td><a href="EditStudent.html"
+		th:href="@{/manageStudent/edit/}+${student.id}" th:utext="#{student.page.edit}"> Edit </a></td>
+	        <td><a href="DeleteStudent.html"
+		th:href="@{/manageStudent/delete/}+${student.id}" th:utext="#{student.page.delete}"> Delete </a></td>
 		</tr>
 	</table>
 	
