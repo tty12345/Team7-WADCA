@@ -22,40 +22,42 @@ public class Course {
 	private String grade;
 	private double score;
 	private int credits;
-	@OneToOne
+	@ManyToOne
 	private Student student;
 	@ManyToMany
 	private Collection<Lecturer> lecturers;
 	@ManyToOne
 	private Coursedetail detail;
 	
-	public Course(String code, String name, String grade, double score, int credits, Student student,
+	public Course(String code, String name, double score, int credits, Student student,
 			Collection<Lecturer> lecturers, Coursedetail detail) {
 		super();
 		this.code = code;
 		this.name = name;
-		this.grade = grade;
 		this.score = score;
+		setScore(score);
 		this.credits = credits;
 		this.student = student;
 		this.lecturers = lecturers;
 		this.detail = detail;
 	}
 	
-	public Course(String code, String name, String grade, double score, Student student) {
+	public Course(String code, String name, double score, Student student) {
 		super();
 		this.code = code;
 		this.name = name;
-		this.grade = grade;
 		this.score = score;
+		setScore(score);
 		this.student = student;
 	}
 	
-	public Course(String code, String name, int credits) {
+	public Course(String code, String name, int credits, double score) {
 		super();
 		this.code = code;
 		this.name = name;
 		this.credits = credits;
+		this.score = score;
+		setScore(score);
 	}
 
 	public Course(String code, String name) {

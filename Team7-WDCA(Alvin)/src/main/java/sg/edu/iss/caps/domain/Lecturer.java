@@ -22,7 +22,6 @@ public class Lecturer {
 	
 	@ManyToMany(mappedBy="lecturers")
 	private Collection<Course> courses;
-	
 
 	public int getId() {
 		return id;

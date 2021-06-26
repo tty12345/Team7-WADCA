@@ -37,7 +37,7 @@ public class StudentController {
 	// For students to view their own information
 	@GetMapping(value = "/info/{id}")
 	public String info(@PathVariable(value = "id") int id, Model model, HttpSession session) {
-		if (!uservice.checkSession(session, "usession")) {
+		if (uservice.checkSession(session, "usession")) {
 			return "index";
 		}
 		Student current = sservice.findStudentById(id);

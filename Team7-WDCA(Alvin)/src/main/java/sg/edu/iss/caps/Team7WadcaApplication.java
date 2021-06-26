@@ -1,6 +1,7 @@
 package sg.edu.iss.caps;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,38 +40,38 @@ public class Team7WadcaApplication {
 	@Bean
 	CommandLineRunner runner() {
 		return args -> {
-//			Student s1 = new Student("Steve", "Rogers", "History");
-//			Student s2 = new Student("Tony", "Stark", "Engineering");
-//			Student s3 = new Student("Natasha", "Romanov", "Global Studies");
-//			Student s4 = new Student("Bruce", "Banner", "Physics");
-//			Student s5 = new Student("Bruce", "Wayne", "Engineering");
-//			Student s6 = new Student("Peter", "Parker", "Chemistry");
-
-//			srepo.save(s1);
-//			srepo.save(s2);
-//			srepo.save(s3);
-//			srepo.save(s4);
-//			srepo.save(s5);
-//			srepo.save(s6);
-
-//			Student s7 = new Student("Wanda", "Maximoff", "Geography");
-//			Student s8 = new Student("Vision", null, "Robotics");
-//			Student s9 = new Student("Thor", "Odinson", "Asgardian Studies");
-//			Student s10 = new Student("Loki", "Odinson", "Asgardian Studies");
-//			Student s11 = new Student("T'Challa", null, "Business Studies");
-//			Student s12 = new Student("Bucky", "Barnes", "Political Science");
-//			srepo.save(s7);
-//			srepo.save(s8);
-//			srepo.save(s9);
-//			srepo.save(s10);
-//			srepo.save(s11);
-//			srepo.save(s12);
+			Student s1 = new Student("Steve", "Rogers", "History");
+			Student s2 = new Student("Tony", "Stark", "Engineering");
+			Student s3 = new Student("Natasha", "Romanov", "Global Studies");
+			Student s4 = new Student("Bruce", "Banner", "Physics");
+			Student s5 = new Student("Bruce", "Wayne", "Engineering");
+			Student s6 = new Student("Peter", "Parker", "Chemistry");
+			Student s7 = new Student("Wanda", "Maximoff", "Geography");
+			Student s8 = new Student("Vision", null, "Robotics");
+			Student s9 = new Student("Thor", "Odinson", "Asgardian Studies");
+			Student s10 = new Student("Loki", "Odinson", "Asgardian Studies");
+			Student s11 = new Student("T'Challa", null, "Business Studies");
+			Student s12 = new Student("Bucky", "Barnes", "Political Science");
+			Student s13 = new Student("Steven", "Strange", "Medicine");
+			Student s14 = new Student("Carol", "Danvers", "Engineering");
+			Student s15 = new Student("Peter", "Quill", "Business Studies");
+			srepo.save(s1);
+			srepo.save(s2);
+			srepo.save(s3);
+			srepo.save(s4);
+			srepo.save(s5);
+			srepo.save(s6);
+			srepo.save(s7);
+			srepo.save(s8);
+			srepo.save(s9);
+			srepo.save(s10);
+			srepo.save(s11);
+			srepo.save(s12);
+			srepo.save(s13);
+			srepo.save(s14);
+			srepo.save(s15);
 			
-//			Student s13 = new Student("Steven", "Strange", "Medicine");
-//			Student s14 = new Student("Carol", "Danvers", "Engineering");
-//			srepo.save(s13);
-//			srepo.save(s14);
-			
+		
 //			Course c1 = new Course("CS1101", "Introduction To Computing", 4);
 //			Course c2 = new Course("MA1101", "Mathematics 1", 4);
 //			Course c3 = new Course("MA1102", "Mathematics 2", 4);
@@ -114,10 +115,20 @@ public class Team7WadcaApplication {
 //			crepo.save(c20);
 //			crepo.save(c21);
 			
-//			Student s15 = new Student("Peter", "Quill", "Business Studies");
-//			srepo.save(s15);
-
-			//srepo.setCourses(1, c15);
+			Course c1 = new Course("GE1101", "Introduction To Geography", 4, 70);
+			Course c2 = new Course("PS2301", "USSR: A Retrospective", 4, 75);
+			Course c3 = new Course("HS3422", "World Wars", 4, 75);
+			c3.setScore(75);
+			Collection<Course> sc1 = new ArrayList<>();
+			sc1.add(c1);
+			sc1.add(c2);
+			sc1.add(c3);
+			s1.setCourses(sc1);
+			crepo.save(c1);
+			crepo.save(c2);
+			crepo.save(c3);
+			srepo.save(s1);
+			
 			
 //			SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
 //
@@ -128,6 +139,8 @@ public class Team7WadcaApplication {
 //			urepo.save(u); 
 //			Accounts u1 = new Accounts("testlect", hashedPass1, RoleType.LECTURER); 
 //			urepo.save(u1);
+			
+			
 		};
 	}
 }
