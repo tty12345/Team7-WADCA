@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Student Form</h1>
-<form action="" th:object="${student}" th:action="@{/manageStudent/save}" method="get">
+<form action="" th:object="${student}" th:action="@{/admin/saveStudent}" method="get">
         <fieldset>
 		     <input type="hidden" th:field="*{id}">  
 		</fieldset>

@@ -11,53 +11,93 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import sg.edu.iss.caps.domain.Lecturer;
 import sg.edu.iss.caps.domain.Student;
+import sg.edu.iss.caps.repo.LecturerRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
 import sg.edu.iss.caps.service.AdminService;
 
 @Controller
-@RequestMapping("/manageStudent")
+@RequestMapping("/admin")
 public class AdminController {
 	@Autowired 
 	AdminService aservice;
 	@Autowired
 	StudentRepository srepo;
+	@Autowired
+	LecturerRepository lrepo;
 	
-	@GetMapping("/add")
+	@GetMapping("/addStudent")
 	public String showStudentForm(Model model) {
 		Student student = new Student();
 		model.addAttribute("student", student);
 		return "StudentForm";
 	}
 	
-	@GetMapping("/save")
+	@GetMapping("/saveStudent")
 	public String saveStudentForm(@ModelAttribute("student") @Valid Student student, BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {
 			return "StudentForm";
 		}
 		srepo.save(student);
-		return "forward:/manageStudent/liststudents";
+		return "forward:/admin/listStudents";
 	}
 	
-	@GetMapping("/liststudents")
+	@GetMapping("/listStudents")
 	public String listStudents(Model model) {
 		model.addAttribute("students", srepo.findAll());
 		return "StudentList";
 	}
 	
-	@GetMapping("/edit/{id}")
-	  public String showEditForm(Model model, @PathVariable("id") Integer id) {
+	@GetMapping("/editStudent/{id}")
+	  public String showEditStuForm(Model model, @PathVariable("id") Integer id) {
 		model.addAttribute("student", srepo.findById(id).get());
 		return "StudentForm";
 	  }
 	  
-	  @GetMapping("/delete/{id}")
+	  @GetMapping("/deleteStudent/{id}")
 	  public String deleteMethod(Model model, @PathVariable("id") Integer id) {
 		Student student =srepo.findById(id).get();
 		srepo.delete(student);
-		return "forward:/manageStudent/liststudents";
+		return "forward:/admin/listStudents";
 	  }
+	  
+	  @GetMapping("/addLecturer")
+		public String showLecturerForm(Model model) {
+			Lecturer lecturer=new Lecturer();
+			model.addAttribute("lecturer", lecturer);
+			return "LecturerForm";
+		}
+		
+		@GetMapping("/saveLecturer")
+		public String saveLecturerForm(@ModelAttribute("lecturer") @Valid Lecturer lecturer, BindingResult bindingResult, Model model) {
+			
+			if (bindingResult.hasErrors()) {
+				return "LecturerForm";
+			}
+			lrepo.save(lecturer);
+			return "forward:/admin/listLecturers";
+		}
+		
+		@GetMapping("listLecturers")
+		public String listLecturers(Model model) {
+			model.addAttribute("lecturers", lrepo.findAll());
+			return "LecturerList";
+		}
 	
+		@GetMapping("/editLecturer/{id}")
+		  public String showEditLecForm(Model model, @PathVariable("id") Integer id) {
+			model.addAttribute("lecturer", lrepo.findById(id).get());
+			return "LecturerForm";
+		  }
+	  
+		  @GetMapping("/deleteLecturer/{id}")
+		  public String deleteLecMethod(Model model, @PathVariable("id") Integer id) {
+			Lecturer lecturer =lrepo.findById(id).get();
+			lrepo.delete(lecturer);
+			return "forward:/admin/listLecturers";
+		  }
 
+	 
 }
