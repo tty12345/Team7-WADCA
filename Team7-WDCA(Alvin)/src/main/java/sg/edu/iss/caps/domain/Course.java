@@ -51,13 +51,14 @@ public class Course {
 		this.student = student;
 	}
 	
-	public Course(String code, String name, int credits, double score) {
+	public Course(String code, String name, int credits, double score, Student student) {
 		super();
 		this.code = code;
 		this.name = name;
 		this.credits = credits;
 		this.score = score;
 		setScore(score);
+		this.student = student;
 	}
 
 	public Course(String code, String name) {
