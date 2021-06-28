@@ -1,7 +1,6 @@
 package sg.edu.iss.caps.domain;
 
 import java.util.Collection;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,10 +26,13 @@ public class Course {
 	private Collection<Lecturer> lecturers;
 	@ManyToOne
 	private Coursedetail detail;
+	private Enrollmenstatus status;
 	
-	public Course(String code, String name, String grade, double score, int credits, Student student,
-			Collection<Lecturer> lecturers, Coursedetail detail) {
+	
+	public Course(int id, String code, String name, String grade, double score, int credits, Student student,
+			Collection<Lecturer> lecturers, Coursedetail detail, Enrollmenstatus status) {
 		super();
+		this.id = id;
 		this.code = code;
 		this.name = name;
 		this.grade = grade;
@@ -39,7 +41,10 @@ public class Course {
 		this.student = student;
 		this.lecturers = lecturers;
 		this.detail = detail;
+		this.status = status;
 	}
+
+
 	
 	public Course(String code, String name, String grade, double score, Student student) {
 		super();
@@ -165,10 +170,25 @@ public class Course {
 	public void setStudent(Student student) {
 		this.student = student;
 	}
+	
+	
+	
+	public Enrollmenstatus getStatus() {
+		return status;
+	}
+
+
+	public static void setStatus(Enrollmenstatus status) {
+		
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {
 		return "Course [id=" + id + ", code=" + code + ", name=" + name + ", grade="
 				+ grade + ", score=" + score + "]";
 	}
+
+	
+	
 }

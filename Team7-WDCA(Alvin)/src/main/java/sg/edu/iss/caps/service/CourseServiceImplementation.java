@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import sg.edu.iss.caps.domain.Course;
+import sg.edu.iss.caps.domain.Coursedetail;
+import sg.edu.iss.caps.domain.Enrollmenstatus;
 import sg.edu.iss.caps.repo.CourseRepository;
 
 @Service
-public class CourseServiceImplementation implements CourseService {
+public abstract class CourseServiceImplementation implements CourseService {
 	
 	@Autowired
 	CourseRepository crepo;
@@ -22,11 +25,11 @@ public class CourseServiceImplementation implements CourseService {
 	@Override
 	public void removeCourse(Course course) {
 		crepo.delete(course);
-	}
+	} 
 
 	@Override
-	public Course findCourseById(int id) {
-		Course found = crepo.getById(id);
+	public Course findCourseBycode(int code) {
+		Course found = crepo.getBycode(code);
 		return found;
 	}
 
@@ -53,5 +56,19 @@ public class CourseServiceImplementation implements CourseService {
 		List<Course> all = crepo.findAll();
 		return all;
 	}
+	
+	@Transactional
+	public boolean checkcapacity(Coursedetail course) {
+		//check capacity 
+		
+		} 
+		return enrolstatus;
 
+		
+	@Transactional
+	public void withdrawcourse(Course Course) {
+		Course.setStatus(Enrollmenstatus.WITHDRAWN);
+		crepo.save(Course);
+
+}
 }
