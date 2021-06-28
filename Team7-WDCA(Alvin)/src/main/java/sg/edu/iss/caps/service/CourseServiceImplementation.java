@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sg.edu.iss.caps.domain.Course;
+import sg.edu.iss.caps.domain.Lecturer;
 import sg.edu.iss.caps.repo.CourseRepository;
 
 @Service
@@ -52,6 +53,11 @@ public class CourseServiceImplementation implements CourseService {
 	public List<Course> listAllCourses() {
 		List<Course> all = crepo.findAll();
 		return all;
+	}
+	
+	public List<Course> findCoursesByLecturer(Lecturer lecturer){
+		List<Course> courses=crepo.findCoursesByLecturer(lecturer);
+		return courses;
 	}
 
 }
