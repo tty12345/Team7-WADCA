@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Lecturer;
 //import sg.edu.iss.caps.domain.Student;
+import sg.edu.iss.caps.domain.Student;
 
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 	
@@ -16,9 +17,9 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	
 	@Query("select c from Course c where c.code = ?1")
 	public Course findCourseByCode(String name);
-	@Query("select c from Course c where c.lecturer=?1")
+	
 	public List<Course> findCoursesByLecturer(Lecturer lecturer);
 	
-	
+	public List<Course> findCoursesByStudent(Student Student);
 
 }

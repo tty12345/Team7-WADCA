@@ -5,18 +5,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Course Taught</h1>
-<table>
-<tr>
-<th>Course ID</th>
-<th>Course Name</th>
-<th>Course Size</th>
-</tr>
-<tr th:each="course:${courses}" class="table-row">
-			<td th:text=${course.id}>ID</td>
+<h1>Course Enrollments</h1>
+
+	<table>
+		<tr>
+			<th >Course Id</th>
+			<th >Course Name</th>
+			<th >Credits</th>
+			<th >Enrollments</th>
+		</tr>
+		<tr th:each="course:${courses}" class="table-row">
+			<td th:text=${course.id}>Id</td>
 			<td th:text=${course.name}>Course Name</td>
-			<td th:text=${course.name}>Course Size</td>
-</tr>
-</table>
+			<td th:text=${course.credits}>Credits</td>
+			<td><a href="StudentList.html"
+			th:href="@{/lecturer/ViewCourseEnrollment/}+${course.id}">Enrollments</a></td>
+		</tr>
+	</table>
 </body>
 </html>

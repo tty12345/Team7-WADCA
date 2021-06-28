@@ -24,7 +24,8 @@
 			<td th:text=${lecturer.name}>Name</td>
 			<td th:text=${lecturer.position}>Position</td>
 			<td>
-			<a href=ViewCourse>View Courses</a>
+			<a href="CourseList.html"
+			th:href="@{/lecturer/ViewCourse/}+${lecturer.id}">View Courses</a>
 			</td>
 		</tr>
 	</table>

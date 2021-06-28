@@ -4,6 +4,7 @@ import java.util.List;
 
 import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Lecturer;
+import sg.edu.iss.caps.domain.Student;
 
 public interface CourseService {
 	
@@ -15,4 +16,6 @@ public interface CourseService {
 	public int showCredits(int id);
 	public List<Course> listAllCourses();
 	public List<Course> findCoursesByLecturer(Lecturer lecturer);
+	public List<Course> findCoursesByStudent(Student student);
+
 }

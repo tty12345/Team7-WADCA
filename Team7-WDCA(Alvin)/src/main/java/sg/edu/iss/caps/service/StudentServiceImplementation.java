@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import sg.edu.iss.caps.domain.Course;
 //import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.repo.StudentRepository;
@@ -55,8 +56,16 @@ public class StudentServiceImplementation implements StudentService {
 		return list;
 	}
 	
+	/*
+	 * public List<Student> findStudentsByCourseTaken(List<Course> course){
+	 * List<Student> students=srepo.findStudentsByCourseTaken(course); return
+	 * students; }
+	 */
+	
 //	public void addCourse(Course course) {
 //		srepo.saveCourse(course);
 //	}
+	
+	
 
 }
