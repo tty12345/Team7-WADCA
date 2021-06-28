@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Lecturer;
 import sg.edu.iss.caps.domain.Student;
+import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.LecturerRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
 import sg.edu.iss.caps.service.AdminService;
@@ -26,7 +28,11 @@ public class AdminController {
 	StudentRepository srepo;
 	@Autowired
 	LecturerRepository lrepo;
+	@Autowired
+	CourseRepository crepo;
 	
+	
+	//manage student
 	@GetMapping("/addStudent")
 	public String showStudentForm(Model model) {
 		Student student = new Student();
@@ -63,6 +69,8 @@ public class AdminController {
 		return "forward:/admin/listStudents";
 	  }
 	  
+	  
+	  //manage lecturer
 	  @GetMapping("/addLecturer")
 		public String showLecturerForm(Model model) {
 			Lecturer lecturer=new Lecturer();
@@ -98,6 +106,44 @@ public class AdminController {
 			lrepo.delete(lecturer);
 			return "forward:/admin/listLecturers";
 		  }
+		  
+		  //manage course
+		  
+		  @GetMapping("/addCourse")
+			public String showCourseForm(Model model) {
+				Course course =new Course();
+				model.addAttribute("course", course);
+				return "CourseForm";
+			}
+			
+			@GetMapping("/saveCourse")
+			public String saveCourseForm(@ModelAttribute("course") @Valid Course course, BindingResult bindingResult, Model model) {
+				
+				if (bindingResult.hasErrors()) {
+					return "CourseForm";
+				}
+				crepo.save(course);
+				return "forward:/admin/listCourses";
+			}
+			
+			@GetMapping("listCourses")
+			public String listCourses(Model model) {
+				model.addAttribute("courses", crepo.findAll());
+				return "AdCourseList";
+			}
+		
+			@GetMapping("/editCourse/{id}")
+			  public String showEditCorForm(Model model, @PathVariable("id") Integer id) {
+				model.addAttribute("course", crepo.findById(id).get());
+				return "CourseForm";
+			  }
+		  
+			  @GetMapping("/deleteCourse/{id}")
+			  public String deleteCorMethod(Model model, @PathVariable("id") Integer id) {
+				Course course =crepo.findById(id).get();
+				crepo.delete(course);
+				return "forward:/admin/listCourses";
+			  }
 
 	 
 }
