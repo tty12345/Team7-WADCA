@@ -29,6 +29,9 @@ public class Student {
 	@OneToMany(mappedBy="student")
 	public Collection<Course> courses;
 	
+	@OneToOne(mappedBy = "studentacc")
+	private Accounts account;
+	
 	public Student(String firstName, String secondName, String major, int creditsTaken) {
 		super();
 		this.firstName = firstName;

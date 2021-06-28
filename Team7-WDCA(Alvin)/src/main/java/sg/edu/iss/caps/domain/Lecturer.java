@@ -21,7 +21,7 @@ public class Lecturer {
 	@OneToOne(mappedBy = "lecturer")
 	private Accounts account;
 	
-	@ManyToMany(mappedBy="lecturers")
+	@ManyToMany(mappedBy="lecturer")
 	private List<Course> courses;
 
 	public int getId() {

@@ -1,16 +1,15 @@
 package sg.edu.iss.caps.domain;
 
 import java.util.Collection;
-import java.util.List;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 //import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Course {
@@ -23,20 +22,20 @@ public class Course {
 	private String grade;
 	private double score;
 	private int credits;
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	private Student student;
-	@ManyToOne
-	private Lecturer lecturer;
-	@ManyToOne
+	@ManyToMany(cascade = {CascadeType.ALL}) 
+	private Collection<Lecturer> lecturer;
+	@ManyToOne(cascade = {CascadeType.ALL}) 
 	private Coursedetail detail;
 	
 
 	public Course(String code, String name, double score, int credits, Student student,
-			Collection<Lecturer> lecturers, Coursedetail detail) {
+			Collection<Lecturer> lecturer, Coursedetail detail) {
 		
 	}
 	public Course(String code, String name, String grade, double score, int credits, Student student,
-			Lecturer lecturer, Coursedetail detail) {
+			Collection<Lecturer> lecturer, Coursedetail detail) {
 
 		super();
 		this.code = code;
@@ -126,11 +125,11 @@ public class Course {
 	
 	
 
-	public Lecturer getLecturer() {
+	public Collection<Lecturer> getLecturer() {
 		return lecturer;
 	}
 
-	public void setLecturer(Lecturer lecturer) {
+	public void setLecturer(Collection<Lecturer> lecturer) {
 		this.lecturer = lecturer;
 	}
 

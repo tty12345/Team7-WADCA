@@ -16,7 +16,7 @@ public class Accounts {
 	private String password;
 	private RoleType role;
 	@OneToOne
-	private Student student;
+	private Student studentacc;
 	@OneToOne
 	private Lecturer lecturer;
 	@OneToOne
@@ -26,7 +26,7 @@ public class Accounts {
 		this.username = username;
 		this.password = password;
 		this.role = role;
-		this.student = student;
+		this.studentacc = student;
 		this.lecturer = lecturer;
 		this.admin = admin;
 	}
@@ -45,7 +45,7 @@ public class Accounts {
 	@Override
 	public String toString() {
 		return "Accounts [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role
-				+ ", student=" + student + "]";
+				+ ", student=" + studentacc + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -101,10 +101,10 @@ public class Accounts {
 		this.role = role;
 	}
 	public Student getStudent() {
-		return student;
+		return studentacc;
 	}
 	public void setStudent(Student student) {
-		this.student = student;
+		this.studentacc = student;
 	}
 	public Lecturer getLecturer() {
 		return lecturer;
