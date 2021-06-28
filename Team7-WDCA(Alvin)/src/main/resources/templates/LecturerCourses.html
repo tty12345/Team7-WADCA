@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Course Taught</h1>
+<table>
+<tr>
+<th>Course ID</th>
+<th>Course Name</th>
+<th>Course Size</th>
+</tr>
+<tr th:each="course:${courses}" class="table-row">
+			<td th:text=${course.id}>ID</td>
+			<td th:text=${course.name}>Course Name</td>
+			<td th:text=${course.name}>Course Size</td>
+</tr>
+</table>
+</body>
+</html>
