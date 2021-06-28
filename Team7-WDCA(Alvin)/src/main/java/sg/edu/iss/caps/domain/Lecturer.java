@@ -1,6 +1,7 @@
 package sg.edu.iss.caps.domain;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class Lecturer {
 	private Accounts account;
 	
 	@ManyToMany(mappedBy="lecturers")
-	private Collection<Course> courses;
+	private List<Course> courses;
 
 	public int getId() {
 		return id;
@@ -59,18 +60,25 @@ public class Lecturer {
 		return courses;
 	}
 
-	public void setCourses(Collection<Course> courses) {
+	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
 
-	public Lecturer(String name, String position, Accounts account, Collection<Course> courses) {
+	public Lecturer(String name, String position, Accounts account, List<Course> courses) {
 		super();
 		this.name = name;
 		this.position = position;
 		this.account = account;
 		this.courses = courses;
 	}
-
+	
+	public Lecturer(String name, String position, List<Course> courses) {
+		super();
+		this.name = name;
+		this.position = position;
+		this.courses = courses;
+	}
+	
 	public Lecturer() {
 		super();
 	}

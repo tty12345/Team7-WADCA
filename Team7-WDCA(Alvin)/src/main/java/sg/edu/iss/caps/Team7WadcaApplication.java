@@ -10,12 +10,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+//import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
+//import org.springframework.data.querydsl.QuerydslRepositoryInvokerAdapter;
 
-import sg.edu.iss.caps.domain.Accounts;
 import sg.edu.iss.caps.domain.Course;
-import sg.edu.iss.caps.domain.RoleType;
+import sg.edu.iss.caps.domain.Lecturer;
 import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.repo.CourseRepository;
+import sg.edu.iss.caps.repo.LecturerRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
 import sg.edu.iss.caps.repo.accountsrepository;
 import sg.edu.iss.caps.service.StudentServiceImplementation;
@@ -34,6 +36,10 @@ public class Team7WadcaApplication {
 	
 	@Autowired
 	accountsrepository urepo;
+	
+	@Autowired
+	LecturerRepository lrepo;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(Team7WadcaApplication.class, args);
@@ -178,6 +184,14 @@ public class Team7WadcaApplication {
 //			Accounts u1 = new Accounts("testlect", hashedPass1, RoleType.LECTURER); 
 //			urepo.save(u1);
 			
+			
+			List<Course> courselist= new ArrayList<Course>();
+			courselist.add(c1);courselist.add(c2);courselist.add(c3);
+			List<Course> courselist1= new ArrayList<Course>();
+			courselist1.add(c4);courselist1.add(c5);
+			Lecturer l1=new Lecturer("Au","Pro", courselist);
+			Lecturer l2=new Lecturer("Bu", "aPro",courselist1);
+			lrepo.save(l1);lrepo.save(l2);
 			
 		};
 	}
