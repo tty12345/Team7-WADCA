@@ -14,7 +14,7 @@ public class Student {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int studentId;
+	private int id;
 	
 	private String firstName;
 	
@@ -36,14 +36,14 @@ public class Student {
 		this.major = major;
 		this.creditsTaken = creditsTaken;
 	}
-		public Student(String firstName, String secondName, String major, int creditsTaken,
-				Accounts account) {
-			super();
-			this.firstName = firstName;
-			this.secondName = secondName;
-			this.major = major;
-			this.creditsTaken = creditsTaken;
-		}
+	public Student(String firstName, String secondName, String major, int creditsTaken,
+			Accounts account) {
+		super();
+		this.firstName = firstName;
+		this.secondName = secondName;
+		this.major = major;
+		this.creditsTaken = creditsTaken;
+	}
 	public Student(String firstName, String secondName, String major) {
 		super();
 		this.firstName = firstName;
@@ -53,11 +53,11 @@ public class Student {
 	public Student() {
 		super();
 	}
-	public int getstudentId() {
-		return studentId;
+	public int Id() {
+		return id;
 	}
 	public void setId(int id) {
-		this.studentId = id;
+		this.id = id;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -151,7 +151,7 @@ public class Student {
 	
 	@Override
 	public String toString() {
-		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", secondName=" + secondName + ", major=" + major
+		return "Student [studentId=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", major=" + major
 				+ ", gpa=" + gpa + ", creditsTaken=" + creditsTaken  + "]";
 	}
 	
