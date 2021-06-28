@@ -61,6 +61,14 @@ public class Course {
 		this.student = student;
 	}
 
+	public Course(String code, String name, int credits, Collection<Lecturer> lecturers) {
+		super();
+		this.code = code;
+		this.name = name;
+		this.credits = credits;
+		this.lecturers = lecturers;
+	}
+
 	public Course(String code, String name) {
 		super();
 		this.code = code;

@@ -10,12 +10,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
 import sg.edu.iss.caps.domain.Accounts;
 import sg.edu.iss.caps.domain.Course;
+import sg.edu.iss.caps.domain.Lecturer;
 import sg.edu.iss.caps.domain.RoleType;
 import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.repo.CourseRepository;
+import sg.edu.iss.caps.repo.LecturerRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
 import sg.edu.iss.caps.repo.accountsrepository;
 import sg.edu.iss.caps.service.StudentServiceImplementation;
@@ -34,6 +37,9 @@ public class Team7WadcaApplication {
 	
 	@Autowired
 	accountsrepository urepo;
+	
+	@Autowired
+	LecturerRepository lrepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Team7WadcaApplication.class, args);
@@ -42,6 +48,36 @@ public class Team7WadcaApplication {
 	@Bean
 	CommandLineRunner runner() {
 		return args -> {
+			// Lecturers
+			RoleType r1 = RoleType.LECTURER;
+			
+			SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
+
+			String hashedPass = sCryptPasswordEncoder.encode("blue");
+			
+			Accounts a1 = new Accounts("walterwhite", hashedPass, r1);
+			Lecturer l1 = new Lecturer("Walter White", "Senior Lecturer", a1);
+			urepo.save(a1);
+			
+			
+			Collection<Lecturer> cl1 = new ArrayList<>();
+			cl1.add(l1);
+			
+			Course ww1 = new Course("BA3802", "Change Management", 4, cl1);
+			Course ww2 = new Course("ME2401", "Fluid Mechanics", 4, cl1);
+			Course ww3 = new Course("CH1150", "Organic Chemistry", 4, cl1);
+			Collection<Course> lc1 = new ArrayList<>();
+			lc1.add(ww1);
+			lc1.add(ww2);
+			lc1.add(ww3);
+			l1.setCourses(lc1);
+			lrepo.save(l1);
+			
+			
+			
+			// Students
+			RoleType r2 = RoleType.STUDENT;
+			
 			Student s1 = new Student("Steve", "Rogers", "History");
 			Student s2 = new Student("Tony", "Stark", "Engineering");
 			Student s3 = new Student("Natasha", "Romanov", "Global Studies");
@@ -165,6 +201,7 @@ public class Team7WadcaApplication {
 			crepo.save(c16);
 			crepo.save(c17);
 			srepo.save(s4);
+			
 			
 			
 			

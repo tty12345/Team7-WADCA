@@ -70,6 +70,13 @@ public class Lecturer {
 		this.account = account;
 		this.courses = courses;
 	}
+	
+	public Lecturer(String name, String position, Accounts account) {
+		super();
+		this.name = name;
+		this.position = position;
+		this.account = account;
+	}
 
 	public Lecturer() {
 		super();

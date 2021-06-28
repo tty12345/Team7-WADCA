@@ -14,7 +14,7 @@ public class Student {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private int studentId;
 	
 	private String firstName;
 	
@@ -53,11 +53,11 @@ public class Student {
 	public Student() {
 		super();
 	}
-	public int getId() {
-		return id;
+	public int getstudentId() {
+		return studentId;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.studentId = id;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -83,7 +83,7 @@ public class Student {
 	public void setGpa() {
 		if (courses != null) {
 			double grandTotal = 0;
-			double creditsTotal = 0;
+			int creditsTotal = 0;
 			
 			for (Course course : courses) {
 				double capscore = 0;
@@ -129,8 +129,10 @@ public class Student {
 				creditsTotal += course.getCredits();
 			}
 			this.gpa = grandTotal / creditsTotal; 
+			this.creditsTaken = creditsTotal;
 		} else {
 			this.gpa = 0.0;
+			this.creditsTaken = 0;
 		}
 	}
 	public int getCreditsTaken() {
@@ -149,7 +151,7 @@ public class Student {
 	
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", major=" + major
+		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", secondName=" + secondName + ", major=" + major
 				+ ", gpa=" + gpa + ", creditsTaken=" + creditsTaken  + "]";
 	}
 	
