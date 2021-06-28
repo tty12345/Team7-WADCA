@@ -2,10 +2,12 @@ package sg.edu.iss.caps.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -29,7 +31,8 @@ public class Student {
 	@OneToMany
 	private List<Course> coursesTaken;
 	
-	@OneToOne(mappedBy = "student")
+	@OneToOne(mappedBy = "student" ,cascade = {CascadeType.ALL}) 
+	@JoinColumn(name="AccountId")
 	private Accounts account;
 
 	public Student(String firstName, String secondName, String major, double gpa, int creditsTaken) {
@@ -103,6 +106,12 @@ public class Student {
 		this.coursesTaken = coursesTaken;
 	}
 	
+	public Accounts getAccount() {
+		return account;
+	}
+	public void setAccount(Accounts account) {
+		this.account = account;
+	}
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", major=" + major

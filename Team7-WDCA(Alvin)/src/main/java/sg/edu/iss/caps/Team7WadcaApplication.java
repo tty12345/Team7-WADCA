@@ -16,6 +16,7 @@ import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
 import sg.edu.iss.caps.service.AdminService;
 import sg.edu.iss.caps.service.StudentServiceImplementation;
+import sg.edu.iss.caps.service.UserImplementation;
 import sg.edu.iss.caps.repo.accountsrepository;
 
 @SpringBootApplication(exclude= {SecurityAutoConfiguration.class })
@@ -34,6 +35,8 @@ public class Team7WadcaApplication {
 	accountsrepository urepo;
 	@Autowired 
 	AdminService aservice;
+	@Autowired
+	UserImplementation uservice;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Team7WadcaApplication.class, args);
@@ -42,19 +45,19 @@ public class Team7WadcaApplication {
 	@Bean
 	CommandLineRunner runner() {
 		return args -> {
-			Student s1 = new Student("Steve", "Rogers", "History");
-			Student s2 = new Student("Tony", "Stark", "Engineering");
-			Student s3 = new Student("Natasha", "Romanov", "Global Studies");
-			Student s4 = new Student("Bruce", "Banner", "Physics");
-			Student s5 = new Student("Bruce", "Wayne", "Engineering");
-			Student s6 = new Student("Peter", "Parker", "Chemistry");
-
-			srepo.save(s1);
-			srepo.save(s2);
-			srepo.save(s3);
-			srepo.save(s4);
-			srepo.save(s5);
-			srepo.save(s6);
+//			Student s1 = new Student("Steve", "Rogers", "History");
+//			Student s2 = new Student("Tony", "Stark", "Engineering");
+//			Student s3 = new Student("Natasha", "Romanov", "Global Studies");
+//			Student s4 = new Student("Bruce", "Banner", "Physics");
+//			Student s5 = new Student("Bruce", "Wayne", "Engineering");
+//			Student s6 = new Student("Peter", "Parker", "Chemistry");
+//
+//			srepo.save(s1);
+//			srepo.save(s2);
+//			srepo.save(s3);
+//			srepo.save(s4);
+//			srepo.save(s5);
+//			srepo.save(s6);
 
 //			Student s7 = new Student("Wanda", "Maximoff", "Geography");
 //			Student s8 = new Student("Vision", null, "Robotics");

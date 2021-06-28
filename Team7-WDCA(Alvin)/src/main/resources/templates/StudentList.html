@@ -13,7 +13,7 @@
 
 	<h2>Students</h2>
 	<a href="StudentForm.html"
-		th:href="@{/admin/addStudent}" th:utext="#{student.page.add}"> Add </a>
+		th:href="@{/admin/addStudent}" th:text="Add"> Add </a>
 	<table>
 		<tr>
 			<th >Student ID</th>
@@ -31,9 +31,9 @@
 			<td th:text=${student.gpa}>Current GPA</td>
 			<td th:text=${student.major}>Major</td>
 			<td><a href="EditStudent.html"
-		th:href="@{/admin/editStudent/}+${student.id}" th:utext="#{student.page.edit}"> Edit </a></td>
+		th:href="@{/admin/editStudent/}+${student.id}" th:text="Edit"> Edit </a></td>
 	        <td><a href="DeleteStudent.html"
-		th:href="@{/admin/deleteStudent/}+${student.id}" th:utext="#{student.page.delete}"> Delete </a></td>
+		th:href="@{/admin/deleteStudent/}+${student.id}" th:text="Delete"> Delete </a></td>
 		</tr>
 	</table>
 	
