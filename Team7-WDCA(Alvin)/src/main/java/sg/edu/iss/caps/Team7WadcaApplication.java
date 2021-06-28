@@ -12,23 +12,19 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.Bean;
 //import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 //import org.springframework.data.querydsl.QuerydslRepositoryInvokerAdapter;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
-
+import sg.edu.iss.caps.domain.Accounts;
 import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Lecturer;
-
-import net.bytebuddy.build.ToStringPlugin.Exclude;
-import sg.edu.iss.caps.domain.Accounts;
 import sg.edu.iss.caps.domain.RoleType;
-
 import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.LecturerRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
-
+import sg.edu.iss.caps.repo.accountsrepository;
 import sg.edu.iss.caps.service.AdminService;
 import sg.edu.iss.caps.service.StudentServiceImplementation;
-import sg.edu.iss.caps.repo.accountsrepository;
 
 
 @SpringBootApplication(exclude= {SecurityAutoConfiguration.class })
@@ -59,6 +55,7 @@ public class Team7WadcaApplication {
 	@Bean
 	CommandLineRunner runner() {
 		return args -> {
+			
 			Student s1 = new Student("Steve", "Rogers", "History");
 			Student s2 = new Student("Tony", "Stark", "Engineering");
 			Student s3 = new Student("Natasha", "Romanov", "Global Studies");
@@ -194,15 +191,15 @@ public class Team7WadcaApplication {
 			
 			
 			
-//			SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
-//
-//			String hashedPass = sCryptPasswordEncoder.encode("testadmin");
-//			String hashedPass1 = sCryptPasswordEncoder.encode("testlect");
-//
-//			Accounts u = new Accounts("testadmin", hashedPass, RoleType.ADMIN); 
-//			urepo.save(u); 
-//			Accounts u1 = new Accounts("testlect", hashedPass1, RoleType.LECTURER); 
-//			urepo.save(u1);
+			SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
+
+			String hashedPass = sCryptPasswordEncoder.encode("testadmin");
+			String hashedPass1 = sCryptPasswordEncoder.encode("testlect");
+
+			Accounts u = new Accounts("testadmin", hashedPass, RoleType.ADMIN); 
+			urepo.save(u); 
+			Accounts u1 = new Accounts("testlect", hashedPass1, RoleType.LECTURER); 
+			urepo.save(u1);
 			
 			
 			List<Course> courselist= new ArrayList<Course>();

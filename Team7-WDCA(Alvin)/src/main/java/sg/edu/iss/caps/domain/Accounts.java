@@ -18,16 +18,16 @@ public class Accounts {
 	@OneToOne
 	private Student studentacc;
 	@OneToOne
-	private Lecturer lecturer;
+	private Lecturer lectureracc;
 	@OneToOne
 	private Admin admin;
-	public Accounts(String username, String password, RoleType role, Student student, Lecturer lecturer, Admin admin) {
+	public Accounts(String username, String password, RoleType role, Student student, Lecturer lectureracc, Admin admin) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.role = role;
 		this.studentacc = student;
-		this.lecturer = lecturer;
+		this.lectureracc = lectureracc;
 		this.admin = admin;
 	}
 	
@@ -107,10 +107,10 @@ public class Accounts {
 		this.studentacc = student;
 	}
 	public Lecturer getLecturer() {
-		return lecturer;
+		return lectureracc;
 	}
 	public void setLecturer(Lecturer lecturer) {
-		this.lecturer = lecturer;
+		this.lectureracc = lecturer;
 	}
 	public Admin getAdmin() {
 		return admin;

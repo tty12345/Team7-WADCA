@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.ModelAttribute;
 //import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,7 @@ public class LecturerController {
 	@Autowired
 	private CourseService cservice;
 	//@Autowired
-	//private StudentService sservice;
+	//private StudentService service;
 	//private List<Course> courses=new List<Course>();
 	public void setLecturer(LecturerService lservice) {
 		this.lservice=lservice;
@@ -63,9 +64,21 @@ public class LecturerController {
 		Lecturer l1=lservice.findLecturerById(lecturer.getId());
 		List<Course> courses= cservice.findCoursesByLecturer(l1);
 		model.addAttribute("courses", courses);
-		return "CourseList.html"; 
+		return "courselist.html"; 
 	}
 	
+	@RequestMapping(value="lecturer/save")
+	public String saveGrade(@ModelAttribute("course") Course course, Model model) {
+		lservice.saveCourse(course);
+		return "forward:/lecturer/list";
+	}
+	
+	@RequestMapping(value = "lecturer/gradeform/{id}")
+	public String showForm(Model model, @PathVariable("id") Integer id) {
+		
+		model.addAttribute("course", lservice.findCourseById(id));
+		return "gradeform";
+	}
 	
 
 }

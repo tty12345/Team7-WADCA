@@ -18,11 +18,12 @@ public class Lecturer {
 	private String name;
 	
 	private String position;
-	@OneToOne(mappedBy = "lecturer")
+	
+	@OneToOne(mappedBy = "lectureracc")
 	private Accounts account;
 	
 	@ManyToMany(mappedBy="lecturer")
-	private List<Course> courses;
+	private List<Course> course;
 
 	public int getId() {
 		return id;
@@ -57,11 +58,11 @@ public class Lecturer {
 	}
 
 	public Collection<Course> getCourses() {
-		return courses;
+		return course;
 	}
 
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
+	public void setCourses(List<Course> course) {
+		this.course = course;
 	}
 
 	public Lecturer(String name, String position, Accounts account, List<Course> courses) {
@@ -69,14 +70,14 @@ public class Lecturer {
 		this.name = name;
 		this.position = position;
 		this.account = account;
-		this.courses = courses;
+		this.course = courses;
 	}
 	
 	public Lecturer(String name, String position, List<Course> courses) {
 		super();
 		this.name = name;
 		this.position = position;
-		this.courses = courses;
+		this.course = courses;
 	}
 	
 	public Lecturer() {

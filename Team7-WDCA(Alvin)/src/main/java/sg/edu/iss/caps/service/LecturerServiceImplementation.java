@@ -5,14 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import sg.edu.iss.caps.domain.Course;
 //import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Lecturer;
+import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.LecturerRepository;
 
 @Service
 public class LecturerServiceImplementation implements LecturerService {
 	@Autowired
 	LecturerRepository lrepo;
+	@Autowired
+	CourseRepository crepo;
 	@Override
 	public void createLecturer(Lecturer lecturer) {
 		// TODO Auto-generated method stub
@@ -44,6 +48,17 @@ public class LecturerServiceImplementation implements LecturerService {
 		return lrepo.findLecturerById(id);
 	}
 	
-	  
+	@Override
+	public void saveCourse(Course course) {
+		// TODO Auto-generated method stub
+		crepo.save(course);
+	}
+	
+	@Override
+	public Course findCourseById(Integer id) {
+		Course found = crepo.findById(id).get();
+		return found;
+		
+	}
 
 }
