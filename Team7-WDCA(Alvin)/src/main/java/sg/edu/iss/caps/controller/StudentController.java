@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
-import sg.edu.iss.caps.domain.Accounts;
-import sg.edu.iss.caps.domain.RoleType;
 import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.service.StudentService;
 import sg.edu.iss.caps.service.UserInterface;
@@ -82,13 +79,9 @@ public class StudentController {
 
 	// For students to view their own information
 	@GetMapping(value = "/info/{id}")
-	public String info(@PathVariable(value = "id") int id, Model model,HttpSession session) {
-		
-		if (!uservice.checkSession(session, "stu"))
-			return "index";
-
 	public String info(@PathVariable(value = "id") int id, Model model, HttpSession session) {
-		if (uservice.checkSession(session, "usession")) {
+		
+		if (!uservice.checkSession(session, "stu")) {
 			return "index";
 		}
 		Student current = sservice.findStudentById(id);

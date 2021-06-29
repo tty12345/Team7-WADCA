@@ -31,11 +31,12 @@ public class Accounts {
 		this.admin = admin;
 	}
 	
-	public Accounts(String username, String password, RoleType role) {
+	public Accounts(String username, String password, RoleType role, Lecturer lecturer) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.role = role;
+		this.lecturer = lecturer;
 	}
 	
 	public Accounts(String username, String password, RoleType role, Student stu) {
