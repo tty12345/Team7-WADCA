@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sg.edu.iss.caps.domain.Admin;
-import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.repo.AdminRepository;
 
 @Service

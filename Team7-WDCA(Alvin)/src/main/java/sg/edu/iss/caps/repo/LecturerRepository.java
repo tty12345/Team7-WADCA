@@ -6,4 +6,5 @@ import sg.edu.iss.caps.domain.Lecturer;
 
 public interface LecturerRepository extends JpaRepository<Lecturer, Integer> {
 
+
 }
