@@ -1,6 +1,6 @@
 package sg.edu.iss.caps.domain;
 
-import java.util.List;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,6 +41,10 @@ public class Student {
 	
 	public Student(String firstName, String secondName, String major, double gpa, int creditsTaken, Accounts account,
 			List<Course> coursesTaken) {
+	@OneToMany(mappedBy="student")
+	public Collection<Course> courses;
+	
+	public Student(String firstName, String secondName, String major, int creditsTaken) {
 		super();
 		this.firstName = firstName;
 		this.secondName = secondName;
@@ -51,11 +55,14 @@ public class Student {
 		this.coursesTaken = coursesTaken;
 	}
 	public Student(String firstName, String secondName, String major, double gpa, int creditsTaken) {
+		this.creditsTaken = creditsTaken;
+	}
+	public Student(String firstName, String secondName, String major, int creditsTaken,
+			Accounts account) {
 		super();
 		this.firstName = firstName;
 		this.secondName = secondName;
 		this.major = major;
-		this.gpa = gpa;
 		this.creditsTaken = creditsTaken;
 	}
 	public Student(String firstName, String secondName, String major) {
@@ -67,7 +74,7 @@ public class Student {
 	public Student() {
 		super();
 	}
-	public int getId() {
+	public int Id() {
 		return id;
 	}
 	public void setId(int id) {
@@ -94,8 +101,60 @@ public class Student {
 	public double getGpa() {
 		return gpa;
 	}
-	public void setGpa(double gpa) {
-		this.gpa = gpa;
+	public void setGpa() {
+		if (courses != null) {
+			double grandTotal = 0;
+			int creditsTotal = 0;
+			
+			for (Course course : courses) {
+				double capscore = 0;
+				
+				switch(course.getGrade()) {
+				case "A+":
+					capscore = 5.0;
+					break;
+				case "A":
+					capscore = 5.0;
+					break;
+				case "A-":
+					capscore = 4.5;
+					break;
+				case "B+":
+					capscore = 4.0;
+					break;
+				case "B":
+					capscore = 3.5;
+					break;
+				case "B-":
+					capscore = 3.0;
+					break;
+				case "C+":
+					capscore = 2.5;
+					break;
+				case "C":
+					capscore = 2.0;
+					break;
+				case "D+":
+					capscore = 1.5;
+					break;
+				case "D":
+					capscore = 1.0;
+					break;
+				case "F":
+					break;
+				default:
+					capscore = 0;
+				}
+				
+				grandTotal += course.getCredits() * capscore;
+				creditsTotal += course.getCredits();
+			}
+			this.gpa = grandTotal / creditsTotal; 
+			this.creditsTaken = creditsTotal;
+		} else {
+			this.gpa = 0.0;
+			this.creditsTaken = 0;
+		}
 	}
 	public int getCreditsTaken() {
 		return creditsTaken;
@@ -103,16 +162,17 @@ public class Student {
 	public void setCreditsTaken(int creditsTaken) {
 		this.creditsTaken = creditsTaken;
 	}
-	public List<Course> getCoursesTaken() {
-		return coursesTaken;
+	public Collection<Course> getCourses() {
+		return courses;
 	}
-	public void setCoursesTaken(List<Course> coursesTaken) {
-		this.coursesTaken = coursesTaken;
+	public void setCourses(Collection<Course> courses) {
+		this.courses = courses;
+		setGpa();
 	}
 	
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", major=" + major
+		return "Student [studentId=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", major=" + major
 				+ ", gpa=" + gpa + ", creditsTaken=" + creditsTaken  + "]";
 	}
 	

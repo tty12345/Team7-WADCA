@@ -8,6 +8,6 @@ class Team7WadcaApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
-
 }

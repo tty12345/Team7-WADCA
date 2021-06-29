@@ -19,6 +19,14 @@ public class UserImplementation implements UserInterface {
 		// TODO Auto-generated method stub
 		urepo.save(user);
 	}
+	
+	@Override
+	public boolean checkSession(HttpSession session, String s_name) {
+		if (session.getAttribute(s_name) != null )
+			return true;
+		else 
+			return false;
+	}
 
 	@Override
 	public boolean checkSession(HttpSession session, String s_name) {
