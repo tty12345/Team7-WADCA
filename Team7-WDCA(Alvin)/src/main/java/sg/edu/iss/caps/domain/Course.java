@@ -180,7 +180,6 @@ public class Course {
 
 	public static void setStatus(Enrollmenstatus status) {
 		
-		this.status = status;
 	}
 
 	@Override

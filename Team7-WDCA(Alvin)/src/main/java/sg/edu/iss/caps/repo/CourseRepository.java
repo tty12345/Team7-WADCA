@@ -16,5 +16,8 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	public Course findCourseByCode(String name);
 	
 	@Query("select c from Course c where c.code = ?1")
-	public Course getBycode(int code);
+	public Course getBycode(String code);
+	
+	@Query("select count(c) from Course c where c.code =?1 group by c.code")
+	public int getCount(String code);
 }

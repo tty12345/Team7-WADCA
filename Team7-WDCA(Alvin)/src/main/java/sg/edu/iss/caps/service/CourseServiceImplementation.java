@@ -10,12 +10,15 @@ import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Coursedetail;
 import sg.edu.iss.caps.domain.Enrollmenstatus;
 import sg.edu.iss.caps.repo.CourseRepository;
+import sg.edu.iss.caps.repo.CoursedetailRepository;
 
 @Service
 public abstract class CourseServiceImplementation implements CourseService {
 	
 	@Autowired
 	CourseRepository crepo;
+	@Autowired
+	CoursedetailRepository cdrepo;
 
 	@Override
 	public void addCourse(Course course) {
@@ -27,11 +30,6 @@ public abstract class CourseServiceImplementation implements CourseService {
 		crepo.delete(course);
 	} 
 
-	@Override
-	public Course findCourseBycode(int code) {
-		Course found = crepo.getBycode(code);
-		return found;
-	}
 
 	@Override
 	public List<Course> findCoursesByName(String name) {
@@ -40,7 +38,7 @@ public abstract class CourseServiceImplementation implements CourseService {
 	}
 
 	@Override
-	public Course findCourseByCode(String code) {
+	public Course findCourseBycode(String code) {
 		Course found = crepo.findCourseByCode(code);
 		return found;
 	}
@@ -57,13 +55,16 @@ public abstract class CourseServiceImplementation implements CourseService {
 		return all;
 	}
 	
-	@Transactional
-	public boolean checkcapacity(Coursedetail course) {
+	@Override
+	public boolean checkcapacity(Course course) {
 		//check capacity 
-		
-		} 
-		return enrolstatus;
-
+		Integer count = crepo.getCount(course.getCode());
+		Coursedetail cd = course.getDetail();
+		if(count < cd.getCourseCapacity())
+		return true;
+		else
+		return false;
+	}
 		
 	@Transactional
 	public void withdrawcourse(Course Course) {

@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import sg.edu.iss.caps.domain.Course;
@@ -30,10 +29,11 @@ public class CourseController {
 		return "CourseList.html";
 	}
 	
+	
 	// To view individual course
 	@GetMapping(value = "/list/{code}")
 	public String view(@PathVariable(value = "code") String code, Model model) {
-		Course course = cservice.findCourseByCode(code);
+		Course course = cservice.findCourseBycode(code);
 		model.addAttribute("course", course);
 		return "CourseView.html";
 	}
@@ -48,9 +48,9 @@ public class CourseController {
 	@GetMapping(value = "/enrol")
 	public String enrolcourse(@PathVariable("code") String code)
 	{
-		Course.setStatus(Enrollmenstatus.SUBMITTED);
+		Course course = cservice.findCourseBycode(code);
+		course.setStatus(Enrollmenstatus.SUBMITTED);
 		if (cservice.checkcapacity(course)) {
-			cservice.savecourse(course);
 			return "forward:/course/save";
 		} else
 			return "error";
@@ -59,7 +59,7 @@ public class CourseController {
 
 	@RequestMapping(value = "/withdraw/{code}")
 	public String cancelBooking(@PathVariable("code") String code) {
-		cservice.withdrawcourse(cservice.findCourseByCode(code));
+		cservice.withdrawcourse(cservice.findCourseBycode(code));
 		return "forward:/course/list";
-}
+	}
 }
