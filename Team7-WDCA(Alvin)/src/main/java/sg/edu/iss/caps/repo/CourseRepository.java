@@ -26,5 +26,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	@Transactional
 	@Query("delete from Course c where c.code = :code")
 	public void deleteCourseByCode(@Param("code") String code);
-
+	
+	@Query("select count(c) from Course c where c.code =?1 group by c.code")
+	public int getCount(String code);
 }
