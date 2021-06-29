@@ -19,7 +19,7 @@
 			<th >Credits</th>
 			<th >Grade</th>
 		</tr>
-		<tr th:each="course:${studentinfo.courses}" class="table-row">
+		<tr th:each="course:${courses}" class="table-row">
 			<td th:text=${course.id}>Id</td>
 			<td th:text=${course.name}>Course Name</td>
 			<td th:text=${course.credits}>Credits</td>

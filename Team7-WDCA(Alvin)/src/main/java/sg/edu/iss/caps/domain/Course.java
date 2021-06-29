@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-//import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Course {
@@ -22,55 +22,47 @@ public class Course {
 	private String grade;
 	private double score;
 	private int credits;
-	@ManyToOne(cascade = {CascadeType.MERGE})
+	@ManyToOne(cascade = {CascadeType.ALL})
 	private Student student;
-	@ManyToMany(cascade = {CascadeType.ALL}) 
-	private Collection<Lecturer> lecturer;
-	@ManyToOne(cascade = {CascadeType.ALL}) 
+	@ManyToMany
+	private Collection<Lecturer> lecturers;
+	@ManyToOne(cascade = {CascadeType.ALL})  
 	private Coursedetail detail;
 	
-
-	public Course(String code, String name, double score, int credits, Student student,
-			Collection<Lecturer> lecturer, Coursedetail detail) {
-		
-	}
 	public Course(String code, String name, String grade, double score, int credits, Student student,
-			Collection<Lecturer> lecturer, Coursedetail detail) {
-
+			Collection<Lecturer> lecturers, Coursedetail detail) {
 		super();
 		this.code = code;
 		this.name = name;
+		this.grade = grade;
 		this.score = score;
-		setScore(score);
 		this.credits = credits;
 		this.student = student;
-		this.lecturer = lecturer;
+		this.lecturers = lecturers;
 		this.detail = detail;
 	}
 	
-	public Course(String code, String name, double score, Student student) {
+	public Course(String code, String name, String grade, double score, Student student) {
 		super();
 		this.code = code;
 		this.name = name;
+		this.grade = grade;
 		this.score = score;
-		setScore(score);
 		this.student = student;
 	}
 	
-	public Course(String code, String name, int credits, double score, Student student) {
+	public Course(String code, String name, String grade, double score) {
 		super();
 		this.code = code;
 		this.name = name;
-		this.credits = credits;
+		this.grade = grade;
 		this.score = score;
-		setScore(score);
-		this.student = student;
 	}
 
-	public Course(String code, String name) {
+	public Course(String name, String grade) {
 		super();
-		this.code = code;
 		this.name = name;
+		this.grade = grade;
 	}
 
 	public Course() {
@@ -109,7 +101,13 @@ public class Course {
 		this.grade = grade;
 	}
 
-	
+	public Collection<Lecturer> getLecturers() {
+		return lecturers;
+	}
+
+	public void setLecturers(Collection<Lecturer> lecturers) {
+		this.lecturers = lecturers;
+	}
 
 	public Coursedetail getDetail() {
 		return detail;
@@ -121,16 +119,6 @@ public class Course {
 
 	public double getScore() {
 		return score;
-	}
-	
-	
-
-	public Collection<Lecturer> getLecturer() {
-		return lecturer;
-	}
-
-	public void setLecturer(Collection<Lecturer> lecturer) {
-		this.lecturer = lecturer;
 	}
 
 	public void setScore(double score) {

@@ -1,6 +1,6 @@
 package sg.edu.iss.caps.controller;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,63 +8,34 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
 
 import sg.edu.iss.caps.domain.Course;
-import sg.edu.iss.caps.domain.Lecturer;
-
-import sg.edu.iss.caps.service.CourseService;
-import sg.edu.iss.caps.service.LecturerService;
-//import sg.edu.iss.caps.service.StudentService;
-
-
+import sg.edu.iss.caps.service.LecturerInterface;
 
 
 
 @Controller
-@RequestMapping("/lecturer")
 public class LecturerController {
+
 	@Autowired
-	private LecturerService lservice;
+	LecturerInterface lservice;
+	
 	@Autowired
-	private CourseService cservice;
-	//@Autowired
-	//private StudentService service;
-	//private List<Course> courses=new List<Course>();
-	public void setLecturer(LecturerService lservice) {
-		this.lservice=lservice;
+	public void setLecturer(LecturerInterface ls) {
+		this.lservice = ls;
 	}
 	
-	@GetMapping(value = "/list")
-	public String list(Model model) {
-		List<Lecturer> lecturerList = lservice.listAllLecturer();
-		model.addAttribute("lecturers",lecturerList);
-		return "LecturerList.html";
+	@RequestMapping(value="lecturer")
+	public String home() {
+		return "lecturer";
 	}
 	
-	@GetMapping(value="/home")
-	public String showHomePage() {
-		return "LecturerMainPage";
-	}
-	
-	/*
-	 * @RequestMapping("/ViewCourse") public String viewCourses(Model model,Lecturer
-	 * lecturer) { //Lecturer lecturer=new Lecturer(); Lecturer
-	 * l1=lservice.findLecturerById(lecturer.getId()); List<Course> courses=
-	 * cservice.findCoursesByLecturer(l1); model.addAttribute("courses",courses);
-	 * return "LecturerCourses.html"; }
-	 */
-	
-	@RequestMapping(value="ViewCourse")
-	public String ViewCourse(@ModelAttribute("lecturer") Lecturer lecturer,Model model)
-	{
-		Lecturer l1=lservice.findLecturerById(lecturer.getId());
-		List<Course> courses= cservice.findCoursesByLecturer(l1);
-		model.addAttribute("courses", courses);
-		return "courselist.html"; 
+	@RequestMapping(value="lecturer/list")
+	public String listLecturer(Model model) {
+		ArrayList<Course> clist = (ArrayList<Course>)lservice.listAllCourses();
+		model.addAttribute("courses",clist);
+		return "courselist";
 	}
 	
 	@RequestMapping(value="lecturer/save")
@@ -80,5 +51,10 @@ public class LecturerController {
 		return "gradeform";
 	}
 	
-
+	@RequestMapping(value= "lecturer/add")
+	public String showCourseForm(Model model) {
+		Course course = new Course();
+		model.addAttribute("course", course);
+		return "CreateCourse";
+	}
 }

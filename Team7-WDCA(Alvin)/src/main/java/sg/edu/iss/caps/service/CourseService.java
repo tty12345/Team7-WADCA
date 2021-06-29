@@ -3,7 +3,6 @@ package sg.edu.iss.caps.service;
 import java.util.List;
 
 import sg.edu.iss.caps.domain.Course;
-import sg.edu.iss.caps.domain.Lecturer;
 
 public interface CourseService {
 	
@@ -14,5 +13,4 @@ public interface CourseService {
 	public Course findCourseByCode(String code);
 	public int showCredits(int id);
 	public List<Course> listAllCourses();
-	public List<Course> findCoursesByLecturer(Lecturer lecturer);
 }

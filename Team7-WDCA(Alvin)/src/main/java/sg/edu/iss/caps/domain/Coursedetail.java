@@ -35,8 +35,8 @@ public class Coursedetail {
 		return course;
 	}
 
-	public void setCourse(Collection<Course> course) {
-		this.course = (Collection<Course>) course;
+	public void setCourse(Course course) {
+		this.course = (List<Course>) course;
 
 	}
 	@Override

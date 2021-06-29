@@ -2,8 +2,6 @@ package sg.edu.iss.caps.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import sg.edu.iss.caps.domain.Accounts;
 
 public interface UserInterface {
@@ -13,5 +11,4 @@ public interface UserInterface {
 	public boolean authenticateUser(Accounts user);
 	public Accounts findByName(String name);
 	public List<Accounts> listAllUsers();
-	boolean checkSession(HttpSession session, String s_name);
 }
