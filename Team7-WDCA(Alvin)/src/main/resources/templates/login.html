@@ -5,7 +5,7 @@
 <title>LogIn Page</title>
 </head>
 <body>
-	<form th:action="@{/authenticate}" th:object="${user}">
+	<form th:action="@{/authenticate}" th:object="${user}" method="post">
 		<fieldset>
 			Name: <input type="text" th:field="*{username}">
 		</fieldset>
@@ -18,3 +18,4 @@
 	</form>
 </body>
 </html>
+

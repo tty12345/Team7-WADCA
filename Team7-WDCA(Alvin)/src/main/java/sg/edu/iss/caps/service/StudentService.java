@@ -15,5 +15,5 @@ public interface StudentService {
 	public List<Student> listAllStudents();
 	public Student findStudentByUsername(String un);
 	//public List<Module> listModuleByStudentId(int id);
-	
+	public List<Student> getAllStudents(int pageNo, int pageSize);
 }

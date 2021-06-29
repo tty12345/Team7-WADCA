@@ -144,6 +144,22 @@ public class Team7WadcaApplication {
 //			  urepo.save(u); 
 //			  Accounts u1 = new Accounts("testlect", hashedPass1, RoleType.LECTURER); 
 //			  urepo.save(u1); 
+			
+//			Student s7 = new Student("Suria", "Rogers", "java");
+//			Student s2 = new Student("Tony", "Stark", "Engineering");
+//			Student s3 = new Student("Natasha", "Romanov", "Global Studies");
+//			Student s4 = new Student("Bruce", "Banner", "Physics");
+//			Student s5 = new Student("Bruce", "Wayne", "Engineering");
+//			Student s6 = new Student("Peter", "Parker", "Chemistry");
+//			Student s8 = new Student("Donald", "Trump", "Republican");
+//			srepo.save(s2);
+//			srepo.save(s3);
+//			srepo.save(s4);
+//			srepo.save(s5);
+//			srepo.save(s6);
+//			srepo.save(s7);
+//			srepo.save(s8);
+			
 		};
 	}
 }

@@ -5,9 +5,13 @@
 <title>Student</title>
 </head>
 <body>
-	bravo you are logged in Mr. <span th:text="${student.firstName}">Student</span>
-	<a th:href="@{/logout}">Log out</a>
+	<!-- bravo you are logged in Mr. <span th:text="${student.firstName}">Student</span> -->
+	
 	<br>
+	
+	<a th:href="@{/student/list}">view all students</a>
+	
 	<a th:href="@{/student/info/}+${student.id}">view your courses</a>
+	<div th:replace="fragments/general.html :: footer"></div>
 </body>
 </html>

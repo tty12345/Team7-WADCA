@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import sg.edu.iss.caps.domain.Accounts;
@@ -34,24 +35,32 @@ public class loginContoller {
 		return "login";
 	}
 	
-	@RequestMapping("/authenticate")
+	@PostMapping("/authenticate")
 	public String authenticate(@ModelAttribute("user")Accounts user,HttpSession session, Model model) {
 		String returnPage;
 		if (u.authenticateUser(user))
 		{
-			Student logged_stu = sservice.findStudentByUsername(user.getUsername());
+			Student login_user = sservice.findStudentByUsername(user.getUsername());
 			Accounts loggeduser = u.findByName(user.getUsername());
-			session.setAttribute("usession", logged_stu);
+			
 			
 			if(loggeduser.getRole() == RoleType.STUDENT)
 			{	
-				model.addAttribute("student", logged_stu);
+				model.addAttribute("student", loggeduser);
+				session.setAttribute("stu", login_user);
 				returnPage = "StudentMainPage";
+				
 			}
 			else if (loggeduser.getRole() == RoleType.ADMIN)
+			{
+				session.setAttribute("admin", login_user);
 				returnPage = "AdminMainPage";
+			}
 			else 
+			{
+				session.setAttribute("lect", login_user);
 				returnPage = "LecturerMainPage";
+			}
 		}
 		else
 			returnPage = "login";

@@ -20,7 +20,7 @@ public class Lecturer {
 	@OneToOne(mappedBy = "lecturer")
 	private Accounts account;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "lecturers")
 	private Collection<Course> courses;
 	
 
