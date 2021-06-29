@@ -1,6 +1,5 @@
 package sg.edu.iss.caps.domain;
 
-import java.util.Collection;
 import java.util.List;
 
 
@@ -10,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Course {
@@ -32,9 +30,9 @@ public class Course {
 	
 
 	public Course(String code, String name, double score, int credits, Student student,
-			Collection<Lecturer> lecturers, Coursedetail detail) {
-		
+			List<Lecturer> lecturers, Coursedetail detail) {
 	}
+	
 	public Course(String code, String name, String grade, double score, int credits, Student student,
 			Lecturer lecturer, Coursedetail detail) {
 
@@ -68,12 +66,12 @@ public class Course {
 		this.student = student;
 	}
 
-	public Course(String code, String name, int credits, Collection<Lecturer> lecturers) {
+	public Course(String code, String name, int credits, Lecturer lecturer) {
 		super();
 		this.code = code;
 		this.name = name;
 		this.credits = credits;
-		this.lecturers = lecturers;
+		this.lecturer = lecturer;
 	}
 
 	public Course(String code, String name) {
@@ -131,8 +129,6 @@ public class Course {
 	public double getScore() {
 		return score;
 	}
-	
-	
 
 	public Lecturer getLecturer() {
 		return lecturer;
