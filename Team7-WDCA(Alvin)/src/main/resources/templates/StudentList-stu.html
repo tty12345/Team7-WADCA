@@ -20,10 +20,11 @@
 			<th >Major</th>
 		</tr>
 		<tr th:each="student:${students}" class="table-row">
-			<td th:text=${student.studentId}>Id</td>
-			<td th:text=${student.firstName}>First Name</td>
-			<td th:text=${student.secondName}>Second Name</td>
-			<td th:text=${student.major}>Major</td>
+			<td th:text="${student.id}">Id</td>
+			<td th:text="${student.firstName}">First Name</td>
+			<td th:text="${student.secondName}">Second Name</td>
+			<td th:text="${student.major}">Major</td>
+			
 		</tr>
 	</table>
 	

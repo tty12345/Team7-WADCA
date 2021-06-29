@@ -98,7 +98,7 @@ public class Team7WadcaApplication {
 			lrepo.save(l2);
 		
 			String hashedPass1 = sCryptPasswordEncoder.encode("pink");
-			Accounts ac2 = new Accounts("walterwhite", hashedPass1, RoleType.LECTURER, l2);
+			Accounts ac2 = new Accounts("jessepinkman", hashedPass1, RoleType.LECTURER, l2);
 			urepo.save(ac2);
 			
 			Course cl11 = new Course("BA4201", "Business Intelligence", 4, l2);

@@ -70,7 +70,8 @@ public class Student {
 	public Student() {
 		super();
 	}
-	public int Id() {
+
+	public int getId() {
 		return id;
 	}
 	public void setId(int id) {

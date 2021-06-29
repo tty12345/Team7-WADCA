@@ -2,6 +2,8 @@ package sg.edu.iss.caps.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 import sg.edu.iss.caps.domain.Student;
 
 public interface StudentService {
@@ -14,6 +16,6 @@ public interface StudentService {
 	public int showCreditsTakenById(int id);
 	public List<Student> listAllStudents();
 	public Student findStudentByUsername(String un);
-	//public List<Module> listModuleByStudentId(int id);
 	public List<Student> getAllStudents(int pageNo, int pageSize);
+	//public List<Module> listModuleByStudentId(int id);
 }

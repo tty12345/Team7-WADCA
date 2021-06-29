@@ -110,7 +110,7 @@ public class Course {
 	}
 
 	public String getGrade() {
-		return grade;
+		return "hello";
 	}
 
 	private void setGrade(String grade) {

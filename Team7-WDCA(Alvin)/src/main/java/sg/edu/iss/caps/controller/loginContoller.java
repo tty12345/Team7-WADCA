@@ -36,7 +36,7 @@ public class loginContoller {
 	}
 	
 	@PostMapping("/authenticate")
-	public String authenticate(@ModelAttribute("user")Accounts user,HttpSession session, Model model) {
+	public String authenticate(@ModelAttribute("user")Accounts user, HttpSession session, Model model) {
 		String returnPage;
 		if (u.authenticateUser(user))
 		{
