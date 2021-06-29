@@ -1,5 +1,7 @@
 package sg.edu.iss.caps.controller;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,7 +108,28 @@ public class AdminController {
 			lrepo.delete(lecturer);
 			return "forward:/admin/listLecturers";
 		  }
-		  
+		  @GetMapping("/LecViewCourses/{id}")
+		  public String viewCourses(Model model, @PathVariable("id") Integer id) {
+			  Lecturer lecturer =lrepo.findById(id).get();
+			  Collection<Course> courses=lecturer.getCourses();
+			  return "LecCourseList";
+		  }
+		  @GetMapping("/addLecCourse")
+		  public String addLecCourse(Model model) {
+				Course course=new Course();
+				model.addAttribute("course", course);
+				
+			    return "LecCourseForm";
+		  }
+			@GetMapping("/saveLecCourse")
+			public String saveLecCourseForm(@ModelAttribute("course") @Valid Course course, BindingResult bindingResult, Model model) {
+				
+				if (bindingResult.hasErrors()) {
+					return "LecCourseForm";
+				}
+				lrepo.save(course);
+				return "forward:/admin/LecViewCourse";
+			}
 		  //manage course
 		  
 		  @GetMapping("/addCourse")

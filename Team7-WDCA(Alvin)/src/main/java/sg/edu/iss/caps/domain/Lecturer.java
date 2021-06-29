@@ -2,6 +2,7 @@ package sg.edu.iss.caps.domain;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,7 @@ public class Lecturer {
 	private String name;
 	
 	private String position;
-	@OneToOne(mappedBy = "lecturer")
+	@OneToOne(mappedBy = "lecturer" ,cascade = {CascadeType.ALL})
 	private Accounts account;
 	
 	@ManyToMany

@@ -14,6 +14,7 @@ import sg.edu.iss.caps.domain.RoleType;
 import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
 import sg.edu.iss.caps.service.StudentServiceImplementation;
+import sg.edu.iss.caps.service.UserImplementation;
 import sg.edu.iss.caps.repo.accountsrepository;
 
 @SpringBootApplication(exclude= {SecurityAutoConfiguration.class })
@@ -31,6 +32,13 @@ public class Team7WadcaApplication {
 	@Autowired
 	accountsrepository urepo;
 
+	@Autowired 
+	AdminService aservice;
+	
+	@Autowired
+	UserImplementation uservice;
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(Team7WadcaApplication.class, args);
 	}
@@ -45,6 +53,7 @@ public class Team7WadcaApplication {
 //			Student s5 = new Student("Bruce", "Wayne", "Engineering");
 //			Student s6 = new Student("Peter", "Parker", "Chemistry");
 
+//
 //			srepo.save(s1);
 //			srepo.save(s2);
 //			srepo.save(s3);
