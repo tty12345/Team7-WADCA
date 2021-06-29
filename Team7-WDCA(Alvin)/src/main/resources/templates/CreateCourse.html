@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+	<header th:insert="layout/layout.html :: header"></header>
+	<div th:replace="layout/layout.html :: menu"></div>
+	<h1>Grade a Student</h1>
+	<form action="" th:object="${course}" th:action="@{/lecturer/save}"
+		method="get" class="form-horizontal">
+        <fieldset>
+		     <input type="hidden" th:field="*{id}">
+		     <input type="hidden" th:field="*{student.id}" /> 
+		</fieldset>
+		<fieldset>
+		     Code: <input type="text" th:field="*{code}">  
+		</fieldset>
+		<fieldset>
+		     Credit: <input type="text" th:field="*{credits}">  
+		</fieldset>
+		<fieldset>
+		     Grade: <input type="text" th:field="*{grade}">  
+		</fieldset>
+		<fieldset>
+			Course Name: <input type="text" th:field="*{name}">
+		</fieldset>
+		<fieldset>
+			Student's score: <input type="text" th:field="*{score}">
+		</fieldset>
+		<fieldset>
+			Student's First Name: <input type="text" th:field="*{student.firstName}">
+		</fieldset>
+				<fieldset>
+			Student's Second Name: <input type="text" th:field="*{student.secondName}">
+		</fieldset>
+		<fieldset>
+			Student's Major: <input type="text" th:field="*{student.major}">
+		</fieldset>
+		<fieldset>
+			Student's GPA: <input type="text" th:field="*{student.gpa}">
+		</fieldset>
+		<fieldset>
+			Student's Credits: <input type="text" th:field="*{student.gpa}">
+		</fieldset>
+		<fieldset>
+			<button type="submit">Save</button>
+		</fieldset>
+	</form>
+	<div th:replace="layout/layout.html :: footer"></div>
+</body>
+</html>
