@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+
+	<h1>Lecturer List</h1>
+	<h1 th:text="${message}">default</h1>
+
+	<h2>Lecturers</h2>
+<<<<<<< HEAD
+	<table>
+		<tr>
+			<th >Lecturer ID</th>
+			<th >Lecturer Name</th>
+			<th >Lecturer Position</th>
+			
+		</tr>
+		<tr th:each="lecturer:${lecturers}" class="table-row">
+			<td th:text=${lecturer.id}>Id</td>
+			<td th:text=${lecturer.name}>Name</td>
+			<td th:text=${lecturer.position}>Position</td>
+			<td>
+			<a href=ViewCourse>View Courses</a>
+			</td>
+=======
+	<a href="LecturerForm.html"
+		th:href="@{/admin/addLecturer}" th:text="Add"> Add </a>
+	<table>
+		<tr>
+			<th >Lecturer ID</th>
+			<th > Name</th>
+			
+			<th >Position</th>
+			<th >CoursesTaught</th>
+			
+		</tr>
+		<tr th:each="lecturer:${lecturers}" class="table-row">
+			<td th:text=${lecturer.id}>Id</td>
+			<td th:text=${lecturer.name}> Name</td>
+			<td th:text=${lecturer.position}>Position</td>
+		    <td><a href="LecCourseList.html" th:href="@{/admin/LecViewCourses/}+${lecturer.id}" th:text="ViewCourse">ViewCourses</a></td>
+		  <!--   <td><button><a href="LecCourseList.html" th:href="@{/admin/LecViewCourses}">view course</a></button></td> --> 
+			
+			
+			<td><a href="EditLecturer.html"
+		th:href="@{/admin/editLecturer/}+${lecturer.id}" th:text="Edit"> Edit </a></td>
+	        <td><a href="DeleteLecturer.html"
+		th:href="@{/admin/deleteLecturer/}+${lecturer.id}" th:text="Delete"> Delete </a></td>
+>>>>>>> refs/remotes/origin/wjx
+		</tr>
+	</table>
+	
+    <br/>
+	<div th:replace="fragments/general.html :: footer"></div>
+</body>
+</html>
