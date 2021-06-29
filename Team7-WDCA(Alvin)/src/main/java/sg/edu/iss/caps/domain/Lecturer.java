@@ -1,13 +1,15 @@
 package sg.edu.iss.caps.domain;
 
-import java.util.Collection;
+
+import java.util.List;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -21,9 +23,9 @@ public class Lecturer {
 	@OneToOne(mappedBy = "lecturer" ,cascade = {CascadeType.ALL})
 	private Accounts account;
 	
-	@ManyToMany
-	private Collection<Course> courses;
-	
+	@OneToMany(mappedBy="lecturer")
+	private List<Course> courses;
+
 
 	public int getId() {
 		return id;
@@ -57,7 +59,7 @@ public class Lecturer {
 		this.account = account;
 	}
 
-	public Collection<Course> getCourses() {
+	public List<Course> getCourses() {
 		return courses;
 	}
 
@@ -71,6 +73,14 @@ public class Lecturer {
 		this.position = position;
 		this.account = account;
 		this.courses = courses;
+	}
+
+	
+	public Lecturer(String name, String position, Accounts account) {
+		super();
+		this.name = name;
+		this.position = position;
+		this.account = account;
 	}
 
 	public Lecturer() {
@@ -118,14 +128,5 @@ public class Lecturer {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

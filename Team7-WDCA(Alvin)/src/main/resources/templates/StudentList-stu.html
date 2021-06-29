@@ -17,16 +17,12 @@
 			<th >Student ID</th>
 			<th >First Name</th>
 			<th >Second Name</th>
-			<th >Credits Taken</th>
-			<th >Current GPA</th>
 			<th >Major</th>
 		</tr>
 		<tr th:each="student:${students}" class="table-row">
-			<td th:text=${student.id}>Id</td>
+			<td th:text=${student.studentId}>Id</td>
 			<td th:text=${student.firstName}>First Name</td>
 			<td th:text=${student.secondName}>Second Name</td>
-			<td th:text=${student.creditsTaken}>Credits Taken</td>
-			<td th:text=${student.gpa}>Current GPA</td>
 			<td th:text=${student.major}>Major</td>
 			<td><a href="EditStudent.html"
 		th:href="@{/admin/editStudent/}+${student.id}" th:text="Edit"> Edit </a></td>

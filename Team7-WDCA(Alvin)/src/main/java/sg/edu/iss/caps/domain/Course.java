@@ -1,6 +1,7 @@
 package sg.edu.iss.caps.domain;
 
-import java.util.Collection;
+
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Course {
@@ -28,7 +28,12 @@ public class Course {
 	private Collection<Lecturer> lecturers;
 	@ManyToOne(cascade = {CascadeType.ALL})  
 	private Coursedetail detail;
+	private Enrollmenstatus status;
 	
+	public Course(String code, String name, double score, int credits, Student student,
+			List<Lecturer> lecturers, Coursedetail detail) {
+	}
+
 	public Course(String code, String name, String grade, double score, int credits, Student student,
 			Collection<Lecturer> lecturers, Coursedetail detail) {
 		super();
@@ -59,7 +64,16 @@ public class Course {
 		this.score = score;
 	}
 
-	public Course(String name, String grade) {
+
+	public Course(String code, String name, int credits, Lecturer lecturer) {
+		super();
+		this.code = code;
+		this.name = name;
+		this.credits = credits;
+		this.lecturer = lecturer;
+	}
+
+	public Course(String code, String name) {
 		super();
 		this.name = name;
 		this.grade = grade;
@@ -121,6 +135,14 @@ public class Course {
 		return score;
 	}
 
+	public Lecturer getLecturer() {
+		return lecturer;
+	}
+
+	public void setLecturer(Lecturer lecturer) {
+		this.lecturer = lecturer;
+	}
+
 	public void setScore(double score) {
 		this.score = score;
 		
@@ -165,6 +187,14 @@ public class Course {
 
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+
+	public Enrollmenstatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(Enrollmenstatus status) {
+		this.status = status;
 	}
 
 	@Override

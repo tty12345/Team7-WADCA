@@ -5,32 +5,29 @@
 <title>Courses</title>
 </head>
 <body>
-	<header th:insert="fragments/general.html :: header"> </header>
-	<div th:replace="fragments/general.html :: menu"></div>
-
+	
 	<h1>Course Listing for Lecturers</h1>
 	<!-- Add Hyperlink -->
 	<a href="Courselist.html" th:href="@{/admin/addLecCourse}">Add Course</a>
-
 	<table>
 		<tr>
 			<th >Course Id</th>
 			<th >Course Name</th>
 			<th >Code</th>
 			<th >Credits</th>
-			<th >Action</th>
+			<th >View Course details</th>
 		</tr>
 		<tr th:each="course:${courses}" class="table-row">
 			<td th:text=${course.id}>Id</td>
 			<td th:text=${course.code}>Code</td>
 			<td th:text=${course.name}>Course Name</td>
-			<td th:text=${course.credits}>Credits</td>
-			
+			<td th:text=${course.credits}>Credits</td>			
 			<!-- <td><input type="button" value="View Course"></td> -->
+			 <td><a href="Courseview.html" th:href="@{/course/list/{id}/}+${course.id}" th:utext="#{course.view.list}"> View Course </a></td>
 		</tr>
 	</table>
     <br/>
-	<div th:replace="fragments/general.html :: footer"></div>
+	
 	
 </body>
 </html>

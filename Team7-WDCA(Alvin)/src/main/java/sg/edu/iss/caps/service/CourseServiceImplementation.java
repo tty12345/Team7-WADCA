@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sg.edu.iss.caps.domain.Course;
+
+import sg.edu.iss.caps.domain.Coursedetail;
+import sg.edu.iss.caps.domain.Enrollmenstatus;
+import sg.edu.iss.caps.domain.Lecturer;
+
 import sg.edu.iss.caps.repo.CourseRepository;
 
 @Service
@@ -52,6 +57,23 @@ public class CourseServiceImplementation implements CourseService {
 	public List<Course> listAllCourses() {
 		List<Course> all = crepo.findAll();
 		return all;
+	}
+
+	@Override
+	public void withdrawCourse(Course course) {
+		course.setStatus(Enrollmenstatus.WITHDRAWN);
+		crepo.save(course);
+	}
+
+	@Override
+	public boolean checkCapacity(Course course) {
+		//check capacity 
+		Integer count = crepo.getCount(course.getCode());
+		Coursedetail cd = course.getDetail();
+		if(count < cd.getCourseCapacity())
+			return true;
+		else
+			return false;
 	}
 
 }

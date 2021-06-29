@@ -28,7 +28,19 @@
 		</table>
 	</div>
 	<footer th:fragment="footer">
-		<a href="Home" th:href="@{/}">Back to Home</a>
+	<span th:if="${session.stu != null}">
+		<a th:href="@{/logout}">Log out</a>
+	</span>
+	<span th:if="${session.admin != null}">
+		<a th:href="@{/logout}">Log out</a>
+	</span>
+	<span th:if="${session.lect != null}">
+		<a th:href="@{/logout}">Log out</a>
+	</span>
+	<span th:if="${session.admin == null and session.lect == null and session.stu == null}">
+		<a th:href="@{/login}">Log in</a>
+	</span>
+	
 		<br/>
 		 <small>Now is: <b
 			th:text="${execInfo.now.time}"></b></small> <br /> <small>(c)Course Application

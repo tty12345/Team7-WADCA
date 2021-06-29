@@ -7,10 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import sg.edu.iss.caps.domain.Course;
+import sg.edu.iss.caps.domain.Enrollmenstatus;
 import sg.edu.iss.caps.service.CourseService;
 
 @Controller
@@ -36,8 +36,21 @@ public class CourseController {
 		return "CourseView.html";
 	}
 	
-	@PostMapping
-	public void enrol(String code) {
-		
+	@GetMapping(value = "/enrol")
+	public String enrolcourse(@PathVariable("code") String code)
+	{
+		Course course = cservice.findCourseByCode(code);
+		course.setStatus(Enrollmenstatus.SUBMITTED);
+		if (cservice.checkCapacity(course)) {
+			return "forward:/course/save";
+		} else
+			return "error";
+	}
+	
+
+	@RequestMapping(value = "/withdraw/{code}")
+	public String cancelBooking(@PathVariable("code") String code) {
+		cservice.withdrawCourse(cservice.findCourseByCode(code));
+		return "forward:/course/list";
 	}
 }

@@ -11,4 +11,5 @@ public interface UserInterface {
 	public boolean authenticateUser(Accounts user);
 	public Accounts findByName(String name);
 	public List<Accounts> listAllUsers();
+	public boolean checkSession(HttpSession session, String s_name);
 }
