@@ -13,7 +13,7 @@ import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.CoursedetailRepository;
 
 @Service
-public abstract class CourseServiceImplementation implements CourseService {
+public abstract class CourseServiceImplementation implements Courseservice {
 	
 	@Autowired
 	CourseRepository crepo;
@@ -55,7 +55,7 @@ public abstract class CourseServiceImplementation implements CourseService {
 		return all;
 	}
 	
-	@Override
+	@Transactional 
 	public boolean checkcapacity(Course course) {
 		//check capacity 
 		Integer count = crepo.getCount(course.getCode());
@@ -66,9 +66,9 @@ public abstract class CourseServiceImplementation implements CourseService {
 		return false;
 	}
 		
-	@Transactional
+    @Transactional 
 	public void withdrawcourse(Course Course) {
-		Course.setStatus(Enrollmenstatus.WITHDRAWN);
+		sg.edu.iss.caps.domain.Course.setStatus(Enrollmenstatus.WITHDRAWN);
 		crepo.save(Course);
 
 }

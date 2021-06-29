@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Enrollmenstatus;
-import sg.edu.iss.caps.service.CourseService;
+import sg.edu.iss.caps.service.Courseservice;
 
 @Controller
 @RequestMapping("/course")
 public class CourseController {
 	
 	@Autowired
-	CourseService cservice;
+	Courseservice cservice;
 	
 	// Accessible by everyone
 	@GetMapping(value = "/list")
@@ -49,7 +49,7 @@ public class CourseController {
 	public String enrolcourse(@PathVariable("code") String code)
 	{
 		Course course = cservice.findCourseBycode(code);
-		course.setStatus(Enrollmenstatus.SUBMITTED);
+		Course.setStatus(Enrollmenstatus.SUBMITTED);
 		if (cservice.checkcapacity(course)) {
 			return "forward:/course/save";
 		} else

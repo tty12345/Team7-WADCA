@@ -1,20 +1,20 @@
 package sg.edu.iss.caps;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
+//import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
-import net.bytebuddy.build.ToStringPlugin.Exclude;
-import sg.edu.iss.caps.domain.Accounts;
-import sg.edu.iss.caps.domain.RoleType;
+
 import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
-import sg.edu.iss.caps.service.StudentServiceImplementation;
+import sg.edu.iss.caps.service.StudentService;
 import sg.edu.iss.caps.repo.accountsrepository;
+
 
 @SpringBootApplication(exclude= {SecurityAutoConfiguration.class })
 public class Team7WadcaApplication {
@@ -23,7 +23,7 @@ public class Team7WadcaApplication {
 	StudentRepository srepo;
 	
 	@Autowired
-	StudentServiceImplementation sservice;
+	StudentService sservice;
 	
 	@Autowired
 	CourseRepository crepo;
