@@ -177,6 +177,8 @@ public class Team7WadcaApplication {
 			Course c35=new Course("AB0014","Sofware Design 4", "A",4.5, 6, s14, l8, null);
 			Course c36=new Course("AB0015","Sofware Design 5", "B",3.5, 8, s14, l9, null);
 			Course c37=new Course("AB0016","FPP 2", "A",4.5, 6, s13, l10, null);
+			Course c38=new Course("AB0016","FPP 2","B",3.5,6,s10,l10,null);
+			Course c39=new Course("AB0016","FPP 2","B",3.5,6,s11,l10,null);
 			
 			crepo.save(c22);
 			crepo.save(c23);
@@ -193,6 +195,7 @@ public class Team7WadcaApplication {
 			crepo.save(c34);
 			crepo.save(c35);
 			crepo.save(c36);
+			crepo.save(c37);
 			crepo.save(c37);
 			
 			
