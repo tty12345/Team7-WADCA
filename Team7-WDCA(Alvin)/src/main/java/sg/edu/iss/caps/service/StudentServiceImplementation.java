@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sg.edu.iss.caps.domain.Course;
+//import sg.edu.iss.caps.domain.Course;
 //import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.repo.StudentRepository;
@@ -66,6 +66,10 @@ public class StudentServiceImplementation implements StudentService {
 //		srepo.saveCourse(course);
 //	}
 	
-	
+
+	@Override
+	public Student findStudentByUsername(String un) { 
+		return srepo.findStudentByUsername(un);
+	}
 
 }

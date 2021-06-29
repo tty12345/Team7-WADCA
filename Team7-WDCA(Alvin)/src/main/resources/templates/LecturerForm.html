@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manage Lecturer</title>
+</head>
+<body>
+<h1>Lecturer Form</h1>
+<form action="" th:object="${lecturer}" th:action="@{/admin/saveLecturer}" method="get">
+        <fieldset>
+		     <input type="hidden" th:field="*{id}">  
+		</fieldset>
+		<fieldset>
+			Name: <input type="text" th:field="*{name}">
+			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+		</fieldset>
+		
+		<fieldset>
+			Position: <input type="text" th:field="*{position}">
+			<p th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></p>
+		</fieldset>
+		<fieldset>
+			Account: <input type="text" th:field="*{account}">
+		    <p th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></p>	
+		</fieldset>
+		
+		
+		
+		<fieldset>
+			Courses:
+			<input type="text" th:field="*{courses}">
+				
+			<p th:if="${#fields.hasErrors('courses')}" th:errors="*{courses}"></p>	
+		</fieldset>
+		
+		<fieldset>
+			<input type="submit" value="Save"/>
+			&nbsp; &nbsp; 	
+			<input type="reset" value="Reset"/>
+		</fieldset>
+</form>
+
+</body>
+</html>

@@ -1,14 +1,13 @@
 package sg.edu.iss.caps.domain;
 
+import java.util.Collection;
 import java.util.List;
-
-//import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -20,12 +19,12 @@ public class Lecturer {
 	private String name;
 	
 	private String position;
-	@OneToOne(mappedBy = "lecturer")
+	
+	@OneToOne(mappedBy = "lectureracc")
 	private Accounts account;
 	
 	@OneToMany(mappedBy="lecturer")
-	private List<Course> courses;
-	
+	private List<Course> course;
 
 	public int getId() {
 		return id;
@@ -59,12 +58,12 @@ public class Lecturer {
 		this.account = account;
 	}
 
-	public List<Course> getCourses() {
-		return courses;
+	public Collection<Course> getCourses() {
+		return course;
 	}
 
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
+	public void setCourses(List<Course> course) {
+		this.course = course;
 	}
 
 	public Lecturer(String name, String position, Accounts account, List<Course> courses) {
@@ -72,16 +71,16 @@ public class Lecturer {
 		this.name = name;
 		this.position = position;
 		this.account = account;
-		this.courses = courses;
+		this.course = courses;
 	}
-
+	
 	public Lecturer(String name, String position, List<Course> courses) {
 		super();
 		this.name = name;
 		this.position = position;
-		this.courses = courses;
+		this.course = courses;
 	}
-
+	
 	public Lecturer() {
 		super();
 	}

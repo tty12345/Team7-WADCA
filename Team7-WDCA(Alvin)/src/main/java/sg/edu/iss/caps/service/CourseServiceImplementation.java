@@ -65,5 +65,11 @@ public class CourseServiceImplementation implements CourseService {
 		List<Course> courses=crepo.findCoursesByStudent(student);
 		return courses;
 	}
+	
+	public List<Course> findCoursesByCode(String code){
+		List<Course> courses=crepo.findCoursesByCode(code);
+		return courses;
+		
+	}
 
 }

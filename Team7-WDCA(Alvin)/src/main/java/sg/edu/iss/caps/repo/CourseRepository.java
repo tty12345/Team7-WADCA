@@ -14,12 +14,15 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	
 	@Query("select c from Course c where c.name like %?1%")
 	public List<Course> findCoursesByName(String name);
-	
+//check this	
 	@Query("select c from Course c where c.code = ?1")
 	public Course findCourseByCode(String name);
 	
 	public List<Course> findCoursesByLecturer(Lecturer lecturer);
 	
 	public List<Course> findCoursesByStudent(Student Student);
-
+	
+	public List<Course> findCoursesByCode(String code);
+	
+	
 }

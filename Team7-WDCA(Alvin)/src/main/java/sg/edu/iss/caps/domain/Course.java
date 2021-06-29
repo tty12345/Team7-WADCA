@@ -1,10 +1,14 @@
 package sg.edu.iss.caps.domain;
 
 
+
 //import java.util.Collection;
 //import java.util.List;
 
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,41 +27,49 @@ public class Course {
 	private String grade;
 	private double score;
 	private int credits;
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	private Student student;
 	@ManyToOne
 	private Lecturer lecturer;
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL}) 
 	private Coursedetail detail;
 	
+
+	public Course(String code, String name, double score, int credits, Student student,
+			Collection<Lecturer> lecturer, Coursedetail detail) {
+		
+	}
 	public Course(String code, String name, String grade, double score, int credits, Student student,
 			Lecturer lecturer, Coursedetail detail) {
+
 		super();
 		this.code = code;
 		this.name = name;
-		this.grade = grade;
 		this.score = score;
+		setScore(score);
 		this.credits = credits;
 		this.student = student;
 		this.lecturer = lecturer;
 		this.detail = detail;
 	}
 	
-	public Course(String code, String name, String grade, double score, Student student) {
+	public Course(String code, String name, double score, Student student) {
 		super();
 		this.code = code;
 		this.name = name;
-		this.grade = grade;
 		this.score = score;
+		setScore(score);
 		this.student = student;
 	}
 	
-	public Course(String code, String name, String grade, double score) {
+	public Course(String code, String name, int credits, double score, Student student) {
 		super();
 		this.code = code;
 		this.name = name;
-		this.grade = grade;
+		this.credits = credits;
 		this.score = score;
+		setScore(score);
+		this.student = student;
 	}
 
 	public Course(String code, String name) {

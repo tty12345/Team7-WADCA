@@ -17,5 +17,6 @@ public interface CourseService {
 	public List<Course> listAllCourses();
 	public List<Course> findCoursesByLecturer(Lecturer lecturer);
 	public List<Course> findCoursesByStudent(Student student);
+	public List<Course> findCoursesByCode(String code);
 
 }

@@ -19,7 +19,7 @@
 			<td th:text=${course.name}>Course Name</td>
 			<td th:text=${course.credits}>Credits</td>
 			<td><a href="StudentList.html"
-			th:href="@{/lecturer/ViewCourseEnrollment/}+${course.id}">Enrollments</a></td>
+			th:href="@{/lecturer/ViewCourseEnrollment/}+${course.code}">Enrollments</a></td>
 		</tr>
 	</table>
 </body>
