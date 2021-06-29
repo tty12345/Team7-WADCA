@@ -1,14 +1,17 @@
 package sg.edu.iss.caps.domain;
 
 
-import java.util.List;
+//import java.util.Collection;
+//import java.util.List;
+
+import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+//import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -24,15 +27,18 @@ public class Course {
 	private int credits;
 	@ManyToOne(cascade = {CascadeType.ALL})
 	private Student student;
-	@ManyToMany
-	private Collection<Lecturer> lecturers;
-	@ManyToOne(cascade = {CascadeType.ALL})  
+	@ManyToOne
+	private Lecturer lecturer;
+	@ManyToOne(cascade = {CascadeType.ALL}) 
 	private Coursedetail detail;
 	private Enrollmenstatus status;
 	
 	public Course(String code, String name, double score, int credits, Student student,
 			List<Lecturer> lecturers, Coursedetail detail) {
 	}
+
+	public Course(String code, String name, String grade, double score, int credits, Student student,
+			Lecturer lecturer, Coursedetail detail) {
 
 	public Course(String code, String name, String grade, double score, int credits, Student student,
 			Collection<Lecturer> lecturers, Coursedetail detail) {

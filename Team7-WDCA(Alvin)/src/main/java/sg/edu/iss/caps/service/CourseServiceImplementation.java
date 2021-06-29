@@ -11,6 +11,7 @@ import sg.edu.iss.caps.domain.Coursedetail;
 import sg.edu.iss.caps.domain.Enrollmenstatus;
 import sg.edu.iss.caps.domain.Lecturer;
 
+import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.repo.CourseRepository;
 
 @Service
@@ -74,6 +75,17 @@ public class CourseServiceImplementation implements CourseService {
 			return true;
 		else
 			return false;
+	}
+	
+	public List<Course> findCoursesByStudent(Student student){
+		List<Course> courses=crepo.findCoursesByStudent(student);
+		return courses;
+	}
+	
+	public List<Course> findCoursesByCode(String code){
+		List<Course> courses=crepo.findCoursesByCode(code);
+		return courses;
+		
 	}
 
 }

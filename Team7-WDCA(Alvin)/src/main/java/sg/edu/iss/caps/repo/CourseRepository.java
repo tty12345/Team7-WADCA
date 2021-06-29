@@ -11,24 +11,22 @@ import org.springframework.transaction.annotation.Transactional;
 import sg.edu.iss.caps.domain.Course;
 
 import sg.edu.iss.caps.domain.Lecturer;
+//import sg.edu.iss.caps.domain.Student;
+import sg.edu.iss.caps.domain.Student;
 
 
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 	
 	@Query("select c from Course c where c.name like %?1%")
 	public List<Course> findCoursesByName(String name);
-	
+//check this	
 	@Query("select c from Course c where c.code = ?1")
 	public Course findCourseByCode(String name);
-
-	@Query("select c from Course c where c.lecturer=?1")
+	
 	public List<Course> findCoursesByLecturer(Lecturer lecturer);
 	
-	@Modifying
-	@Transactional
-	@Query("delete from Course c where c.code = :code")
-	public void deleteCourseByCode(@Param("code") String code);
+	public List<Course> findCoursesByStudent(Student Student);
 	
-	@Query("select count(c) from Course c where c.code =?1 group by c.code")
-	public int getCount(String code);
+	public List<Course> findCoursesByCode(String code);
+	
 }

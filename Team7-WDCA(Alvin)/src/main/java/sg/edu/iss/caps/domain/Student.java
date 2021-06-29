@@ -2,6 +2,7 @@ package sg.edu.iss.caps.domain;
 
 
 import java.util.Collection;
+//import java.util.List;
 
 import java.util.List;
 
@@ -45,6 +46,9 @@ public class Student {
 	private List<Course> coursesTaken;
 	
 	@OneToMany(mappedBy="student")
+
+	//private List<Course> coursesTaken;
+
 	public Collection<Course> courses;
 
 	
