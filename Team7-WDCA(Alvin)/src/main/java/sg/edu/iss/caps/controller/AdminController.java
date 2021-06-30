@@ -43,6 +43,8 @@ public class AdminController {
 	CoursedetailRepository cdrepo;
 	
 	//manage student
+	
+	//enroll student to the school
 	@GetMapping("/addStudent")
 	public String showStudentForm(Model model) {
 		Student student = new Student();
@@ -50,6 +52,14 @@ public class AdminController {
 		return "StudentForm";
 	}
 	
+	//Edit student's detail
+	@GetMapping("/editStudent/{id}")
+	  public String showEditStuForm(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("student", srepo.findById(id).get());
+		return "StudentForm";
+	  }
+	
+	//Save student's details after editing
 	@GetMapping("/saveStudent")
 	public String saveStudentForm(@ModelAttribute("student") @Valid Student student, BindingResult bindingResult, Model model) {
 		
@@ -60,20 +70,15 @@ public class AdminController {
 		return "forward:/admin/listStudents";
 	}
 	
+	//Show all student
 	@GetMapping("/listStudents")
 	public String listStudents(Model model) {
 		model.addAttribute("students", srepo.findAll());
 		return "StudentList-admin.html";
 	}
-	
-	@GetMapping("/editStudent/{id}")
-	  public String showEditStuForm(Model model, @PathVariable("id") Integer id) {
-		model.addAttribute("student", srepo.findById(id).get());
-		return "StudentForm";
-	  }
-	  
-	  @GetMapping("/deleteStudent/{id}")
-	  public String deleteMethod(Model model, @PathVariable("id") Integer id) {
+	//Remove students and all records from database
+	@GetMapping("/deleteStudent/{id}")
+	public String deleteMethod(Model model, @PathVariable("id") Integer id) {
 		
 		Student student =srepo.findById(id).get();
 		Accounts account = arepo.findAccountByStudentId(id);
@@ -87,15 +92,24 @@ public class AdminController {
 	  
 	  
 	  //manage lecturer
+	  
+	  //adds a new lecturer
 	  @GetMapping("/addLecturer")
-		public String showLecturerForm(Model model) {
+	  public String showLecturerForm(Model model) {
 			Lecturer lecturer=new Lecturer();
 			model.addAttribute("lecturer", lecturer);
 			return "LecturerForm";
 		}
-		
-		@GetMapping("/saveLecturer")
-		public String saveLecturerForm(@ModelAttribute("lecturer") @Valid Lecturer lecturer, BindingResult bindingResult, Model model) {
+	  
+	  //edit lecturer information
+	  @GetMapping("/editLecturer/{id}")
+	  public String showEditLecForm(Model model, @PathVariable("id") Integer id) {
+			model.addAttribute("lecturer", lrepo.findById(id).get());
+			return "LecturerForm";
+		}
+	  
+	  @GetMapping("/saveLecturer")
+	  public String saveLecturerForm(@ModelAttribute("lecturer") @Valid Lecturer lecturer, BindingResult bindingResult, Model model) {
 			
 			if (bindingResult.hasErrors()) {
 				return "LecturerForm";
@@ -103,19 +117,14 @@ public class AdminController {
 			lrepo.save(lecturer);
 			return "forward:/admin/listLecturers";
 		}
-		
+	  	//list all lecturers
 		@GetMapping("/listLecturers")
 		public String listLecturers(Model model) {
 			model.addAttribute("lecturers", lrepo.findAll());
 			return "LecturerList";
 		}
-	
-		@GetMapping("/editLecturer/{id}")
-		  public String showEditLecForm(Model model, @PathVariable("id") Integer id) {
-			model.addAttribute("lecturer", lrepo.findById(id).get());
-			return "LecturerForm";
-		  }
-	  
+		
+		//delete all lecturer and relevant data from database
 		  @GetMapping("/deleteLecturer/{id}")
 		  public String deleteLecMethod(Model model, @PathVariable("id") Integer id) {
 			Lecturer lecturer =lrepo.findById(id).get();
@@ -155,6 +164,8 @@ public class AdminController {
 //				lrepo.save(course);
 //				return "forward:/admin/LecViewCourse";
 //			}
+		  
+		  
 		  //manage course
 		  
 		  @GetMapping("/addCourse")

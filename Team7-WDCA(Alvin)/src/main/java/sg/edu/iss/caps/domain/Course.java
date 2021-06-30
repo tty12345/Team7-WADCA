@@ -29,11 +29,6 @@ public class Course {
 	private Coursedetail detail;
 	private Enrollmenstatus status;
 	
-
-	public Course(String code, String name, double score, int credits, Student student,
-			List<Lecturer> lecturers, Coursedetail detail) {
-	}
-	
 	public Course(String code, String name, String grade, double score, int credits, Student student,
 			Lecturer lecturer, Coursedetail detail) {
 
@@ -57,6 +52,13 @@ public class Course {
 		this.student = student;
 	}
 	
+	public Course(String code, String name, int credits) {
+		super();
+		this.code = code;
+		this.name = name;
+		this.credits = credits;
+	}
+
 	public Course(String code, String name, int credits, double score, Student student) {
 		super();
 		this.code = code;

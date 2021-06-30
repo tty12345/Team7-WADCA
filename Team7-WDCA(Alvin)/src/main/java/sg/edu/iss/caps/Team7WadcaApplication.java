@@ -85,7 +85,7 @@ public class Team7WadcaApplication {
 			
 			Course cl1 = new Course("BA3802", "Change Management", 4, l1);
 			Course cl2 = new Course("CH1150", "Organic Chemistry", 4, l1);
-			Course cl3 = new Course("CS1101", "Introduction To Computing", 4, l1);
+			Course cl3 = new Course("CS1102", "Introduction To Computing", 4, l1);
 			Course cl4 = new Course("MA1101", "Mathematics 1", 4, l1);
 			Course cl5 = new Course("MA1102", "Mathematics 2", 4, l1);
 			Course cl6 = new Course("PR1301", "Public Speaking And Presentations", 3, l1);
@@ -209,9 +209,9 @@ public class Team7WadcaApplication {
 			Course c34=new Course("AB0013","FPP", "A",4.5, 6, s13, l7, null);
 			Course c35=new Course("AB0014","Sofware Design 4", "A",4.5, 6, s14,l7, null);
 			Course c36=new Course("AB0015","Sofware Design 5", "B",3.5, 8, s14, l8, null);
-			Course c37=new Course("AB0016","FPP 2", "A",4.5, 6, s13, l8, null);
-			Course c38=new Course("AB0016","FPP 2","B",3.5,6,s10,l8,null);
-			Course c39=new Course("AB0016","FPP 2","B",3.5,6,s11,l8,null);
+			Course c37=new Course("CS1101","Introduction To Computing","A",4.5, 6, s13, l8, null);
+			Course c38=new Course("CS1101","Introduction To Computing","B",3.5,6,s10,l8,null);
+			Course c39=new Course("CS1101","Introduction To Computing","B",3.5,6,s11,l8,null);
 			
 			crepo.save(c22);
 			crepo.save(c23);
@@ -271,8 +271,30 @@ public class Team7WadcaApplication {
 			courselist1.add(c38);
 			courselist1.add(c39);
 			
-			Coursedetail cd1 = new Coursedetail(50,"FPP","AB0016", courselist1, l1);
+			Coursedetail cd1 = new Coursedetail (10, "CS1101", "Introduction To Computing", courselist1, "Learn Computer",l9 );
+			Coursedetail cd2 = new Coursedetail(1, "MA1101", "Mathematics 1", "learn math" ,l4);
+			Coursedetail cd3 = new Coursedetail(10,"MA1102", "Mathematics 2","learn more math", l3);
+//			Coursedetail cd4 = new Coursedetail(4, 15, "PR1301", "Public Speaking And Presentations", "The skills you will develop during the course will prepare you for public speaking and presentation in a variety of contexts such as conferences, election campaigns, lecturing, virtual events ", 3);
+//			Coursedetail cd5 = new Coursedetail(5, 20,"RB3301", "Advanced Algorithms", "This course emphasis is placed on fundamental algorithms and advanced methods of algorithmic design, analysis, and implementation. Techniques to be covered include amortization, randomization, fingerprinting, word-level parallelism, bit scaling, dynamic programming, network flow, linear programming, fixed-parameter algorithms, and approximation algorithms.", 4 );
+//			Coursedetail cd6 = new Coursedetail(6, 15, "GE1101", "Introduction To Geography", "This course is an introduction to the global perspectives, basic concepts and fundamental questions of geography. It focuses on the ways through which all places on Earth are interconnected and how the human use of Earth surface varies over space.", 4);
+//			Coursedetail cd7 = new Coursedetail(7, 20, "GE2501", "Human Geography", "This course is concerned with the study of human societies – how they operate, develop, and the challenges they face.", 4);
+//			Coursedetail cd8 = new Coursedetail(8,15,"PS2301", "USSR: A Retrospective", 4);
+//			Coursedetail cd9 = new Coursedetail("BA3802", "Change Management", 4);
+//			Coursedetail cd10 = new Coursedetail("BA4201", "Business Intelligence", 4);
+//			Coursedetail cd11 = new Coursedetail("PY4402", "Solid State Physics", 4);
+//			Coursedetail cd12 = new Coursedetail("PY4676", "Quantum Physics", 4);
+//			Coursedetail cd13 = new Coursedetail("ME2401", "Fluid Mechanics", 4);
+//			Coursedetail cd14 = new Coursedetail("GS2303", "Southeast Asian Studies", 4);
+//			Coursedetail cd15 = new Coursedetail("HS3422", "World Wars", 4);
+//			Coursedetail cd16 = new Coursedetail("CH1150", "Organic Chemistry", 4);
+//			Coursedetail cd17 = new Coursedetail("PR2101", "Communication In The Workplace", 3);
+//			Coursedetail cd18 = new Coursedetail("AS3350", "Asgardian Legends", 4);
+//			Coursedetail cd19 = new Coursedetail("AS3355", "Asgardian Folklore", 4);
+//			Coursedetail cd20 = new Coursedetail("AC1002", "Financial Accounting", 4);
+//			Coursedetail cd21 = new Coursedetail("MD4504", "Neurosurgery", 4);
 			cdrepo.save(cd1);
+			cdrepo.save(cd2);			
+			cdrepo.save(cd3);
 			
 //			Accounts acc = new Accounts("steven", hashedPass, RoleType.STUDENT, s1);
 //			urepo.save(acc);

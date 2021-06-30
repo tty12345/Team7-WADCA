@@ -20,5 +20,5 @@ public interface CourseService {
 	public boolean checkCapacity(Course course);
 	public List<Course> findCoursesByStudent(Student student);
 	public List<Course> findCoursesByCode(String code);
-
+	public void save(Course course);
 }

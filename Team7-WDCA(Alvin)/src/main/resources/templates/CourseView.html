@@ -7,27 +7,26 @@
 <body>
 
   <h1>Details</h1>
+  <a href="CourseList.html" th:href="@{/course/add}">Add Course</a>
   <table>
  <tr>
-   <th>COURSE ID</th>
+   <th>COURSE CODE</th>
    <th>COURSE NAME</th>
    <th>DESCRIPTION</th>
    <th>START DATE</th>
    <th>END DATE</th>
    <th>CREDITS</th>
+   <th> ENROLL </th>
    
  </tr>
- <tr th:each="product:${plist}">
-   <td th:text="${course.id}">COURSEID</td> 
-   <td th:text="${course.courseName}">Course Name</td>
-   <td th:text="${course.courseDescription}">Description</td>
-   <td th:text="${#temporals.format(course.startdate, 'dd-MM-yyyy')}">Start Date</td>
-    <td th:text="${#temporals.format(course.enddate, 'dd-MM-yyyy')}">End date</td>
-   <td th:text="${course.credits}">COURSEID</td>
-   
-
- <td><a href="EnrolSuccess.html"
-		th:href="@{/course/enrol/}+${course.id}" th:utext="#{course.enrol}"> Enroll</a></td>
+ <tr th:each="course:${courses}" class="table-row">
+   <td th:text="${course.code}">COURSE CODE</td> 
+   <td th:text="${course.name}">Course Name</td>
+   <td th:text="${course.description}">Description</td> 
+  <!-- <td th:text="${#temporals.format(course.startdate, 'dd-MM-yyyy')}">Start Date</td>
+    <td th:text="${#temporals.format(course.enddate, 'dd-MM-yyyy')}">End date</td>  -->
+   <td th:text="${course.credits}">COURSE credits</td>
+   <td><a href="EnrollSuccess.html" th:href="@{/course/enrol/}+${course.code}"> Enroll </a></td>
 </tr>
 </table>
 </body>

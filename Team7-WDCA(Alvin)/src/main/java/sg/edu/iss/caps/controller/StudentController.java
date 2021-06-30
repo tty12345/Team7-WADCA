@@ -19,7 +19,7 @@ import sg.edu.iss.caps.service.UserInterface;
 @Controller
 @RequestMapping("/student")
 public class StudentController {
-
+	
 	@Autowired
 	StudentService sservice;
 
@@ -28,10 +28,13 @@ public class StudentController {
 
 	// For lecturer or admin to view full list of students
 	@GetMapping(value = "/list")
-	public String list(Model model) {
+	public String list(Model model, HttpSession session) {
 		// List<Student> listOfAllStudents = sservice.listAllStudents();
 
 		// model.addAttribute("students", listOfAllStudents);
+		if (!uservice.checkSession(session, "stu"))
+			return "index";
+		
 		int currentpage = 0;
 
 		List<Student> listWithPagination = sservice.getAllStudents(currentpage, 5);
@@ -44,49 +47,52 @@ public class StudentController {
 	}
 
 	@GetMapping(value = "/navigate")
-	public String customlist(@RequestParam(value = "pageNo") int pageNo, Model model) {
+	public String customlist(@RequestParam(value = "pageNo") Integer pageNo, Model model) {
 
-		List<Student> listWithPagination = sservice.getAllStudents(pageNo - 1, 5);
+		List<Student> listWithPagination = sservice.getAllStudents(pageNo-1, 5);
 		model.addAttribute("students", listWithPagination);
-		return "StudentList-stu.html";
+		model.addAttribute("currentPage", pageNo-1);
+		return "StudentList.html";
 	}
 
 	@GetMapping(value = "/forward/{currentPage}")
 	public String arrowlist(@PathVariable(value = "currentPage") String pageNo, Model model) {
-		int i = Integer.parseInt(pageNo);
-
-		List<Student> listWithPagination = sservice.getAllStudents(i + 1, 5);
-
+		Integer i = Integer.parseInt(pageNo);
+		if (i == 2)
+			i--;
+		List<Student> listWithPagination = sservice.getAllStudents(i+1, 5);
+		
 		model.addAttribute("students", listWithPagination);
-
-		model.addAttribute("currentPage", i + 1);
-
-		return "StudentList-stu.html";
+		
+		model.addAttribute("currentPage", i+1);
+		
+		return "StudentList.html";
 	}
 
 	@GetMapping(value = "/backward/{currentPage}")
-	public String backlist(@PathVariable(value = "currentPage") String pageNo, Model model) {
-		int i = Integer.parseInt(pageNo);
-
-		List<Student> listWithPagination = sservice.getAllStudents(i - 1, 5);
-
+	public String backlist(@PathVariable(value = "currentPage")String pageNo ,Model model) {
+		Integer i = Integer.parseInt(pageNo);
+		if (i == 0)
+			i++;
+		List<Student> listWithPagination = sservice.getAllStudents(i-1, 5);
+		
 		model.addAttribute("students", listWithPagination);
-
-		model.addAttribute("currentPage", i - 1);
-
-		return "StudentList-stu.html";
+		
+		model.addAttribute("currentPage", i-1);
+		
+		return "StudentList.html";
 	}
 
 	// For students to view their own information
 	@GetMapping(value = "/info/{id}")
-	public String info(@PathVariable(value = "id") int id, Model model, HttpSession session) {
+	public String info(@PathVariable(value = "id") int id, Model model,HttpSession session) {
 		
-		if (!uservice.checkSession(session, "stu")) {
+		if (!uservice.checkSession(session, "stu"))
 			return "index";
-		}
+		
 		Student current = sservice.findStudentById(id);
 		model.addAttribute("studentinfo", current);
-		return "StudentList-stu.html";
+		return "StudentView.html";
 	}
 
 	// For admin to add students (extra feature)

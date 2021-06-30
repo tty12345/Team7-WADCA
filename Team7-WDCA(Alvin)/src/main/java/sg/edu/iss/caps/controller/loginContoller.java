@@ -40,27 +40,25 @@ public class loginContoller {
 		String returnPage;
 		if (u.authenticateUser(user))
 		{
-			Accounts loggeduser = u.findByName(user.getUsername());
 			
-			session.setAttribute("usession", loggeduser);
+			Accounts loggeduser = u.findByName(user.getUsername());
 			
 			if(loggeduser.getRole() == RoleType.STUDENT)
 			{	
 				Student login_user = sservice.findStudentByUsername(user.getUsername());
-				model.addAttribute("student", loggeduser);
+				model.addAttribute("student", login_user);
+				session.setAttribute("stu",loggeduser);
+				session.setAttribute("currentStudent",login_user);
 				returnPage = "StudentMainPage";
-				
 			}
 			else if (loggeduser.getRole() == RoleType.ADMIN)
 			{
-				//retrieve login_user from admin table by using user.getUsername()
-//				session.setAttribute("admin", login_user);
-				returnPage = "AdminMainPage";
+				session.setAttribute("admin", loggeduser);
+				returnPage = "AdminMainPage";	
 			}
 			else 
 			{
-				//retrieve login_user from lecturer table by using user.getUsername()
-//				session.setAttribute("lect", login_user);
+				session.setAttribute("lect", loggeduser);
 				returnPage = "LecturerMainPage";
 			}
 		}

@@ -85,13 +85,20 @@ public class CourseServiceImplementation implements CourseService {
 	public List<Course> findCoursesByCode(String code){
 		List<Course> courses=crepo.findCoursesByCode(code);
 		return courses;
-		
 	}
 
 	@Override
 	public List<Course> findCoursesByLecturer(Lecturer lecturer) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+
+	@Override
+	public void save(Course course) {
+	crepo.save(course);
+		
 	}
 
 }

@@ -1,7 +1,6 @@
 package sg.edu.iss.caps.domain;
 
-
-import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,13 +10,21 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Coursedetail {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String courseName;
+	private String name;
 	private String code;
+	private String description;
 	private int courseCapacity;
+	@DateTimeFormat(pattern = "dd/MM/YYYY")
+	private Date Sartdate;
+	@DateTimeFormat(pattern = "dd/MM/YYYY")
+	private Date Enddate;
+	private int credits;
 	@OneToMany(mappedBy = "detail")
 	private List<Course> course;
 	@ManyToOne
@@ -28,9 +35,40 @@ public class Coursedetail {
 		super();
 		this.courseCapacity = courseCapacity;
 		this.course = course;
-		this.setCourseName(courseName);
 		this.lecturer = lecturer;
 		this.code = code;
+		this.course = course;
+	}
+	
+	public Coursedetail(int courseCapacity,String code, String name, List<Course> course, String description, Lecturer lecturer) {
+		super();
+		this.courseCapacity = courseCapacity;
+		this.course = course;
+		this.name= name;
+		this.lecturer = lecturer;
+		this.code = code;
+		this.description=description;
+
+	}
+	
+	public Coursedetail(int courseCapacity,String code, String name, String description, Lecturer lecturer) {
+		super();
+		this.courseCapacity = courseCapacity;
+		this.name= name;
+		this.lecturer = lecturer;
+		this.code = code;
+		this.description=description;
+
+	}
+	
+	public Coursedetail(int id, int courseCapacity, String code, String name, String description, int credits) {
+		super();
+		this.id = id;
+		this.courseCapacity = courseCapacity;
+		this.description = description;
+		this.code = code;
+		this.name = name;
+		this.credits = credits;
 	}
 	
 	@Override
@@ -105,11 +143,11 @@ public class Coursedetail {
 	}
 
 	public String getCourseName() {
-		return courseName;
+		return name;
 	}
 
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
+	public void setCourseName(String name) {
+		this.name = name;
 	}
 
 	public String getCode() {
@@ -118,6 +156,46 @@ public class Coursedetail {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getSartdate() {
+		return Sartdate;
+	}
+
+	public void setSartdate(Date sartdate) {
+		Sartdate = sartdate;
+	}
+
+	public Date getEnddate() {
+		return Enddate;
+	}
+
+	public void setEnddate(Date enddate) {
+		Enddate = enddate;
+	}
+
+	public int getCredits() {
+		return credits;
+	}
+
+	public void setCredits(int credits) {
+		this.credits = credits;
 	}
 	
 	
