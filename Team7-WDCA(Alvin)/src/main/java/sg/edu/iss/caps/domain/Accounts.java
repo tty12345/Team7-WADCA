@@ -1,5 +1,6 @@
 package sg.edu.iss.caps.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,9 +16,9 @@ public class Accounts {
 	private String username;
 	private String password;
 	private RoleType role;
-	@OneToOne
+	@OneToOne(mappedBy = "account")
 	private Student studentacc;
-	@OneToOne
+	@OneToOne(mappedBy = "account")
 	private Lecturer lecturer;
 	@OneToOne
 	private Admin admin;
@@ -47,9 +48,18 @@ public class Accounts {
 		this.studentacc = stu;
 	}
 	
+
 	public Accounts() {
 		super();
 	}
+
+	public Accounts(String username, String password, RoleType role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.role = role;
+	}
+
 	@Override
 	public String toString() {
 		return "Accounts [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role

@@ -40,27 +40,25 @@ public class loginContoller {
 		String returnPage;
 		if (u.authenticateUser(user))
 		{
+			Student logged_stu = sservice.findStudentByUsername(user.getUsername());
 			Accounts loggeduser = u.findByName(user.getUsername());
 			
 			session.setAttribute("usession", loggeduser);
 			
 			if(loggeduser.getRole() == RoleType.STUDENT)
 			{	
-				Student login_user = sservice.findStudentByUsername(user.getUsername());
-				model.addAttribute("student", loggeduser);
+				model.addAttribute("student", logged_stu);
 				returnPage = "StudentMainPage";
 				
 			}
 			else if (loggeduser.getRole() == RoleType.ADMIN)
 			{
-				//retrieve login_user from admin table by using user.getUsername()
-//				session.setAttribute("admin", login_user);
+				session.setAttribute("admin", logged_stu);
 				returnPage = "AdminMainPage";
 			}
 			else 
 			{
-				//retrieve login_user from lecturer table by using user.getUsername()
-//				session.setAttribute("lect", login_user);
+				session.setAttribute("lect", logged_stu);
 				returnPage = "LecturerMainPage";
 			}
 		}
@@ -73,8 +71,6 @@ public class loginContoller {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("usession");
-        session.removeAttribute("admin");
-        session.removeAttribute("lect");
 		return "index";
 	}
 }

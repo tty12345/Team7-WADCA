@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 //import sg.edu.iss.caps.domain.Course;
 //import sg.edu.iss.caps.domain.Course;
@@ -68,7 +69,9 @@ public class StudentServiceImplementation implements StudentService {
 		
 		Page<Student> pageResult = srepo.findAll(paging);
 		
-		return pageResult.getContent();
+		List<Student> list = pageResult.getContent();
+		
+		return list;
 	}
 
 	/*
@@ -80,10 +83,5 @@ public class StudentServiceImplementation implements StudentService {
 //	public void addCourse(Course course) {
 //		srepo.saveCourse(course);
 //	}	
-
-	@Override
-	public Student findStudentByUsername(String un) { 
-		return srepo.findStudentByUsername(un);
-	}
 
 }

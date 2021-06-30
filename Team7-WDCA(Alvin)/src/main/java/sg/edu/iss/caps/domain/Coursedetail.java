@@ -15,7 +15,6 @@ public class Coursedetail {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int courseCapacity;
-	
 	@OneToMany(mappedBy = "detail")
 	private Collection<Course> course;
 

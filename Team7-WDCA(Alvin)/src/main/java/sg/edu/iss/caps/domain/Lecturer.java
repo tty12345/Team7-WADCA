@@ -21,11 +21,11 @@ public class Lecturer {
 	private String name;
 	
 	private String position;
-	@OneToOne(mappedBy = "lecturer" ,cascade = {CascadeType.ALL})
+	@OneToOne(cascade = CascadeType.ALL)
 	private Accounts account;
 	
-	@OneToMany(mappedBy="lecturer")
-	private List<Course> course;
+	@OneToMany
+	private List<Course> courses;
 
 
 	public int getId() {
@@ -64,11 +64,11 @@ public class Lecturer {
 		return courses;
 	}
 
-	public void setCourses(Collection<Course> courses) {
+	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
 
-	public Lecturer(String name, String position, Accounts account, Collection<Course> courses) {
+	public Lecturer(String name, String position, Accounts account, List<Course> courses) {
 		super();
 		this.name = name;
 		this.position = position;

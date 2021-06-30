@@ -88,4 +88,10 @@ public class CourseServiceImplementation implements CourseService {
 		
 	}
 
+	@Override
+	public List<Course> findCoursesByLecturer(Lecturer lecturer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

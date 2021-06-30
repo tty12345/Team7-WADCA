@@ -35,19 +35,11 @@ public class LecturerController {
 	private LecturerService lservice;
 	@Autowired
 	private CourseService cservice;
-	
-	@Autowired
-	private UserInterface uservice;
 	//@Autowired
 	//private StudentService service;
 	//private List<Course> courses=new List<Course>();
 	public void setLecturer(LecturerService lservice) {
 		this.lservice=lservice;
-	}
-	
-	@Autowired
-	public void setLecturer(LecturerInterface ls) {
-		this.lservice = ls;
 	}
 	
 	@GetMapping(value="/home/{id}")

@@ -1,13 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Main Page</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/caps.css}"/>
 </head>
 <body>
-	<h2>hellooooooo</h2>
-	<br>
-	<p>ride or die</p>
-	<a href="/login">click here to log in</a>
+	<header th:replace="fragments/general.html :: header"></header>
+	<div th:replace="fragments/general.html :: menu"></div>
+    <div>
+        <table id="infotable">
+            <tr>
+                <td colspan="2">
+                    <img class="bigphoto" th:src="@{/images/1st.jpeg}" alt="photo unavailable">
+                </td>
+                <td>
+                    <img class="smallphoto" th:src="@{/images/2nd.jpeg}" alt="photo unavailable">
+                </td>
+                <td>
+                    <img class="smallphoto" th:src="@{/images/3rd.jpeg}"  alt="photo unavailable">
+                </td>
+                <td id="textbox" rowspan="2">
+                    <p>
+                        INTRODUCING OUR NEW CAMPUS CANTEEN                      
+                            <li>Location: AS10</li>
+                            <li>Opening: From 10 August 2021</li>
+                            <li>10 stalls including Starbucks</li>
+                    </p>
+                </td>
+            </tr >
+            <tr>
+                <td colspan="2">
+                    <img class="bigphoto row2" th:src="@{/images/4th.jpeg}" alt="photo unavailable">
+                </td>
+                <td colspan="2">
+                    <img class="reflection row2" th:src="@{/images/Reflections_at_Keppel_Bay_(dawn).jpg}" alt="photo unavailable">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <footer>
+        <p>Copy Right &copy; CAPS system 2021. All rights reserved.</p>
+     </footer>
 </body>
 </html>

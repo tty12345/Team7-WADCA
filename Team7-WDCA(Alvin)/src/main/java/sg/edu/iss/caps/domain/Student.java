@@ -1,9 +1,6 @@
 package sg.edu.iss.caps.domain;
 
-
 import java.util.Collection;
-//import java.util.List;
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,13 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Student {
 	
+	private static final String Cascade = null;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -32,7 +30,7 @@ public class Student {
 	
 	private int creditsTaken;
 	
-	@OneToOne(mappedBy = "studentacc")
+	@OneToOne(cascade = CascadeType.ALL)
 	private Accounts account;
 	
 	public Accounts getAccount() {
@@ -42,29 +40,19 @@ public class Student {
 		this.account = account;
 	}
 
-	@OneToMany(mappedBy = "student")
+	@OneToMany (cascade = CascadeType.ALL)
 	private List<Course> coursesTaken;
 	
-	@OneToMany(mappedBy="student")
-
-	//private List<Course> coursesTaken;
-
+	@OneToMany (cascade = CascadeType.ALL)
 	public Collection<Course> courses;
-
 	
-	@OneToOne(mappedBy = "student" ,cascade = {CascadeType.ALL}) 
-	@JoinColumn(name="AccountId")
-	private Accounts account;
-
-	public Student(String firstName, String secondName, String major, double gpa, int creditsTaken) {
+	public Student(String firstName, String secondName, String major, int creditsTaken) {
 		super();
 		this.firstName = firstName;
 		this.secondName = secondName;
 		this.major = major;
-		this.gpa = gpa;
 		this.creditsTaken = creditsTaken;
 	}
-
 	public Student(String firstName, String secondName, String major, double gpa, int creditsTaken) {
 		this.creditsTaken = creditsTaken;
 	}
@@ -76,23 +64,17 @@ public class Student {
 		this.major = major;
 		this.creditsTaken = creditsTaken;
 	}
-
 	public Student(String firstName, String secondName, String major) {
 		super();
 		this.firstName = firstName;
 		this.secondName = secondName;
 		this.major = major;
 	}
-	
-	public Student(String firstName, String secondName) {
-		super();
-		this.firstName = firstName;
-		this.secondName = secondName;
-	}
 	public Student() {
 		super();
 	}
-	public int Id() {
+
+	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
@@ -119,7 +101,6 @@ public class Student {
 	public double getGpa() {
 		return gpa;
 	}
-
 	public void setGpa() {
 		if (courses != null) {
 			double grandTotal = 0;
@@ -181,19 +162,14 @@ public class Student {
 	public void setCreditsTaken(int creditsTaken) {
 		this.creditsTaken = creditsTaken;
 	}
-	public List<Course> getCoursesTaken() {
-		return coursesTaken;
+	public Collection<Course> getCourses() {
+		return courses;
 	}
-	public void setCoursesTaken(List<Course> coursesTaken) {
-		this.coursesTaken = coursesTaken;
+	public void setCourses(Collection<Course> courses) {
+		this.courses = courses;
+		setGpa();
 	}
 	
-	public Accounts getAccount() {
-		return account;
-	}
-	public void setAccount(Accounts account) {
-		this.account = account;
-	}
 	@Override
 	public String toString() {
 		return "Student [studentId=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", major=" + major

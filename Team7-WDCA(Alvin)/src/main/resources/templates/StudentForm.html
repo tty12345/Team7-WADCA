@@ -36,12 +36,6 @@
 			<p th:if="${#fields.hasErrors('creditsTaken')}" th:errors="*{creditsTaken}"></p>	
 		</fieldset>
 		<fieldset>
-			Courses Taken:
-			<input type="text" th:field="*{coursesTaken}">
-				
-			<p th:if="${#fields.hasErrors('coursesTaken')}" th:errors="*{coursesTaken}"></p>	
-		</fieldset>
-		<fieldset>
 			Username: <input type="text" th:field="*{account.username}">
 			<p th:if="${#fields.hasErrors('account.username')}" th:errors="*{account.username}"></p>
 		</fieldset>

@@ -55,7 +55,7 @@ public class AdminController {
 	@GetMapping("/listStudents")
 	public String listStudents(Model model) {
 		model.addAttribute("students", srepo.findAll());
-		return "StudentList";
+		return "StudentList-admin.html";
 	}
 	
 	@GetMapping("/editStudent/{id}")
@@ -66,6 +66,7 @@ public class AdminController {
 	  
 	  @GetMapping("/deleteStudent/{id}")
 	  public String deleteMethod(Model model, @PathVariable("id") Integer id) {
+		
 		Student student =srepo.findById(id).get();
 		srepo.delete(student);
 		return "forward:/admin/listStudents";
@@ -90,7 +91,7 @@ public class AdminController {
 			return "forward:/admin/listLecturers";
 		}
 		
-		@GetMapping("listLecturers")
+		@GetMapping("/listLecturers")
 		public String listLecturers(Model model) {
 			model.addAttribute("lecturers", lrepo.findAll());
 			return "LecturerList";

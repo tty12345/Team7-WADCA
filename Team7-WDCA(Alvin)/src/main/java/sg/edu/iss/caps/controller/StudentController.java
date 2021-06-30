@@ -2,6 +2,8 @@ package sg.edu.iss.caps.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.service.StudentService;
+import sg.edu.iss.caps.service.UserInterface;
 
 @Controller
 @RequestMapping("/student")
@@ -37,20 +40,20 @@ public class StudentController {
 
 		model.addAttribute("currentPage", currentpage);
 
-		return "StudentList.html";
+		return "StudentList-stu.html";
 	}
 
 	@GetMapping(value = "/navigate")
-	public String customlist(@RequestParam(value = "pageNo") Integer pageNo, Model model) {
+	public String customlist(@RequestParam(value = "pageNo") int pageNo, Model model) {
 
 		List<Student> listWithPagination = sservice.getAllStudents(pageNo - 1, 5);
 		model.addAttribute("students", listWithPagination);
-		return "StudentList.html";
+		return "StudentList-stu.html";
 	}
 
 	@GetMapping(value = "/forward/{currentPage}")
 	public String arrowlist(@PathVariable(value = "currentPage") String pageNo, Model model) {
-		Integer i = Integer.parseInt(pageNo);
+		int i = Integer.parseInt(pageNo);
 
 		List<Student> listWithPagination = sservice.getAllStudents(i + 1, 5);
 
@@ -58,12 +61,12 @@ public class StudentController {
 
 		model.addAttribute("currentPage", i + 1);
 
-		return "StudentList.html";
+		return "StudentList-stu.html";
 	}
 
 	@GetMapping(value = "/backward/{currentPage}")
 	public String backlist(@PathVariable(value = "currentPage") String pageNo, Model model) {
-		Integer i = Integer.parseInt(pageNo);
+		int i = Integer.parseInt(pageNo);
 
 		List<Student> listWithPagination = sservice.getAllStudents(i - 1, 5);
 
@@ -71,12 +74,11 @@ public class StudentController {
 
 		model.addAttribute("currentPage", i - 1);
 
-		return "StudentList.html";
+		return "StudentList-stu.html";
 	}
 
 	// For students to view their own information
 	@GetMapping(value = "/info/{id}")
-
 	public String info(@PathVariable(value = "id") int id, Model model, HttpSession session) {
 		
 		if (!uservice.checkSession(session, "stu")) {
@@ -84,7 +86,7 @@ public class StudentController {
 		}
 		Student current = sservice.findStudentById(id);
 		model.addAttribute("studentinfo", current);
-		return "StudentView.html";
+		return "StudentList-stu.html";
 	}
 
 	// For admin to add students (extra feature)
