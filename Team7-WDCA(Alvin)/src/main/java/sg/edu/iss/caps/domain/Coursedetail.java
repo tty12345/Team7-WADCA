@@ -8,16 +8,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Coursedetail {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	private String courseName;
+	private String code;
 	private int courseCapacity;
 	@OneToMany(mappedBy = "detail")
-	private Collection<Course> course;
+	private List<Course> course;
+	@ManyToOne
+	private Lecturer lecturer;
+	
 
+	public Coursedetail(int courseCapacity,String code, String courseName, List<Course> course, Lecturer lecturer) {
+		super();
+		this.courseCapacity = courseCapacity;
+		this.course = course;
+		this.setCourseName(courseName);
+		this.lecturer = lecturer;
+		this.code = code;
+	}
+	
 	@Override
 	public String toString() {
 		return "Coursedetail [courseCapacity=" + courseCapacity + ", course=" + course + "]";
@@ -29,15 +44,14 @@ public class Coursedetail {
 		this.courseCapacity = courseCapacity;
 	}
 
-	public Collection<Course> getCourse() {
-
+	public List<Course> getCourse() {
 		return course;
 	}
 
-	public void setCourse(Collection<Course> course) {
-		this.course = (Collection<Course>) course;
-
+	public void setCourse(List<Course> course) {
+		this.course = course;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -65,6 +79,22 @@ public class Coursedetail {
 		return true;
 	}
 
+	public Lecturer getLecturer() {
+		return lecturer;
+	}
+
+	public void setLecturer(Lecturer lecturer) {
+		this.lecturer = lecturer;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Coursedetail(int courseCapacity, List<Course> course) {
 		super();
 		this.courseCapacity = courseCapacity;
@@ -72,6 +102,22 @@ public class Coursedetail {
 	}
 	public Coursedetail() {
 		super();
+	}
+
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
 	

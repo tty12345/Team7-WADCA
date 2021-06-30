@@ -16,9 +16,9 @@ public class Accounts {
 	private String username;
 	private String password;
 	private RoleType role;
-	@OneToOne(mappedBy = "account")
+	@OneToOne
 	private Student studentacc;
-	@OneToOne(mappedBy = "account")
+	@OneToOne
 	private Lecturer lecturer;
 	@OneToOne
 	private Admin admin;

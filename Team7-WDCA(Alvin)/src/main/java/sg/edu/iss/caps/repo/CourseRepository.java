@@ -29,10 +29,17 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	
 	public List<Course> findCoursesByCode(String code);
 	
+	@Query("select c from Course c where c.student.id = :n")
+	public List<Course> findCoursesByStudentId(@Param("n") int n);
+	
 	@Query("select count(c) from Course c where c.code =?1 group by c.code")
 	public int getCount(String code);
 	
 	@Query("delete from Course c where c.code = :code")
 	public void deleteCourseByCode(@Param("code") String code);
+	
+	@Query("select c from Course c where c.lecturer.id = :n")
+	public List<Course> findCoursesByLecturerId(@Param("n") int n);
+
 	
 }

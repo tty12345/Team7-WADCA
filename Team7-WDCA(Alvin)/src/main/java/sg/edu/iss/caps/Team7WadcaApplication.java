@@ -2,7 +2,6 @@ package sg.edu.iss.caps;
 
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
 import sg.edu.iss.caps.domain.Accounts;
 import sg.edu.iss.caps.domain.Course;
+import sg.edu.iss.caps.domain.Coursedetail;
 import sg.edu.iss.caps.domain.Lecturer;
 import sg.edu.iss.caps.domain.RoleType;
 import sg.edu.iss.caps.domain.Student;
@@ -22,6 +22,7 @@ import sg.edu.iss.caps.domain.Student;
 //import sg.edu.iss.caps.domain.Accounts;
 //import sg.edu.iss.caps.domain.RoleType;
 import sg.edu.iss.caps.repo.CourseRepository;
+import sg.edu.iss.caps.repo.CoursedetailRepository;
 import sg.edu.iss.caps.repo.LecturerRepository;
 import sg.edu.iss.caps.repo.StudentRepository;
 import sg.edu.iss.caps.repo.accountsrepository;
@@ -51,6 +52,9 @@ public class Team7WadcaApplication {
 	
 	@Autowired
 	UserImplementation uservice;
+	
+	@Autowired
+	CoursedetailRepository cdrepo;
 	
 	@Autowired
 	LecturerRepository lrepo;
@@ -261,6 +265,14 @@ public class Team7WadcaApplication {
 			String hashedPass2 = sCryptPasswordEncoder.encode("steven");
 			Accounts ac3 = new Accounts("steverogers", hashedPass2, RoleType.STUDENT, s1);
 			urepo.save(ac3);
+			
+			List<Course> courselist1 = new ArrayList<>();
+			courselist1.add(c37);
+			courselist1.add(c38);
+			courselist1.add(c39);
+			
+			Coursedetail cd1 = new Coursedetail(50,"FPP","AB0016", courselist1, l1);
+			cdrepo.save(cd1);
 			
 //			Accounts acc = new Accounts("steven", hashedPass, RoleType.STUDENT, s1);
 //			urepo.save(acc);

@@ -17,18 +17,22 @@
 		<tr>
 			<th >Course Id</th>
 			<th >Course Name</th>
-			<th >Credits</th>
-			<th >Action</th>
+			<th >Code</th>
+			<th >Capacity</th>
+			<th >Lecturer</th>
 		</tr>
-		<tr th:each="course:${courses}" class="table-row">
-			<td th:text=${course.id}>Id</td>
-			<td th:text=${course.name}>Course Name</td>
-			<td th:text=${course.credits}>Credits</td>
+		
+		<tr th:each="coursedetail:${coursedetails}" class="table-row">
+			<td th:text=${coursedetail.id}>Id</td>
+			<td th:text=${coursedetail.courseName}>Course Name</td>
+			<td th:text=${coursedetail.code}>Code</td>
+			<td th:text=${coursedetail.courseCapacity}>Capacity</td>
+			<td th:text=${coursedetail.lecturer.name}>Lecturer</td>
 			<td><input type="button" value="View Course"></td>
-			<td><a href="EditCourse.html"
-		th:href="@{/admin/editCourse/}+${course.id}" th:text="Edit"> Edit </a></td>
+			<td><a href="EditCourseDetail.html"
+		th:href="@{/admin/editCourseDetail/}+${coursedetail.id}" th:text="Edit"> Edit </a></td>
 	        <td><a href="DeleteCourse.html"
-		th:href="@{/admin/deleteCourse/}+${course.id}" th:text="Delete"> Delete </a></td>
+		th:href="@{/admin/deleteCourseDetail/}+${coursedetail.id}" th:text="Delete"> Delete </a></td>
 		</tr>
 	</table>
     <br/>

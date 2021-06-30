@@ -30,7 +30,7 @@ public class Student {
 	
 	private int creditsTaken;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "studentacc",cascade = CascadeType.ALL)
 	private Accounts account;
 	
 	public Accounts getAccount() {
@@ -40,11 +40,8 @@ public class Student {
 		this.account = account;
 	}
 
-	@OneToMany (cascade = CascadeType.ALL)
+	@OneToMany (mappedBy = "student", cascade = CascadeType.ALL)
 	private List<Course> coursesTaken;
-	
-	@OneToMany (cascade = CascadeType.ALL)
-	public Collection<Course> courses;
 	
 	public Student(String firstName, String secondName, String major, int creditsTaken) {
 		super();
@@ -102,11 +99,11 @@ public class Student {
 		return gpa;
 	}
 	public void setGpa() {
-		if (courses != null) {
+		if (coursesTaken != null) {
 			double grandTotal = 0;
 			int creditsTotal = 0;
 			
-			for (Course course : courses) {
+			for (Course course : coursesTaken) {
 				double capscore = 0;
 				
 				switch(course.getGrade()) {
@@ -162,11 +159,11 @@ public class Student {
 	public void setCreditsTaken(int creditsTaken) {
 		this.creditsTaken = creditsTaken;
 	}
-	public Collection<Course> getCourses() {
-		return courses;
+	public List<Course> getCourses() {
+		return coursesTaken;
 	}
-	public void setCourses(Collection<Course> courses) {
-		this.courses = courses;
+	public void setCourses(List<Course> coursesTaken) {
+		this.coursesTaken = coursesTaken;
 		setGpa();
 	}
 	

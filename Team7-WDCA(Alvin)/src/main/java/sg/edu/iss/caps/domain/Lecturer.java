@@ -21,11 +21,14 @@ public class Lecturer {
 	private String name;
 	
 	private String position;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "lecturer", cascade = CascadeType.ALL)
 	private Accounts account;
 	
 	@OneToMany
 	private List<Course> courses;
+	
+	@OneToMany
+	private List<Coursedetail> Coursedetail;
 
 
 	public int getId() {
