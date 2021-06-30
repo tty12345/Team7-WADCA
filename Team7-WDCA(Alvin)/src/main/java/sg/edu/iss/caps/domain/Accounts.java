@@ -16,7 +16,7 @@ public class Accounts {
 	private String password;
 	private RoleType role;
 	@OneToOne
-	private Student studentacc;
+	public Student studentacc;
 	@OneToOne
 	private Lecturer lecturer;
 	@OneToOne
@@ -126,8 +126,4 @@ public class Accounts {
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
-	
-	
-
-	
 }

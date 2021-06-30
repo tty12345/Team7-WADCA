@@ -86,7 +86,7 @@ public class StudentController {
 		}
 		Student current = sservice.findStudentById(id);
 		model.addAttribute("studentinfo", current);
-		return "StudentList-stu.html";
+		return "StudentView.html";
 	}
 
 	// For admin to add students (extra feature)

@@ -1,6 +1,5 @@
 package sg.edu.iss.caps.domain;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -36,12 +35,9 @@ public class Student {
 	public void setAccount(Accounts account) {
 		this.account = account;
 	}
-
-	@OneToMany(mappedBy = "student")
-	private List<Course> coursesTaken;
 	
 	@OneToMany(mappedBy="student")
-	public Collection<Course> courses;
+	public List<Course> courses;
 	
 	public Student(String firstName, String secondName, String major, int creditsTaken) {
 		super();
@@ -61,11 +57,13 @@ public class Student {
 		this.major = major;
 		this.creditsTaken = creditsTaken;
 	}
-	public Student(String firstName, String secondName, String major) {
+	public Student(String firstName, String secondName, String major, List<Course> courses) {
 		super();
 		this.firstName = firstName;
 		this.secondName = secondName;
 		this.major = major;
+		this.courses = courses;
+		setGpa(this.courses);
 	}
 	public Student() {
 		super();
@@ -98,11 +96,11 @@ public class Student {
 	public double getGpa() {
 		return gpa;
 	}
-	public void setGpa() {
-		if (courses != null) {
+	public void setGpa(List<Course> courses) {
+		if (courses.size() > 0) {
 			double grandTotal = 0;
 			int creditsTotal = 0;
-			
+
 			for (Course course : courses) {
 				double capscore = 0;
 				
@@ -159,12 +157,15 @@ public class Student {
 	public void setCreditsTaken(int creditsTaken) {
 		this.creditsTaken = creditsTaken;
 	}
-	public Collection<Course> getCourses() {
+	
+	public List<Course> getCourses() {
 		return courses;
 	}
-	public void setCourses(Collection<Course> courses) {
+	public void setCourses(List<Course> courses) {
 		this.courses = courses;
-		setGpa();
+		if (courses.get(0).getGrade() != null) {
+			setGpa(courses);
+		}
 	}
 	
 	@Override

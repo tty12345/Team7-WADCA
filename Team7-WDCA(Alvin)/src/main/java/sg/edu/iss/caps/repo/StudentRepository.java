@@ -12,13 +12,14 @@ import sg.edu.iss.caps.domain.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 	
-	public Student findStudentById(int id);
+	@Query("select s from Student s where s.id = :id")
+	public Student findStudentById(@Param("id") int id);
 	
 	@Query("select s from Student s where s.firstName like %?1%")
 	public List<Student> findStudentByName(String firstName);
 	
 	@Query("select s from Student s where s.account.username = :uname")
-	public Student findStudentByUsername(@Param("uname")String un);
+	public Student findStudentByUsername(@Param("uname") String un);
 	@Modifying
 	@Transactional
 	@Query("update Student s set s.major = :major where s.id = :studentId")

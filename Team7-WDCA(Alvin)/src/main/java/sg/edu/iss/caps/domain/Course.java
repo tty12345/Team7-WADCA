@@ -67,12 +67,14 @@ public class Course {
 		this.student = student;
 	}
 
-	public Course(String code, String name, int credits, Lecturer lecturer) {
+	public Course(String code, String name, int credits, Lecturer lecturer, double score) {
 		super();
 		this.code = code;
 		this.name = name;
 		this.credits = credits;
 		this.lecturer = lecturer;
+		this.score = score;
+		setScore(this.score);
 	}
 
 	public Course(String code, String name) {
@@ -110,7 +112,7 @@ public class Course {
 	}
 
 	public String getGrade() {
-		return "hello";
+		return grade;
 	}
 
 	private void setGrade(String grade) {

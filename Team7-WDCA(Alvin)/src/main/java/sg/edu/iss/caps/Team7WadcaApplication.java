@@ -59,40 +59,35 @@ public class Team7WadcaApplication {
 			Accounts ac1 = new Accounts("walterwhite", hashedPass, RoleType.LECTURER, l1);
 			urepo.save(ac1);
 			
-			Course cl1 = new Course("BA3802", "Change Management", 4, l1);
-			Course cl2 = new Course("CH1150", "Organic Chemistry", 4, l1);
-			Course cl3 = new Course("CS1101", "Introduction To Computing", 4, l1);
-			Course cl4 = new Course("MA1101", "Mathematics 1", 4, l1);
-			Course cl5 = new Course("MA1102", "Mathematics 2", 4, l1);
-			Course cl6 = new Course("PR1301", "Public Speaking And Presentations", 3, l1);
-			Course cl7 = new Course("RB3301", "Advanced Algorithms", 4, l1);
-			Course cl8 = new Course("GE1101", "Introduction To Geography", 4, l1);
-			Course cl9 = new Course("GE2501", "Human Geography", 4, l1);
-			Course cl10 = new Course("PS2301", "USSR: A Retrospective", 4, l1);
-			List<Course> lc1 = new ArrayList<>();
-			lc1.add(cl1);
-			lc1.add(cl2);
-			lc1.add(cl3);
-			lc1.add(cl4);
-			lc1.add(cl5);
-			lc1.add(cl6);
-			lc1.add(cl7);
-			lc1.add(cl8);
-			lc1.add(cl9);
-			lc1.add(cl10);
-			l1.setCourses(lc1);
-			
-			lrepo.save(l1);
-			crepo.save(cl1);
-			crepo.save(cl2);
-			crepo.save(cl3);
-			crepo.save(cl4);
-			crepo.save(cl5);
-			crepo.save(cl6);
-			crepo.save(cl7);
-			crepo.save(cl8);
-			crepo.save(cl9);
-			crepo.save(cl10);
+
+//			Course cl4 = new Course("MA1101", "Mathematics 1", 4, l1);
+//			Course cl5 = new Course("MA1102", "Mathematics 2", 4, l1);
+//			Course cl6 = new Course("PR1301", "Public Speaking And Presentations", 3, l1);
+//			Course cl7 = new Course("RB3301", "Advanced Algorithms", 4, l1);
+//			Course cl8 = new Course("GE1101", "Introduction To Geography", 4, l1);
+//			Course cl9 = new Course("GE2501", "Human Geography", 4, l1);
+//			Course cl10 = new Course("PS2301", "USSR: A Retrospective", 4, l1);
+//			List<Course> lc1 = new ArrayList<>();
+//			lc1.add(cl1);
+//			lc1.add(cl2);
+//			lc1.add(cl3);
+//			lc1.add(cl4);
+//			lc1.add(cl5);
+//			lc1.add(cl6);
+//			lc1.add(cl7);
+//			lc1.add(cl8);
+//			lc1.add(cl9);
+//			lc1.add(cl10);
+//			l1.setCourses(lc1);
+//			
+//			lrepo.save(l1);
+//			crepo.save(cl4);
+//			crepo.save(cl5);
+//			crepo.save(cl6);
+//			crepo.save(cl7);
+//			crepo.save(cl8);
+//			crepo.save(cl9);
+//			crepo.save(cl10);
 
 			Lecturer l2 = new Lecturer("Jesse Pinkman", "Lecturer");
 			lrepo.save(l2);
@@ -101,43 +96,43 @@ public class Team7WadcaApplication {
 			Accounts ac2 = new Accounts("jessepinkman", hashedPass1, RoleType.LECTURER, l2);
 			urepo.save(ac2);
 			
-			Course cl11 = new Course("BA4201", "Business Intelligence", 4, l2);
-			Course cl12 = new Course("PY4402", "Solid State Physics", 4, l2);
-			Course cl13 = new Course("PY4676", "Quantum Physics", 4, l2);
-			Course cl14 = new Course("ME2401", "Fluid Mechanics", 4, l2);
-			Course cl15 = new Course("GS2303", "Southeast Asian Studies", 4, l2);
-			Course cl16 = new Course("HS3422", "World Wars", 4, l2);
-			Course cl17 = new Course("PR2101", "Communication In The Workplace", 3, l2);
-			Course cl18 = new Course("AS3350", "Asgardian Legends", 4, l2);
-			Course cl19 = new Course("AS3355", "Asgardian Folklore", 4, l2);
-			Course cl20 = new Course("AC1002", "Financial Accounting", 4, l2);
-			Course cl21 = new Course("MD4504", "Neurosurgery", 4, l2);
-			List<Course> lc2 = new ArrayList<>();
-			lc2.add(cl11);
-			lc2.add(cl12);
-			lc2.add(cl13);
-			lc2.add(cl14);
-			lc2.add(cl15);
-			lc2.add(cl16);
-			lc2.add(cl17);
-			lc2.add(cl18);
-			lc2.add(cl19);
-			lc2.add(cl20);
-			lc2.add(cl21);
-			l2.setCourses(lc2);
-			
-			lrepo.save(l2);
-			crepo.save(cl11);
-			crepo.save(cl12);
-			crepo.save(cl13);
-			crepo.save(cl14);
-			crepo.save(cl15);
-			crepo.save(cl16);
-			crepo.save(cl17);
-			crepo.save(cl18);
-			crepo.save(cl19);
-			crepo.save(cl20);
-			crepo.save(cl21);
+//			Course cl11 = new Course("BA4201", "Business Intelligence", 4, l2);
+//			Course cl12 = new Course("PY4402", "Solid State Physics", 4, l2);
+//			Course cl13 = new Course("PY4676", "Quantum Physics", 4, l2);
+//			Course cl14 = new Course("ME2401", "Fluid Mechanics", 4, l2);
+//			Course cl15 = new Course("GS2303", "Southeast Asian Studies", 4, l2);
+//			Course cl16 = new Course("HS3422", "World Wars", 4, l2);
+//			Course cl17 = new Course("PR2101", "Communication In The Workplace", 3, l2);
+//			Course cl18 = new Course("AS3350", "Asgardian Legends", 4, l2);
+//			Course cl19 = new Course("AS3355", "Asgardian Folklore", 4, l2);
+//			Course cl20 = new Course("AC1002", "Financial Accounting", 4, l2);
+//			Course cl21 = new Course("MD4504", "Neurosurgery", 4, l2);
+//			List<Course> lc2 = new ArrayList<>();
+//			lc2.add(cl11);
+//			lc2.add(cl12);
+//			lc2.add(cl13);
+//			lc2.add(cl14);
+//			lc2.add(cl15);
+//			lc2.add(cl16);
+//			lc2.add(cl17);
+//			lc2.add(cl18);
+//			lc2.add(cl19);
+//			lc2.add(cl20);
+//			lc2.add(cl21);
+//			l2.setCourses(lc2);
+//			
+//			lrepo.save(l2);
+//			crepo.save(cl11);
+//			crepo.save(cl12);
+//			crepo.save(cl13);
+//			crepo.save(cl14);
+//			crepo.save(cl15);
+//			crepo.save(cl16);
+//			crepo.save(cl17);
+//			crepo.save(cl18);
+//			crepo.save(cl19);
+//			crepo.save(cl20);
+//			crepo.save(cl21);
 			
 			
 //			Accounts acc = new Accounts("steven", hashedPass, RoleType.STUDENT, s1);
@@ -197,19 +192,27 @@ public class Team7WadcaApplication {
 
 			
 			// Steve Rogers
-			Student s1 = new Student("Steve", "Rogers", "History");
+			Course cl1 = new Course("BA3802", "Change Management", 4, l1, 70);
+			Course cl2 = new Course("CH1150", "Organic Chemistry", 4, l1, 60);
+			Course cl3 = new Course("CS1101", "Introduction To Computing", 4, l1, 60);
+			List<Course> sc1 = new ArrayList<>();
+			sc1.add(cl1);
+			sc1.add(cl2);
+			sc1.add(cl3);
+			
+			Student s1 = new Student("Steve", "Rogers", "History", sc1);
 			srepo.save(s1);
 			
 			String hashedPass2 = sCryptPasswordEncoder.encode("steven");
 			Accounts ac3 = new Accounts("steverogers", hashedPass2, RoleType.STUDENT, s1);
 			urepo.save(ac3);
 			
-			Collection<Course> sc1 = new ArrayList<>();
-			sc1.add(cl8);
-			sc1.add(cl10);
-			sc1.add(cl16);
-			s1.setCourses(sc1);
-			srepo.save(s1);
+			cl1.setStudent(s1);
+			cl2.setStudent(s1);
+			cl3.setStudent(s1);
+			crepo.save(cl1);
+			crepo.save(cl2);
+			crepo.save(cl3);
 			
 			// Tony Stark
 //			Course c4 = new Course("CS1101", "Introduction To Computing", 4, 85, s2);

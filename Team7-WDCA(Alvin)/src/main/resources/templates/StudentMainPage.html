@@ -11,7 +11,7 @@
 	
 	<a th:href="@{/student/list}">view all students</a>
 	
-	<a th:href="@{/student/info/}+${student.id}">view your courses</a>
+	<a th:href="@{/student/info/}+${student.studentacc.id}">view your information</a>
 	<div th:replace="fragments/general.html :: footer"></div>
 </body>
 </html>
