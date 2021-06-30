@@ -119,8 +119,6 @@ public class Course {
 		this.grade = grade;
 	}
 
-	
-
 	public Coursedetail getDetail() {
 		return detail;
 	}

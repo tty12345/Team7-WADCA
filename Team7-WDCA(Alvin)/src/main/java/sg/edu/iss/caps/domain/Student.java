@@ -144,7 +144,7 @@ public class Student {
 				grandTotal += course.getCredits() * capscore;
 				creditsTotal += course.getCredits();
 			}
-			this.gpa = grandTotal / creditsTotal; 
+			this.gpa = Math.round((grandTotal / creditsTotal) * 100.0) / 100.0;
 			this.creditsTaken = creditsTotal;
 		} else {
 			this.gpa = 0.0;
