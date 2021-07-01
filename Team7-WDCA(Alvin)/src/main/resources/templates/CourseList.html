@@ -1,0 +1,40 @@
+	<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Courses</title>
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menubar"></div>
+
+	<h1>Course Listing</h1>
+
+	<table>
+		<tr>
+			<th >Course Id</th>
+			<th >Course Name</th>
+			<th >Course Code</th>
+			<th >Credits</th>
+			<th >View Course details</th>
+		</tr>
+		<tr th:each="coursedetail:${coursedetails}" class="table-row">
+			<td th:text=${coursedetail.id}>Id</td>
+			<td th:text=${coursedetail.name}>Course Name</td>
+			<td th:text=${coursedetail.code}>Course Code</td>
+			<td th:text=${coursedetail.credits}>Credit</td>
+			<td><a href="CourseView.html" th:href="@{/course/info/}+${coursedetail.code}"> View Course </a></td>
+		</tr>
+	</table>
+	<div>
+	<a th:href="@{/course/backward/}+${currentPage}">&laquo;</a>
+  	<a th:href="@{/course/navigate(pageNo=1)}" >1</a>
+  	<a th:href="@{/course/navigate(pageNo=2)}" >2</a>
+  	<a th:href="@{/course/navigate(pageNo=3)}" >3</a>
+  	<a th:href="@{/course/forward/}+${currentPage}">&raquo;</a>
+  	</div>
+    <br/>
+	<div th:replace="fragments/general.html :: footer"></div>
+	
+</body>
+</html>

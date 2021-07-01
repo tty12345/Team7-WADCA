@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity
 public class Coursedetail {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +17,7 @@ public class Coursedetail {
 	private String code;
 	private String description;
 	private int courseCapacity;
-	private String Startdate;
+	private String startdate;
 	private int credits;
 	@OneToMany(mappedBy = "detail")
 	private List<Course> course;
@@ -34,22 +32,13 @@ public class Coursedetail {
 		this.lecturer = lecturer;
 		this.code = code;
 		this.course = course;
+		this.name = courseName;
 	}
 	
 	public Coursedetail(int courseCapacity,String code, String name, List<Course> course, String description, Lecturer lecturer) {
 		super();
 		this.courseCapacity = courseCapacity;
 		this.course = course;
-		this.name= name;
-		this.lecturer = lecturer;
-		this.code = code;
-		this.description=description;
-
-	}
-	
-	public Coursedetail(int courseCapacity,String code, String name, String description, Lecturer lecturer) {
-		super();
-		this.courseCapacity = courseCapacity;
 		this.name= name;
 		this.lecturer = lecturer;
 		this.code = code;
@@ -67,15 +56,16 @@ public class Coursedetail {
 		this.credits = credits;
 	}
 	public Coursedetail(int id, int courseCapacity,  String code, String name, String startdate,
-			 String description, int credits) {
+			 String description, int credits, Lecturer lecturer) {
 		super();
 		this.id = id;
 		this.courseCapacity = courseCapacity;
 		this.description = description;
 		this.code = code;
 		this.name = name;
-		this.Startdate = startdate;
+		this.startdate = startdate;
 		this.credits = credits;
+		this.lecturer = lecturer;
 	}
 	
 	@Override
@@ -165,14 +155,6 @@ public class Coursedetail {
 		this.code = code;
 	}
 
-	public String getStartdate() {
-		return Startdate;
-	}
-
-	public void setStartdate(String startdate) {
-		Startdate = startdate;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -196,7 +178,13 @@ public class Coursedetail {
 	public void setCredits(int credits) {
 		this.credits = credits;
 	}
-	
-	
+
+	public String getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(String startdate) {
+		this.startdate = startdate;
+	}
 	
 }
