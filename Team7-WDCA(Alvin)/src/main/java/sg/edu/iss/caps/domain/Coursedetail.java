@@ -28,14 +28,14 @@ public class Coursedetail {
 	@OneToMany(mappedBy = "detail")
 	private List<Course> course;
 	@ManyToOne
-	private Lecturer lecturer;
+	private Lecturer lect;
 	
 
 	public Coursedetail(int courseCapacity,String code, String courseName, List<Course> course, Lecturer lecturer) {
 		super();
 		this.courseCapacity = courseCapacity;
 		this.course = course;
-		this.lecturer = lecturer;
+		this.lect = lecturer;
 		this.code = code;
 		this.course = course;
 	}
@@ -45,7 +45,7 @@ public class Coursedetail {
 		this.courseCapacity = courseCapacity;
 		this.course = course;
 		this.name= name;
-		this.lecturer = lecturer;
+		this.lect = lecturer;
 		this.code = code;
 		this.description=description;
 
@@ -55,7 +55,7 @@ public class Coursedetail {
 		super();
 		this.courseCapacity = courseCapacity;
 		this.name= name;
-		this.lecturer = lecturer;
+		this.lect = lecturer;
 		this.code = code;
 		this.description=description;
 
@@ -118,11 +118,11 @@ public class Coursedetail {
 	}
 
 	public Lecturer getLecturer() {
-		return lecturer;
+		return lect;
 	}
 
 	public void setLecturer(Lecturer lecturer) {
-		this.lecturer = lecturer;
+		this.lect = lecturer;
 	}
 
 	public int getId() {

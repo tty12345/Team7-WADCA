@@ -19,14 +19,15 @@
    <th> ENROLL </th>
    
  </tr>
- <tr th:each="course:${courses}" class="table-row">
-   <td th:text="${course.code}">COURSE CODE</td> 
-   <td th:text="${course.name}">Course Name</td>
-   <td th:text="${course.description}">Description</td> 
+<!--  <tr th:each="course:${courses}" class="table-row"> -->
+<tr  class="table-row">
+   <td th:text="${courses.code}">COURSE CODE</td> 
+   <td th:text="${courses.name}">Course Name</td>
+   <td th:text="${courses.description}">Description</td> 
   <!-- <td th:text="${#temporals.format(course.startdate, 'dd-MM-yyyy')}">Start Date</td>
     <td th:text="${#temporals.format(course.enddate, 'dd-MM-yyyy')}">End date</td>  -->
-   <td th:text="${course.credits}">COURSE credits</td>
-   <td><a href="EnrollSuccess.html" th:href="@{/course/enrol/}+${course.code}"> Enroll </a></td>
+   <td th:text="${courses.credits}">COURSE credits</td>
+   <td><a href="EnrollSuccess.html" th:href="@{/course/enrol/}+${courses.code}"> Enroll </a></td>
 </tr>
 </table>
 </body>

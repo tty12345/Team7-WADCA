@@ -24,10 +24,10 @@ public class Lecturer {
 	@OneToOne(mappedBy = "lecturer", cascade = CascadeType.ALL)
 	private Accounts account;
 	
-	@OneToMany
+	@OneToMany(mappedBy="lecturer")
 	private List<Course> courses;
 	
-	@OneToMany
+	@OneToMany(mappedBy="lect")
 	private List<Coursedetail> Coursedetail;
 
 

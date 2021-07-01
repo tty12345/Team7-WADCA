@@ -74,6 +74,18 @@ public class Team7WadcaApplication {
 			
 			lrepo.save(l1);lrepo.save(l2);
 			
+			
+			
+			SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
+			String hashedPass9 = sCryptPasswordEncoder.encode("john");
+			Accounts ac9 = new Accounts("john@gmail.com", hashedPass9, RoleType.LECTURER, l1);
+			urepo.save(ac9);
+			
+			String hashedPass10 = sCryptPasswordEncoder.encode("venkat");
+			Accounts ac10 = new Accounts("venkat@gmail.com", hashedPass10, RoleType.LECTURER, l2);
+			urepo.save(ac10);
+			
+			
 //			Course cl1 = new Course("BA3802", "Change Management", 4, l1);
 //			Course cl2 = new Course("CH1150", "Organic Chemistry", 4, l1);
 //			Course cl3 = new Course("CS1102", "Introduction To Computing", 4, l1);
@@ -327,7 +339,7 @@ public class Team7WadcaApplication {
 			Student s1 = new Student("Steve", "Rogers", "History", sc1);
 			srepo.save(s1);
 			
-			SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
+			
 			String hashedPass2 = sCryptPasswordEncoder.encode("steve");
 			Accounts ac3 = new Accounts("steverogers", hashedPass2, RoleType.STUDENT, s1);
 			urepo.save(ac3);

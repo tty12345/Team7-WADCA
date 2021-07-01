@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import sg.edu.iss.caps.domain.Accounts;
+import sg.edu.iss.caps.domain.Lecturer;
 import sg.edu.iss.caps.domain.RoleType;
 import sg.edu.iss.caps.domain.Student;
+import sg.edu.iss.caps.service.LecturerService;
 import sg.edu.iss.caps.service.StudentService;
 import sg.edu.iss.caps.service.UserInterface;
 
@@ -20,6 +22,8 @@ public class loginContoller {
 	
 	@Autowired
 	StudentService sservice;
+	@Autowired
+	LecturerService lservice;
 	
 	@Autowired
 	UserInterface u;
@@ -58,7 +62,10 @@ public class loginContoller {
 			}
 			else 
 			{
+				Lecturer login_user=lservice.findLecturerByUsername(user.getUsername());
+				model.addAttribute("lecturer", login_user);
 				session.setAttribute("lect", loggeduser);
+				session.setAttribute("currentLecturer", login_user);
 				return  "LecturerMainPage";
 			}
 		}

@@ -2,6 +2,8 @@ package sg.edu.iss.caps.service;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import sg.edu.iss.caps.domain.Course;
 //import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Lecturer;
@@ -17,5 +19,6 @@ public interface LecturerService {
 	//public List<Student> findStudentsByCourseTaken()
 	public Course findCourseById(Integer id);
 	public void saveCourse(Course course);
+	public Lecturer findLecturerByUsername(@Param("uname") String un);
 
 }

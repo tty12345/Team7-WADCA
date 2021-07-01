@@ -1,5 +1,6 @@
 	package sg.edu.iss.caps.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -48,13 +49,31 @@ public class CourseController {
 	@GetMapping(value = "/list")
 	public String list(Model model, HttpSession session) {
 		
-		if (!uservice.checkSession(session, "stu"))
+		if (!(uservice.checkSession(session, "stu") || uservice.checkSession(session, "lect")))
 			return "index";
-		int currentpage = 0;
-
-		List<Coursedetail> listWithPagination = cdservice.getAllStudents(currentpage, 5);
-//		List<Coursedetail> listOfAllCourses = cdservice.findAllCoursedetail();
-		model.addAttribute("coursedetails", listWithPagination);
+		
+//		Student student = (Student)session.getAttribute("currentStudent");
+//		List<Coursedetail> allCourses = cdservice.findAllCoursedetail();
+//		List<Course> allEnrolledCourses = cservice.findCoursesByStudent(student);
+//		List<Coursedetail> avaliableCourses = new ArrayList<Coursedetail>();
+//		for(Coursedetail x: allCourses) {
+//			
+//			for(Course y:allEnrolledCourses) {
+//				
+//				if(x.getCode()!=y.getCode())
+//					avaliableCourses.add(x);				
+//			}			
+//		}
+//		
+//		
+//		
+//		
+//	
+//		int currentpage = 0;
+//		List<Coursedetail> listWithPagination = cdservice.getAllCourses(currentpage, 5);
+		
+		
+//		model.addAttribute("coursedetails", listWithPagination);
 		return "courselist";
 	}
 	
@@ -63,9 +82,9 @@ public class CourseController {
 		Integer i = Integer.parseInt(pageNo);
 		if (i == 2)
 			i--;
-		List<Student> listWithPagination = sservice.getAllStudents(i+1, 5);
+		List<Coursedetail> listWithPagination = cdservice.getAllCourses(i+1, 5);
 		
-		model.addAttribute("students", listWithPagination);
+		model.addAttribute("coursedetails", listWithPagination);
 		
 		model.addAttribute("currentPage", i+1);
 		
@@ -77,9 +96,9 @@ public class CourseController {
 		Integer i = Integer.parseInt(pageNo);
 		if (i == 0)
 			i++;
-		List<Student> listWithPagination = sservice.getAllStudents(i-1, 5);
+		List<Coursedetail> listWithPagination = cdservice.getAllCourses(i-1, 5);
 		
-		model.addAttribute("students", listWithPagination);
+		model.addAttribute("coursedetails", listWithPagination);
 		
 		model.addAttribute("currentPage", i-1);
 		
@@ -89,7 +108,7 @@ public class CourseController {
 	@GetMapping(value = "/list/{code}")
 	public String view(@PathVariable("code") String code, Model model, HttpSession session) {
 		
-		if (!uservice.checkSession(session, "stu"))
+		if (!(uservice.checkSession(session, "stu") && uservice.checkSession(session, "lect")))
 			return "index";
 		
 		Coursedetail cd = cdservice.findCoursedetailbyCode(code);
@@ -116,7 +135,7 @@ public class CourseController {
 			List<Course> Course123 = cservice.findCoursesByStudent(student);
 			model.addAttribute("Course123", Course123);
 			sendEmail(model,student.getId());
-			return "Enrollsuccess.html";
+			return "forward:/student/info/"+student.getId();
 			
 		} else
 			return "error.html";

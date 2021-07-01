@@ -3,9 +3,9 @@ package sg.edu.iss.caps.repo;
 import javax.validation.Valid;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 //import java.util.Collection;
-
-
+import org.springframework.data.repository.query.Param;
 
 //import sg.edu.iss.caps.domain.Course;
 
@@ -21,6 +21,9 @@ public interface LecturerRepository extends JpaRepository<Lecturer, Integer> {
 	void save(@Valid Course course);
 
 	Lecturer findLecturerById(int id);
+	
+	@Query("select l from Lecturer l where l.account.username = :uname")
+	public Lecturer findLecturerByUsername(@Param("uname") String un);
 
 }
 

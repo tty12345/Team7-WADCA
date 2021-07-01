@@ -6,7 +6,7 @@
 </head>
 <body>
 <header th:insert="fragments/general.html :: header"> </header>
-	<div th:replace="fragments/general.html :: menu"></div>
+	<div th:replace="fragments/general.html :: menubar"></div>
 
 	<h1>Student List</h1>
 	<h1 th:text="${message}">default</h1>
@@ -31,13 +31,7 @@
 			<td th:text=${student.gpa}>Current GPA</td>
 		</tr>
 	</table>
-	<div>
-	<a th:href="@{/student/backward/}+${currentPage}">&laquo;</a>
-  	<a th:href="@{/student/navigate(pageNo=1)}" >1</a>
-  	<a th:href="@{/student/navigate(pageNo=2)}" >2</a>
-  	<a th:href="@{/student/navigate(pageNo=3)}" >3</a>
-  	<a th:href="@{/student/forward/}+${currentPage}">&raquo;</a>
-  	</div>
+
 	
     <br/>
 	<div th:replace="fragments/general.html :: footer"></div>

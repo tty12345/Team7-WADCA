@@ -6,7 +6,7 @@
 </head>
 <body>
 	
-	<h1>Course Listing for Lecturers</h1>
+	<h1>Courses Taught</h1>
 	<!-- Add Hyperlink -->
 	<a href="Courselist.html" th:href="@{/admin/addLecCourse}">Add Course</a>
 	<table>
@@ -23,7 +23,7 @@
 			<td th:text=${course.name}>Course Name</td>
 			<td th:text=${course.credits}>Credits</td>			
 			<!-- <td><input type="button" value="View Course"></td> -->
-			 <td><a href="Courseview.html" th:href="@{/course/list/{id}/}+${course.id}" th:utext="#{course.view.list}"> View Course </a></td>
+			 <td><a href="LecCourseView.html" th:href="@{/lecturer/ViewCourseDetails/}+${course.code}"> View Course </a></td>
 		</tr>
 	</table>
     <br/>

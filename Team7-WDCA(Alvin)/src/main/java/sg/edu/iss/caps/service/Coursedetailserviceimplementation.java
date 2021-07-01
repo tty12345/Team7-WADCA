@@ -31,7 +31,7 @@ public class Coursedetailserviceimplementation implements Coursedetailservice {
 	}
 
 	@Override
-	public List<Coursedetail> getAllStudents(int pageNo, int pageSize) {
+	public List<Coursedetail> getAllCourses(int pageNo, int pageSize) {
 		Pageable paging = PageRequest.of(pageNo, pageSize);
 		
 		Page<Coursedetail> pageResult = cdrepo.findAll(paging);
