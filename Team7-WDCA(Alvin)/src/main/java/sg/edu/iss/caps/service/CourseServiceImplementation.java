@@ -3,6 +3,9 @@ package sg.edu.iss.caps.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import sg.edu.iss.caps.domain.Course;
@@ -20,6 +23,16 @@ public class CourseServiceImplementation implements CourseService {
 	@Autowired
 	CourseRepository crepo;
 
+	@Override
+	public List<Course> getAllStudents(int pageNo, int pageSize){
+		Pageable paging = PageRequest.of(pageNo, pageSize);
+		
+		Page<Course> pageResult = crepo.findAll(paging);
+		
+		List<Course> list = pageResult.getContent();
+		
+		return list;
+	}
 	@Override
 	public void addCourse(Course course) {
 		crepo.save(course);

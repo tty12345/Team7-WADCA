@@ -19,18 +19,16 @@
             <th class="btndiv"><a th:href="@{/student/info/}+${student.id}" class="actionbtn">view your courses</a></th>
         </tr>
         <tr>
-            <th class="btndiv"><a class="actionbtn">Manage Courses</a></th>
+            <th class="btndiv"><a th:href="@{/course/list}">Manage Courses</a></th>
         </tr>
         <tr>
-            <th class="btndiv"><a class="actionbtn">Manage Enrolment</a></th>
+            <th class="btndiv"><a th:href="@{/student/info/}+${student.id}">view your information</a></th>
         </tr>
     </table>
 
     <br>
 
-    <a th:href="@{/student/list}">view all students</a>
-
-    <a th:href="@{/student/info/}+${student.studentacc.id}">view your information</a>
+    
     <div th:replace="fragments/general.html :: footer"></div>
 </body>
 

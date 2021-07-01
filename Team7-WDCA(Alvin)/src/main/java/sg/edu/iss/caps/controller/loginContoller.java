@@ -49,17 +49,17 @@ public class loginContoller {
 				model.addAttribute("student", login_user);
 				session.setAttribute("stu",loggeduser);
 				session.setAttribute("currentStudent",login_user);
-				returnPage = "StudentMainPage";
+				return "StudentMainPage";
 			}
 			else if (loggeduser.getRole() == RoleType.ADMIN)
 			{
 				session.setAttribute("admin", loggeduser);
-				returnPage = "AdminMainPage";	
+				return "AdminMainPage";	
 			}
 			else 
 			{
 				session.setAttribute("lect", loggeduser);
-				returnPage = "LecturerMainPage";
+				return  "LecturerMainPage";
 			}
 		}
 		else
@@ -70,7 +70,8 @@ public class loginContoller {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("usession");
+		session.removeAttribute("stu");
+		session.removeAttribute("currentStudent");
         session.removeAttribute("admin");
         session.removeAttribute("lect");
 		return "index";

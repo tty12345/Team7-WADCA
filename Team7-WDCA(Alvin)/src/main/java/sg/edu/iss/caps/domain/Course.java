@@ -114,7 +114,7 @@ public class Course {
 	}
 
 	public String getGrade() {
-		return "hello";
+		return this.grade;
 	}
 
 	private void setGrade(String grade) {

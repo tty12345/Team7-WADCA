@@ -21,4 +21,5 @@ public interface CourseService {
 	public List<Course> findCoursesByStudent(Student student);
 	public List<Course> findCoursesByCode(String code);
 	public void save(Course course);
+	public List<Course> getAllStudents(int pageNo, int pageSize);
 }

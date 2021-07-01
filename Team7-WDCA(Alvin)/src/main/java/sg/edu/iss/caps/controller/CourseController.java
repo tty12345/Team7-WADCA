@@ -50,10 +50,40 @@ public class CourseController {
 		
 		if (!uservice.checkSession(session, "stu"))
 			return "index";
-		
-		List<Coursedetail> listOfAllCourses = cdservice.findAllCoursedetail();
-		model.addAttribute("coursedetails", listOfAllCourses);
+		int currentpage = 0;
+
+		List<Coursedetail> listWithPagination = cdservice.getAllStudents(currentpage, 5);
+//		List<Coursedetail> listOfAllCourses = cdservice.findAllCoursedetail();
+		model.addAttribute("coursedetails", listWithPagination);
 		return "courselist";
+	}
+	
+	@GetMapping(value = "/forward/{currentPage}")
+	public String arrowlist(@PathVariable(value = "currentPage") String pageNo, Model model) {
+		Integer i = Integer.parseInt(pageNo);
+		if (i == 2)
+			i--;
+		List<Student> listWithPagination = sservice.getAllStudents(i+1, 5);
+		
+		model.addAttribute("students", listWithPagination);
+		
+		model.addAttribute("currentPage", i+1);
+		
+		return "StudentList-stu.html";
+	}
+
+	@GetMapping(value = "/backward/{currentPage}")
+	public String backlist(@PathVariable(value = "currentPage")String pageNo ,Model model) {
+		Integer i = Integer.parseInt(pageNo);
+		if (i == 0)
+			i++;
+		List<Student> listWithPagination = sservice.getAllStudents(i-1, 5);
+		
+		model.addAttribute("students", listWithPagination);
+		
+		model.addAttribute("currentPage", i-1);
+		
+		return "StudentList-stu.html";
 	}
 	
 	@GetMapping(value = "/list/{code}")

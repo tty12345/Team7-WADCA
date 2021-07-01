@@ -103,7 +103,7 @@ public class Student {
 		if (courses.size() > 0) {
 			double grandTotal = 0;
 			int creditsTotal = 0;
-
+			
 			for (Course course : courses) {
 				double capscore = 0;
 				
