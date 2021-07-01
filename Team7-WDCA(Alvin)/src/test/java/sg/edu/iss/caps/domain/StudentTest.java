@@ -3,6 +3,7 @@ package sg.edu.iss.caps.domain;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -17,6 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import sg.edu.iss.caps.Team7WadcaApplication;
 import sg.edu.iss.caps.repo.StudentRepository;
+import sg.edu.iss.caps.repo.CourseRepository;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Team7WadcaApplication.class)
@@ -28,10 +30,17 @@ public class StudentTest {
 	@Autowired
 	private StudentRepository srepo;
 	
+	@Autowired
+	private CourseRepository crepo;
+	
 	@Test
 	@Order(1)
 	public void testAddStudent() {
-		Student testStudent = new Student("testing", "test", "Test Studies");
+		List<Course> courses = new ArrayList<>();
+		Course test = new Course("TT1502", "Test Module 2");
+		courses.add(test);
+		crepo.save(test);
+		Student testStudent = new Student("testing", "test", "Test Studies", courses);
 		Student saved = srepo.save(testStudent);
 		assertNotNull(saved);
 	}

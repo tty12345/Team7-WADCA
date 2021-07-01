@@ -47,12 +47,12 @@ public class StudentController {
 	}
 
 	@GetMapping(value = "/navigate")
-	public String customlist(@RequestParam(value = "pageNo") Integer pageNo, Model model) {
+	public String customlist(@RequestParam(value = "pageNo") int pageNo, Model model) {
 
 		List<Student> listWithPagination = sservice.getAllStudents(pageNo-1, 5);
 		model.addAttribute("students", listWithPagination);
 		model.addAttribute("currentPage", pageNo-1);
-		return "StudentList.html";
+		return "StudentList-stu.html";
 	}
 
 	@GetMapping(value = "/forward/{currentPage}")
@@ -66,7 +66,7 @@ public class StudentController {
 		
 		model.addAttribute("currentPage", i+1);
 		
-		return "StudentList.html";
+		return "StudentList-stu.html";
 	}
 
 	@GetMapping(value = "/backward/{currentPage}")
@@ -80,7 +80,7 @@ public class StudentController {
 		
 		model.addAttribute("currentPage", i-1);
 		
-		return "StudentList.html";
+		return "StudentList-stu.html";
 	}
 
 	// For students to view their own information

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Student</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/caps.css}"/>
+    <meta charset="UTF-8">
+    <title>Student</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/caps.css}" />
 </head>
+
 <body>
-	bravo you are logged in Mr. <span th:text="${student.firstName}">Student</span>
-	<header th:replace="fragments/general.html :: header"></header>
-	<div th:replace="fragments/general.html :: menubar"></div>
-	<table class="Buttontbl">
+    bravo you are logged in Mr. <span th:text="${student.firstName}">Student</span>
+    <header th:replace="fragments/general.html :: header"></header>
+    <div th:replace="fragments/general.html :: menubar"></div>
+    <table class="Buttontbl">
         <tr>
             <th class="btndiv"><a th:href="@{/student/list}" class="actionbtn">View Students</a></th>
         </tr>
@@ -23,7 +25,13 @@
             <th class="btndiv"><a class="actionbtn">Manage Enrolment</a></th>
         </tr>
     </table>
-	
-	<div th:replace="fragments/general.html :: footer"></div>
+
+    <br>
+
+    <a th:href="@{/student/list}">view all students</a>
+
+    <a th:href="@{/student/info/}+${student.studentacc.id}">view your information</a>
+    <div th:replace="fragments/general.html :: footer"></div>
 </body>
+
 </html>

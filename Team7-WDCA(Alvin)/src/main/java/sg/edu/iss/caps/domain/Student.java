@@ -1,6 +1,5 @@
 package sg.edu.iss.caps.domain;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,9 +38,9 @@ public class Student {
 	public void setAccount(Accounts account) {
 		this.account = account;
 	}
-
-	@OneToMany (mappedBy = "student", cascade = CascadeType.ALL)
-	private List<Course> coursesTaken;
+	
+	@OneToMany(mappedBy="student")
+	public List<Course> courses;
 	
 	public Student(String firstName, String secondName, String major, int creditsTaken) {
 		super();
@@ -61,11 +60,13 @@ public class Student {
 		this.major = major;
 		this.creditsTaken = creditsTaken;
 	}
-	public Student(String firstName, String secondName, String major) {
+	public Student(String firstName, String secondName, String major, List<Course> courses) {
 		super();
 		this.firstName = firstName;
 		this.secondName = secondName;
 		this.major = major;
+		this.courses = courses;
+		setGpa(this.courses);
 	}
 	public Student() {
 		super();
@@ -98,12 +99,12 @@ public class Student {
 	public double getGpa() {
 		return gpa;
 	}
-	public void setGpa() {
-		if (coursesTaken != null) {
+	public void setGpa(List<Course> courses) {
+		if (courses.size() > 0) {
 			double grandTotal = 0;
 			int creditsTotal = 0;
-			
-			for (Course course : coursesTaken) {
+
+			for (Course course : courses) {
 				double capscore = 0;
 				
 				switch(course.getGrade()) {
@@ -146,7 +147,7 @@ public class Student {
 				grandTotal += course.getCredits() * capscore;
 				creditsTotal += course.getCredits();
 			}
-			this.gpa = grandTotal / creditsTotal; 
+			this.gpa = Math.round((grandTotal / creditsTotal) * 100.0) / 100.0;
 			this.creditsTaken = creditsTotal;
 		} else {
 			this.gpa = 0.0;
@@ -159,12 +160,15 @@ public class Student {
 	public void setCreditsTaken(int creditsTaken) {
 		this.creditsTaken = creditsTaken;
 	}
+	
 	public List<Course> getCourses() {
-		return coursesTaken;
+		return courses;
 	}
-	public void setCourses(List<Course> coursesTaken) {
-		this.coursesTaken = coursesTaken;
-		setGpa();
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+		if (courses.get(0).getGrade() != null) {
+			setGpa(courses);
+		}
 	}
 	
 	@Override

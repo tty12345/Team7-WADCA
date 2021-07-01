@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
-//import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Student;
 
 public interface StudentService {
@@ -20,10 +19,6 @@ public interface StudentService {
 	//public Student findStudentByCourse(Course course);
 
 	public Student findStudentByUsername(String un);
-
-	//public List<Module> listModuleByStudentId(int id);
-
 	public List<Student> getAllStudents(int pageNo, int pageSize);
-
-	//public List<Student> findStudentsByCourseTaken(List<Course> course);
+	//public List<Module> listModuleByStudentId(int id);
 }
