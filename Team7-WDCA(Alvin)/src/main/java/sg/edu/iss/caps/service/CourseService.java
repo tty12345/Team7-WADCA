@@ -16,7 +16,6 @@ public interface CourseService {
 	public int showCredits(int id);
 	public List<Course> listAllCourses();
 	public List<Course> findCoursesByLecturer(Lecturer lecturer);
-	public void withdrawCourse(Course course);
 	public boolean checkCapacity(Course course);
 	public List<Course> findCoursesByStudent(Student student);
 	public List<Course> findCoursesByCode(String code);

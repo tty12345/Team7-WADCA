@@ -1,6 +1,5 @@
 package sg.edu.iss.caps.domain;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -20,10 +19,7 @@ public class Coursedetail {
 	private String code;
 	private String description;
 	private int courseCapacity;
-	@DateTimeFormat(pattern = "dd/MM/YYYY")
-	private Date Sartdate;
-	@DateTimeFormat(pattern = "dd/MM/YYYY")
-	private Date Enddate;
+	private String Startdate;
 	private int credits;
 	@OneToMany(mappedBy = "detail")
 	private List<Course> course;
@@ -68,6 +64,17 @@ public class Coursedetail {
 		this.description = description;
 		this.code = code;
 		this.name = name;
+		this.credits = credits;
+	}
+	public Coursedetail(int id, int courseCapacity,  String code, String name, String startdate,
+			 String description, int credits) {
+		super();
+		this.id = id;
+		this.courseCapacity = courseCapacity;
+		this.description = description;
+		this.code = code;
+		this.name = name;
+		this.Startdate = startdate;
 		this.credits = credits;
 	}
 	
@@ -158,6 +165,14 @@ public class Coursedetail {
 		this.code = code;
 	}
 
+	public String getStartdate() {
+		return Startdate;
+	}
+
+	public void setStartdate(String startdate) {
+		Startdate = startdate;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -172,22 +187,6 @@ public class Coursedetail {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Date getSartdate() {
-		return Sartdate;
-	}
-
-	public void setSartdate(Date sartdate) {
-		Sartdate = sartdate;
-	}
-
-	public Date getEnddate() {
-		return Enddate;
-	}
-
-	public void setEnddate(Date enddate) {
-		Enddate = enddate;
 	}
 
 	public int getCredits() {

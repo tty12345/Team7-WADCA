@@ -27,7 +27,6 @@ public class Course {
 	private Lecturer lecturer;
 	@ManyToOne
 	private Coursedetail detail;
-	private Enrollmenstatus status;
 	
 	public Course(String code, String name, String grade, double score, int credits, Student student,
 			Lecturer lecturer, Coursedetail detail) {
@@ -185,14 +184,6 @@ public class Course {
 
 	public void setStudent(Student student) {
 		this.student = student;
-	}
-
-	public Enrollmenstatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(Enrollmenstatus status) {
-		this.status = status;
 	}
 
 	@Override

@@ -2,32 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Courses</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<header th:insert="fragments/general.html :: header"> </header>
-	<div th:replace="fragments/general.html :: menu"></div>
-
-	<h1>Course Listing</h1>
-	<!-- Add Hyperlink -->
-	<a href="Courselist.html" th:href="@{/course/add}">Add Course</a>
+<h1>Course Enrollments</h1>
 
 	<table>
 		<tr>
 			<th >Course Id</th>
 			<th >Course Name</th>
 			<th >Credits</th>
-			<th >Action</th>
+			<th >Enrollments</th>
 		</tr>
 		<tr th:each="course:${courses}" class="table-row">
 			<td th:text=${course.id}>Id</td>
 			<td th:text=${course.name}>Course Name</td>
 			<td th:text=${course.credits}>Credits</td>
-			<td><input type="button" value="View Course"></td>
+			<td><a href="StudentList.html"
+			th:href="@{/lecturer/ViewCourseEnrollment/}+${course.code}">Enrollments</a></td>
 		</tr>
 	</table>
-    <br/>
-	<div th:replace="fragments/general.html :: footer"></div>
-	
 </body>
 </html>

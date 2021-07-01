@@ -2,33 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="headerfiles">
 <meta charset="UTF-8" />
-<link th:href="@{/css/styles.css}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" th:href="@{/css/caps.css}"/>
 </head>
 <body>
-	<div th:fragment="header" id="header">
-		<table>
-			<tr>
-				<td width="15%"><img th:src="@{/image/club.png}" /></td>
-				<td><h1>CAPS</h1></td>
-			</tr>
-		</table>
-
-	</div>
-	<div th:fragment="menu" id="menu">
-		<table>
-			<tr>
-				<td><input type="button" value="Manage Members"
-					onclick="window.location.href='/member/list'; return false"
-					class="button" /> <input type="button" value="Manage Facilities"
-					onclick="window.location.href='/facility/list'; return false"
-					class="button" /> <input type="button" value="Manage Booking"
-					onclick="window.location.href='/booking/list'; return false"
-					class="button" /></td>
-			</tr>
-		</table>
-	</div>
+	<header th:fragment="header">
+        <div id="header"><span id="system_name">CAPS</span></div>
+    </header>
+    <div th:fragment="menubar">
+        <table class="table">
+            <tr>
+                <th class="tablebtn"><a >HOME</a></th>
+                <th class="tablebtn">
+					<span th:if="${session.admin == null and session.lect == null and session.stu == null}">
+						<a th:href="@{/login}">LOG IN</a>
+					</span>
+					<span th:unless="${session.admin == null and session.lect == null and session.stu == null}">
+						<a th:href="@{/logout}">LOG OUT</a>
+					</span>
+				</th>
+                <th class="tablebtn"><a >ANNOUNCEMENT</a></th>
+                <th class="tablebtn"><a >CONTACT US</a></th>
+            </tr>
+    </table>
+    </div>
+    
+		
 	<footer th:fragment="footer">
-		<a href="Home" th:href="@{/}">Back to Home</a>
+	<span th:if="${session.admin == null and session.lect == null and session.stu == null}">
+			<a th:href="@{/login}">LOG IN</a>
+	</span>
+	<span th:unless="${session.admin == null and session.lect == null and session.stu == null}">
+			<a th:href="@{/logout}">LOG OUT</a>
+	</span>
+	
 		<br/>
 		 <small>Now is: <b
 			th:text="${execInfo.now.time}"></b></small> <br /> <small>(c)Course Application

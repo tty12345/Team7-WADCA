@@ -119,7 +119,7 @@ public class CourseController {
 			return "Enrollsuccess.html";
 			
 		} else
-			return "error.html";
+			return "EnrolError.html";
 	}
 	
 	@GetMapping(value = "/add")
