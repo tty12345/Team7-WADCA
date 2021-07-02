@@ -272,9 +272,9 @@ public class Team7WadcaApplication {
 			
 			
 			//Creating Course details and linking them to their lectureres
-			Coursedetail cd1 = new Coursedetail (10, "CS1101", "Introduction To Computing", courselist1, "Learn Computer",l1 );
-			Coursedetail cd2 = new Coursedetail(1, "MA1101", "Mathematics 1", courselist2, "learn math" ,l1);
-			Coursedetail cd3 = new Coursedetail(10,"MA1102", "Mathematics 2", courselist3,"learn more math", l2);
+//			Coursedetail cd1 = new Coursedetail (10, "CS1101", "Introduction To Computing", courselist1, "Learn Computer",l1 );
+//			Coursedetail cd2 = new Coursedetail(1, "MA1101", "Mathematics 1", courselist2, "learn math" ,l1);
+//			Coursedetail cd3 = new Coursedetail(10,"MA1102", "Mathematics 2", courselist3,"learn more math", l2);
 
 			
 			// Course details

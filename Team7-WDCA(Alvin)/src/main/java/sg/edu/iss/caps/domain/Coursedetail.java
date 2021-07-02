@@ -1,5 +1,6 @@
 package sg.edu.iss.caps.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
