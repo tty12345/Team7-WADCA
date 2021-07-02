@@ -6,6 +6,8 @@
 </head>
 <body>
 <h1>Student Form</h1>
+
+
 <form action="" th:object="${student}" th:action="@{/admin/saveStudent}" method="get">
         <fieldset>
 		     <input type="hidden" th:field="*{id}"> 
@@ -23,11 +25,6 @@
 		<fieldset>
 			Major: <input type="text" th:field="*{major}">
 			<p th:if="${#fields.hasErrors('major')}" th:errors="*{major}"></p>
-		</fieldset>
-		
-		<fieldset>
-			GPA: <input type="text" th:field="*{gpa}">
-		    <p th:if="${#fields.hasErrors('gpa')}" th:errors="*{gpa}"></p>	
 		</fieldset>
 		<fieldset>
 			Credit Taken:

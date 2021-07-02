@@ -1,11 +1,11 @@
 package sg.edu.iss.caps.controller;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,7 +41,11 @@ public class AdminController {
 	accountsrepository arepo;
 	@Autowired
 	CoursedetailRepository cdrepo;
-	
+	@Autowired
+	LecturerRepository lservice;
+	@Autowired
+	CourseRepository cservice;
+
 	//manage student
 	
 	//enroll student to the school
@@ -55,7 +59,8 @@ public class AdminController {
 	//Edit student's detail
 	@GetMapping("/editStudent/{id}")
 	  public String showEditStuForm(Model model, @PathVariable("id") Integer id) {
-		model.addAttribute("student", srepo.findById(id).get());
+		Student student = aservice.findStudentById(id);
+		model.addAttribute("student", student);
 		return "StudentForm";
 	  }
 	
@@ -66,30 +71,35 @@ public class AdminController {
 		if (bindingResult.hasErrors()) {
 			return "StudentForm";
 		}
-		srepo.save(student);
+		aservice.save(student);
+		Accounts acc = student.getAccount();
+		SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
+		String password = sCryptPasswordEncoder.encode(acc.getPassword());
+		acc.setStudent(student);
+		acc.setPassword(password);
+		arepo.save(acc);
 		return "forward:/admin/listStudents";
 	}
 	
 	//Show all student
 	@GetMapping("/listStudents")
 	public String listStudents(Model model) {
-		model.addAttribute("students", srepo.findAll());
+		model.addAttribute("students", aservice.findAllStudent());
 		return "StudentList-admin.html";
 	}
 	//Remove students and all records from database
 	@GetMapping("/deleteStudent/{id}")
 	public String deleteMethod(Model model, @PathVariable("id") Integer id) {
 		
-		Student student =srepo.findById(id).get();
-		Accounts account = arepo.findAccountByStudentId(id);
-		List<Course> courses = crepo.findCoursesByStudentId(id);
+		Student student =aservice.findStudentById(id);
+		Accounts account = aservice.findAccountByStudentId(id);
+		List<Course> courses = aservice.findCoursesByStudentId(id);
 		
-		crepo.deleteAll(courses);
-		arepo.delete(account);
-		srepo.delete(student);
+		aservice.deleteRelatedCourses(courses);
+		aservice.deleteAcc(account);
+		aservice.deleteStu(student);
 		return "forward:/admin/listStudents";
-	  }
-	  
+	  }  
 	  
 	  //manage lecturer
 	  
@@ -104,7 +114,7 @@ public class AdminController {
 	  //edit lecturer information
 	  @GetMapping("/editLecturer/{id}")
 	  public String showEditLecForm(Model model, @PathVariable("id") Integer id) {
-			model.addAttribute("lecturer", lrepo.findById(id).get());
+			model.addAttribute("lecturer", aservice.findLecturerById(id));
 			return "LecturerForm";
 		}
 	  
@@ -114,31 +124,31 @@ public class AdminController {
 			if (bindingResult.hasErrors()) {
 				return "LecturerForm";
 			}
-			lrepo.save(lecturer);
+			lservice.save(lecturer);
 			return "forward:/admin/listLecturers";
 		}
 	  	//list all lecturers
 		@GetMapping("/listLecturers")
 		public String listLecturers(Model model) {
-			model.addAttribute("lecturers", lrepo.findAll());
+			model.addAttribute("lecturers", lservice.findAll());
 			return "LecturerList";
 		}
 		
 		//delete all lecturer and relevant data from database
 		  @GetMapping("/deleteLecturer/{id}")
 		  public String deleteLecMethod(Model model, @PathVariable("id") Integer id) {
-			Lecturer lecturer =lrepo.findById(id).get();
-			Accounts account = arepo.findAccountByLecturerId(id);
-			List<Course> courses = crepo.findCoursesByLecturerId(id);
+			Lecturer lecturer =lservice.findById(id).get();
+			Accounts account = aservice.findAccountByLecturerId(id);
+			List<Course> courses = aservice.findCoursesByLecturerId(id);
 			
 			
 			for (Course course : courses) {
 				course.setLecturer(null);
-				crepo.save(course);
+				cservice.save(course);
 			}
 			
-			arepo.delete(account);
-			lrepo.delete(lecturer);
+			aservice.delete(account);
+			lservice.delete(lecturer);
 			return "forward:/admin/listLecturers";
 		  }
 		  
@@ -204,5 +214,6 @@ public class AdminController {
 				return "forward:/admin/listCourses";
 			  }
 
+			  
 	 
 }

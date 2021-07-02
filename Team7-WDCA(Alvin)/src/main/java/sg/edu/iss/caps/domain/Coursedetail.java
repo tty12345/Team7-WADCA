@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Coursedetail {
@@ -23,7 +24,33 @@ public class Coursedetail {
 	private List<Course> course;
 	@ManyToOne
 	private Lecturer lecturer;
+	@OneToOne
+	private TempCourses tempcourses;
 	
+
+	public Coursedetail(int id, String name, String code, String description, int courseCapacity, Date sartdate,
+			Date enddate, int credits, List<Course> course, Lecturer lecturer, TempCourses tempcourses) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.code = code;
+		this.description = description;
+		this.courseCapacity = courseCapacity;
+		Sartdate = sartdate;
+		Enddate = enddate;
+		this.credits = credits;
+		this.course = course;
+		this.lecturer = lecturer;
+		this.tempcourses = tempcourses;
+	}
+
+	public TempCourses getTempcourses() {
+		return tempcourses;
+	}
+
+	public void setTempcourses(TempCourses tempcourses) {
+		this.tempcourses = tempcourses;
+	}
 
 	public Coursedetail(int courseCapacity,String code, String courseName, List<Course> course, Lecturer lecturer) {
 		super();
