@@ -261,15 +261,40 @@ public class Team7WadcaApplication {
 			courselist1.add(cl8);
 			courselist1.add(cl12);
 			
-			//MA1101 Tony
+			//MA1101 - Tony
 			List<Course> courselist2 = new ArrayList<>();
 			courselist2.add(cl4);
 			
-			//MA1102 Tony
+			//MA1102 - Tony
 			List<Course> courselist3 = new ArrayList<>();
 			courselist3.add(cl5);
 			
+			//PR1301 - Tony
+			List<Course> courselist4 = new ArrayList<>();
+			courselist4.add(cl6);
 			
+			//RB3301 - Tony
+			List<Course> courselist5 = new ArrayList<>();
+			courselist5.add(cl7);
+			
+			//GE1101 - Natasha
+			List<Course> courselist6 = new ArrayList<>();
+			courselist6.add(cl9);
+			
+			//GE2501 - Natasha
+			List<Course> courselist7 = new ArrayList<>();
+			courselist7.add(cl10);
+			
+			//PS2301 - Natasha
+			List<Course> courselist8 = new ArrayList<>();
+			courselist8.add(cl11);
+			
+			//BA3802 - Steve
+			List<Course> courselist9 = new ArrayList<>();
+			courselist9.add(cl1);
+			
+			List<Course> courselist10 = new ArrayList<>();
+			courselist10.add(cl3);
 			
 			//Creating Course details and linking them to their lectureres
 //			Coursedetail cd1 = new Coursedetail (10, "CS1101", "Introduction To Computing", courselist1, "Learn Computer",l1 );
@@ -278,16 +303,16 @@ public class Team7WadcaApplication {
 
 			
 			// Course details
-			Coursedetail cd1 = new Coursedetail (1,10, "CS1101", "Introduction To Computing", "2021","This course is suitable for students who wish to use the computer as a tool for problem solving", 4, l1);
-			Coursedetail cd2 = new Coursedetail(2,1, "MA1101", "Mathematics 1", "2021","Develops algebraic concepts and skills needed to graph and solve linear equations and inequalities" , 4, l1);
-//			Coursedetail cd3 = new Coursedetail(3,10,"MA1102", "Mathematics 2", "01/08/2021","Intensive course in intermediate algebra and trigonometry", 4, l1);
-//			Coursedetail cd4 = new Coursedetail(4, 15, "PR1301", "Public Speaking And Presentations", "01/08/2021","The course will prepare you for public speaking and presentation", 3, l1);
-//			Coursedetail cd5 = new Coursedetail(5, 20,"RB3301", "Advanced Algorithms", "01/09/2021", "This course emphasis is placed on fundamental algorithms and advanced algorithmic design", 4, l1);
-//			Coursedetail cd6 = new Coursedetail(6, 15, "GE1101", "Introduction To Geography", "10/09/2021","This course is an introduction to the global perspectives, basic concepts and fundamental questions of geography", 4, l1);
-//			Coursedetail cd7 = new Coursedetail(7, 20, "GE2501", "Human Geography", "05/08/2021", "This course is concerned with the study of human societies and challenges", 4, l1);
-//			Coursedetail cd8 = new Coursedetail(8,15,"PS2301", "USSR: A Retrospective", "04/07/2021", "This course talk about after overthrowing the centuries-old Romanov monarchy", 4, l1);
-//			Coursedetail cd9 = new Coursedetail(9,10, "BA3802", "Change Management", "05/07/2021", "The training focuses on developing the critical skills needed in workplace",4, l1);
-//			Coursedetail cd10 = new Coursedetail(10,15,"BA4201", "Business Intelligence", "08/09/2021", "This course provides an overview of the technology of BI and application", 4, l2);
+			Coursedetail cd1 = new Coursedetail (1,10, "CS1101", "Introduction To Computing", "2021","This course is suitable for students who wish to use the computer as a tool for problem solving", 4, l1, courselist1);
+			Coursedetail cd2 = new Coursedetail(2,1, "MA1101", "Mathematics 1", "2021","Develops algebraic concepts and skills needed to graph and solve linear equations and inequalities" , 4, l1, courselist2);
+			Coursedetail cd3 = new Coursedetail(3,10,"MA1102", "Mathematics 2", "01/08/2021","Intensive course in intermediate algebra and trigonometry", 4, l1, courselist3);
+			Coursedetail cd4 = new Coursedetail(4, 15, "PR1301", "Public Speaking And Presentations", "01/08/2021","The course will prepare you for public speaking and presentation", 3, l1, courselist4);
+			Coursedetail cd5 = new Coursedetail(5, 20,"RB3301", "Advanced Algorithms", "01/09/2021", "This course emphasis is placed on fundamental algorithms and advanced algorithmic design", 4, l1, courselist5);
+			Coursedetail cd6 = new Coursedetail(6, 15, "GE1101", "Introduction To Geography", "10/09/2021","This course is an introduction to the global perspectives, basic concepts and fundamental questions of geography", 4, l1,courselist6);
+			Coursedetail cd7 = new Coursedetail(7, 20, "GE2501", "Human Geography", "05/08/2021", "This course is concerned with the study of human societies and challenges", 4, l1,courselist7);
+			Coursedetail cd8 = new Coursedetail(8,15,"PS2301", "USSR: A Retrospective", "04/07/2021", "This course talk about after overthrowing the centuries-old Romanov monarchy", 4, l1,courselist8);
+			Coursedetail cd9 = new Coursedetail(9,10, "BA3802", "Change Management", "05/07/2021", "The training focuses on developing the critical skills needed in workplace",4, l1, courselist9);
+			Coursedetail cd10 = new Coursedetail(10,15,"BA4201", "Business Intelligence", "08/09/2021", "This course provides an overview of the technology of BI and application", 4, l2, courselist10);
 //			Coursedetail cd11 = new Coursedetail(11,10,"PY4402", "Solid State Physics", "06/09/2021","The course will provide a valuable theoretical introduction and overview", 4, l2);
 //			Coursedetail cd12 = new Coursedetail(12,20,"PY4676", "Quantum Physics", "01/07/2021", "This course covers the experimental basis of quantum physics", 4, l2);
 //			Coursedetail cd13 = new Coursedetail(13,15,"ME2401", "Fluid Mechanics", "01/09/2021", "This course is on fluid motion and the forces that are exerted on them", 4, l2);					
@@ -302,14 +327,14 @@ public class Team7WadcaApplication {
 
 			cdrepo.save(cd1);
 			cdrepo.save(cd2);			
-//			cdrepo.save(cd3);
-//			cdrepo.save(cd4);
-//			cdrepo.save(cd5);			
-//			cdrepo.save(cd6);
-//			cdrepo.save(cd7);
-//			cdrepo.save(cd8);			
-//			cdrepo.save(cd9);
-//			cdrepo.save(cd10);
+			cdrepo.save(cd3);
+			cdrepo.save(cd4);
+			cdrepo.save(cd5);			
+			cdrepo.save(cd6);
+			cdrepo.save(cd7);
+			cdrepo.save(cd8);			
+			cdrepo.save(cd9);
+			cdrepo.save(cd10);
 //			cdrepo.save(cd11);			
 //			cdrepo.save(cd12);
 //			cdrepo.save(cd13);

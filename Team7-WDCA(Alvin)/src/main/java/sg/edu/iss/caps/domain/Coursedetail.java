@@ -29,21 +29,21 @@ public class Coursedetail {
 	private TempCourses tempcourses;
 	
 
-	public Coursedetail(int id, String name, String code, String description, int courseCapacity, Date sartdate,
-			Date enddate, int credits, List<Course> course, Lecturer lecturer, TempCourses tempcourses) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.code = code;
-		this.description = description;
-		this.courseCapacity = courseCapacity;
-		Sartdate = sartdate;
-		Enddate = enddate;
-		this.credits = credits;
-		this.course = course;
-		this.lecturer = lecturer;
-		this.tempcourses = tempcourses;
-	}
+//	public Coursedetail(int id, String name, String code, String description, int courseCapacity, Date sartdate,
+//			Date enddate, int credits, List<Course> course, Lecturer lecturer, TempCourses tempcourses) {
+//		super();
+//		this.id = id;
+//		this.name = name;
+//		this.code = code;
+//		this.description = description;
+//		this.courseCapacity = courseCapacity;
+//		Sartdate = sartdate;
+//		Enddate = enddate;
+//		this.credits = credits;
+//		this.course = course;
+//		this.lecturer = lecturer;
+//		this.tempcourses = tempcourses;
+//	}
 
 	public TempCourses getTempcourses() {
 		return tempcourses;
@@ -82,6 +82,20 @@ public class Coursedetail {
 		this.code = code;
 		this.name = name;
 		this.credits = credits;
+	}
+	
+	
+	public Coursedetail(int id, int courseCapacity, String code, String name,String startdate, String description, int credits,Lecturer lecturer, List<Course> course) {
+		super();
+		this.id = id;
+		this.courseCapacity = courseCapacity;
+		this.description = description;
+		this.code = code;
+		this.name = name;
+		this.credits = credits;
+		this.lecturer = lecturer;
+		this.course = course;
+		this.startdate = startdate;
 	}
 	public Coursedetail(int id, int courseCapacity,  String code, String name, String startdate,
 			 String description, int credits, Lecturer lecturer) {
