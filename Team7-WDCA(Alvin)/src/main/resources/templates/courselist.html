@@ -22,15 +22,18 @@
 			<th >Lecturer</th>
 			<th >View Course details</th>
 		</tr>
-		<tr th:each="coursedetail:${coursedetails}" class="table-row">
-			<td th:text=${coursedetail.id}>Id</td>
-			<td th:text=${coursedetail.name}>Course Name</td>
-			<td th:text=${coursedetail.code}>Course Code</td>
-			<td th:text=${coursedetail.description}>Description</td>
-			<td th:text=${coursedetail.credits}>Credit</td>
-			<td th:text=${coursedetail.lecturer.name}>Lecturer</td>
-			<td><a href="Courseview.html" th:href="@{/course/list/}+${coursedetail.code}"> View Course </a></td>
-		</tr>
+			<tr th:each="tempcourse:${coursedetails}" class="table-row">
+				
+					<td th:text=${tempcourse.coursedetail.id}>Id</td>
+					<td th:text=${tempcourse.coursedetail.name}>Course Name</td>
+					<td th:text=${tempcourse.coursedetail.code}>Course Code</td>
+					<td th:text=${tempcourse.coursedetail.description}>Description</td>
+					<td th:text=${tempcourse.coursedetail.credits}>Credit</td>
+					<td th:text=${tempcourse.coursedetail.lecturer.name}>Lecturer</td>
+					<td><a href="Courseview.html" th:href="@{/course/list/}+${tempcourse.coursedetail.code}"> View Course </a></td>
+				
+			</tr>
+		
 	</table>
 	<div>
 	<a th:href="@{/course/backward/}+${currentPage}">&laquo;</a>
