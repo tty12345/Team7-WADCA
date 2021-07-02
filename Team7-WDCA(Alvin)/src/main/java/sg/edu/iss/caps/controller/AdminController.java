@@ -220,7 +220,7 @@ public class AdminController {
 		  
 			  @GetMapping("/deleteCourse/{id}")
 			  public String deleteCorMethod(Model model, @PathVariable("id") Integer id) {
-				Course course =crepo.findById(id).get();
+				Course course =crepo.findById(id).get();	
 				crepo.delete(course);
 				return "forward:/admin/listCourses";
 			  }
