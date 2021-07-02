@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import sg.edu.iss.caps.domain.Course;
+import sg.edu.iss.caps.domain.Coursedetail;
 import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.service.CourseService;
+import sg.edu.iss.caps.service.Coursedetailservice;
 import sg.edu.iss.caps.service.LecturerService;
+import sg.edu.iss.caps.service.StudentService;
 //import sg.edu.iss.caps.service.StudentService;
 import sg.edu.iss.caps.service.UserInterface;
 
@@ -32,6 +35,12 @@ public class LecturerController {
 	private CourseService cservice;
 	@Autowired
 	UserInterface uservice;
+	@Autowired
+	private StudentService sservice;
+	@Autowired
+	private Coursedetailservice cdservice;
+	
+	
 	//@Autowired
 	//private StudentService service;
 	//private List<Course> courses=new List<Course>();
@@ -39,30 +48,44 @@ public class LecturerController {
 		this.lservice=lservice;
 	}
 	
-	@GetMapping(value="/home/{id}")
-	public String showHomePage(Model model,@PathVariable("id") Integer id,HttpSession session) {
-		if (!uservice.checkSession(session, "lect")) 
-			  return "index";
-		
-		model.addAttribute("lecturer",lservice.findLecturerById(id));
-		return "LecturerMainPage.html";
-	}
+//	@GetMapping(value="/home/{id}")
+//	public String showHomePage(Model model,@PathVariable("id") Integer id,HttpSession session) {
+//		if (!uservice.checkSession(session, "lect")) 
+//			  return "index";
+//		
+//		model.addAttribute("lecturer",lservice.findLecturerById(id));
+//		return "LecturerMainPage.html";
+//	}
+//	
 	
-	
-	@GetMapping(value="/ViewCourse/{id}")
+	@RequestMapping(value="lecturer/ViewCourse/{id}")
 	public String ViewCourse(Model model,@PathVariable("id") Integer id,HttpSession session ){
 		if (!uservice.checkSession(session, "lect")) 
 			  return "index";
 		
-		model.addAttribute("lecturer",lservice.findLecturerById(id));
+		//model.addAttribute("lecturer",lservice.findLecturerById(id));
 		
 		List<Course> courses= cservice.findCoursesByLecturer(lservice.findLecturerById(id));
+		
 		model.addAttribute("courses", courses);
-		return "courselist.html"; 
+		return "LecCourseList.html"; 
+	}
+	
+	@RequestMapping(value="lecturer/ViewCourseDetails/{code}")
+	public String ViewCourseDetails(Model model,@PathVariable("code") String code, HttpSession session){
+		if (!uservice.checkSession(session, "lect")) 
+			  return "index";
+		
+		Coursedetail course = cdservice.findCoursedetailbyCode(code);
+		
+		model.addAttribute("course", course);
+		
+		
+		return "LecCourseView.html"; 
 	}
 	
 
-	@GetMapping(value="/ViewCourseEnrollment/{code}")
+	@RequestMapping(value="lecturer/ViewCourseEnrollment/{code}")
 	public String ViewCourseEnrollment(Model model,@PathVariable("code") String code, HttpSession session){
 		if (!uservice.checkSession(session, "lect")) 
 			  return "index";
@@ -77,12 +100,12 @@ public class LecturerController {
 		model.addAttribute("students", slist);
 		
 		
-		return "StudentList.html"; 
+		return "StudentList-lecturer.html"; 
 	}
 	
 	
 	
-	  @GetMapping(value="/ViewCourseStudents/{id}")
+	  @RequestMapping(value="lecturer/ViewCourseStudents/{id}")
 	  public String ViewCourseStudents(Model model,@PathVariable("id") Integer id, HttpSession session) {
 		  
 			if (!uservice.checkSession(session, "lect")) 
@@ -108,6 +131,7 @@ public class LecturerController {
 		return "forward:/lecturer/list";
 	}
 	
+	
 	@RequestMapping(value = "lecturer/gradeform/{id}")
 	public String showForm(Model model, @PathVariable("id") Integer id, HttpSession session) {
 		
@@ -117,16 +141,27 @@ public class LecturerController {
 		model.addAttribute("course", lservice.findCourseById(id));
 		return "gradeform";
 	}
-
 	
-	@RequestMapping(value= "lecturer/add")
-	public String showCourseForm(Model model, HttpSession session) {
+	@RequestMapping(value = "lecturer/gradecourse/{id}")
+	public String showCourses(Model model, @PathVariable("id") Integer id, HttpSession session) {
 		
 		if (!uservice.checkSession(session, "lect")) 
 			  return "index";
+		List<Course> courses=cservice.findCoursesByLecturer(lservice.findLecturerById(id));
 		
-		Course course = new Course();
-		model.addAttribute("course", course);
-		return "CreateCourse";
+		model.addAttribute("courses", courses);
+		return "LecCoursegrade";
 	}
+
+	
+//	@RequestMapping(value= "lecturer/add")
+//	public String showCourseForm(Model model, HttpSession session) {
+//		
+//		if (!uservice.checkSession(session, "lect")) 
+//			  return "index";
+//		
+//		Course course = new Course();
+//		model.addAttribute("course", course);
+//		return "CreateCourse";
+//	}
 }

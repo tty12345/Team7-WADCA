@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<link rel="stylesheet" type="text/css" th:href="@{/css/caps.css}"/>
-<meta charset="UTF-8">
-<title>Admin</title>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/caps.css}" />
 </head>
+
 <body>
-	Welcome Mr.Admin
-	<a th:href="@{/logout}">Log out</a>
+    bravo you are logged in Mr. <span th:text="${admin.name}">Admin</span>
+    <header th:replace="fragments/general.html :: header"></header>
+    <div th:replace="fragments/general.html :: menubar"></div>
+    <table class="Buttontbl">
+        <tr>
+            <th class="btndiv"><a th:href="@{/admin/listStudents}" class="actionbtn">Manage Students</a></th>
+        </tr>
+        <tr>
+            <th class="btndiv"><a th:href="@{/admin/listLecturers}" class="actionbtn">Manage Lecturers</a></th>
+        </tr>
+        <tr>
+            <th class="btndiv"><a th:href="@{/admin/listCourseDetails}">Manage Courses</a></th>
+        </tr>
+    </table>
+
+    <br>
+
+    
+    <div th:replace="fragments/general.html :: footer"></div>
 </body>
+
 </html>

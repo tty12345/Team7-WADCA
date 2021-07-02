@@ -26,6 +26,7 @@ public interface AdminService {
 	public Accounts findAccountByLecturerId(Integer id);
 	public List<Course> findCoursesByLecturerId(Integer id);
 	public void delete(Accounts account);
+	public Admin findAdminByUsername(String un);
 
 	
 }

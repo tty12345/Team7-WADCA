@@ -54,7 +54,7 @@ public class AdminController {
 	public String showStudentForm(Model model) {
 		Student student = new Student();
 		model.addAttribute("student", student);
-		return "StudentForm";
+		return "StudentForm-admin";
 	}
 	
 	//Edit student's detail
@@ -62,7 +62,7 @@ public class AdminController {
 	  public String showEditStuForm(Model model, @PathVariable("id") Integer id) {
 		Student student = aservice.findStudentById(id);
 		model.addAttribute("student", student);
-		return "StudentForm";
+		return "StudentForm-admin";
 	  }
 	
 	//Save student's details after editing
@@ -70,7 +70,7 @@ public class AdminController {
 	public String saveStudentForm(@ModelAttribute("student") @Valid Student student, BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {
-			return "StudentForm";
+			return "StudentForm-admin";
 		}
 		aservice.save(student);
 		Accounts acc = student.getAccount();
@@ -110,21 +110,21 @@ public class AdminController {
 	  public String showLecturerForm(Model model) {
 			Lecturer lecturer=new Lecturer();
 			model.addAttribute("lecturer", lecturer);
-			return "LecturerForm";
+			return "LecturerForm-admin";
 		}
 	  
 	  //edit lecturer information
 	  @GetMapping("/editLecturer/{id}")
 	  public String showEditLecForm(Model model, @PathVariable("id") Integer id) {
 			model.addAttribute("lecturer", aservice.findLecturerById(id));
-			return "LecturerForm";
+			return "LecturerForm-admin";
 		}
 	  
 	  @GetMapping("/saveLecturer")
 	  public String saveLecturerForm(@ModelAttribute("lecturer") @Valid Lecturer lecturer, BindingResult bindingResult, Model model) {
 			
 			if (bindingResult.hasErrors()) {
-				return "LecturerForm";
+				return "LecturerForm-admin";
 			}
 			lservice.save(lecturer);
 			Accounts acc = lecturer.getAccount();
@@ -203,7 +203,7 @@ public class AdminController {
 				}
 				coursedetail.setLecturer(coursedetail.getLecturer());
 				cdrepo.save(coursedetail);
-				return "forward:/admin/listCourseDetails";
+				return "redirect:/admin/listCourseDetails";
 			}
 			
 			@GetMapping("/listCourseDetails")

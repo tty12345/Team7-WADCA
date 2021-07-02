@@ -6,16 +6,16 @@
 </head>
 <body>
 	
-	<h1>Your Current Courses</h1>
-	<!-- Add Hyperlink -->
+	<h1>Grade students</h1>
+	
 	<table>
 		<tr>
 			<th >Course Id</th>
 			<th >Course Name</th>
 			<th >Code</th>
 			<th >Credits</th>
-			<th >View Course details</th>
-			<th >View Student Performance</th>
+			<th >Perform grading</th>
+			
 		</tr>
 		<tr th:each="course:${courses}" class="table-row">
 			<td th:text=${course.id}>Id</td>
@@ -23,8 +23,8 @@
 			<td th:text=${course.name}>Course Name</td>
 			<td th:text=${course.credits}>Credits</td>			
 			<!-- <td><input type="button" value="View Course"></td> -->
-			<td><a href="LecCourseView.html" th:href="@{/lecturer/ViewCourseDetails/}+${course.code}"> View Course </a></td>
-			<td><a href="StudentList-lecturer.html" th:href="@{/lecturer/ViewCourseEnrollment/}+${course.code}">View Student Performance</a>  
+			 <td><a href="gradeform.html" th:href="@{/lecturer/gradeform/}+${course.id}"> Grade Student </a></td>
+			 
 		</tr>
 	</table>
     <br/>

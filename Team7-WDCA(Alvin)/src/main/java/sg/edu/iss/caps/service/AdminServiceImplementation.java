@@ -56,56 +56,62 @@ public class AdminServiceImplementation implements AdminService {
 		return listAll;
 		
 	}
-	
+	@Override
 	public Student findStudentById(Integer id) {
 		Student student = srepo.findStudentById(id);
 		return student;
 	}
-
+	@Override
 	public void save(Student student) {
 		srepo.save(student);
 	}
-	
+	@Override
 	public List<Student> findAllStudent(){
 		List<Student> students = srepo.findAll();
 		return students;
 	}
-	
+	@Override
 	public Accounts findAccountByStudentId(Integer id) {
 		Accounts account = accrepo.findAccountByStudentId(id);
 		return account;
 	}
-		
+	@Override
 	public List<Course> findCoursesByStudentId(Integer id){
 		List<Course> courses = crepo.findCoursesByStudentId(id);
 		return courses;
 	}
-
+	@Override
 	public void deleteRelatedCourses(List<Course> courses) {
 		crepo.deleteAll(courses);
 	}
-   
+	@Override
 	public void deleteAcc(Accounts account) {
 		accrepo.delete(account);
 	}
-	
+	@Override
 	public void deleteStu(Student student) {
 		srepo.delete(student);
 	}
-	
+	@Override
 	public Lecturer findLecturerById(Integer id) {
 		Lecturer lecturer = lrepo.findLecturerById(id);
 		return lecturer;
 	}
-
+	@Override
 	public Accounts findAccountByLecturerId(Integer id) {
 		return accrepo.findAccountByLecturerId(id);
 	}
-	
+	@Override
 	public List<Course> findCoursesByLecturerId(Integer id){
 		return crepo.findCoursesByLecturerId(id);
 	}
+	@Override
 	public void delete(Accounts account) {
 		accrepo.delete(account);
+	}
+	@Override
+	public Admin findAdminByUsername(String un) {
+		return arepo.findAdminByUsername(un);
+
 	}
 }

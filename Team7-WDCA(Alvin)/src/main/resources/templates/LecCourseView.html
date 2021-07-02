@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Course details</title>
+</head>
+<body>
+
+  <h1>Details</h1>
+  <a href="CourseList.html" th:href="@{/course/add}">Add Course</a>
+  <table>
+ <tr>
+   <th>COURSE CODE</th>
+   <th>COURSE NAME</th>
+   <th>DESCRIPTION</th>
+   <!-- <th>START DATE</th>
+   <th>END DATE</th> -->
+   <th>CREDITS</th>
+   <!-- <th> ENROLL </th> -->
+   
+ </tr>
+<!--  <tr th:each="course:${courses}" class="table-row"> -->
+<tr  class="table-row">
+   <td th:text="${course.code}">COURSE CODE</td> 
+   <td th:text="${course.name}">Course Name</td>
+   <td th:text="${course.description}">Description</td> 
+  <!-- <td th:text="${#temporals.format(course.startdate, 'dd-MM-yyyy')}">Start Date</td>
+    <td th:text="${#temporals.format(course.enddate, 'dd-MM-yyyy')}">End date</td>  -->
+   <td th:text="${course.credits}">COURSE credits</td>
+   <!-- <td><a href="EnrollSuccess.html" th:href="@{/course/enrol/}+${courses.code}"> Enroll </a></td> -->
+</tr>
+</table>
+</body>
+</html>

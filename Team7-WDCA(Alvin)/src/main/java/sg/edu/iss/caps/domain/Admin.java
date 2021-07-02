@@ -19,9 +19,11 @@ public class Admin {
 		this.name = name;
 		this.account = account;
 	}
+	
 	public Admin() {
 		super();
 	}
+	
 	@Override
 	public String toString() {
 		return "Admin [id=" + id + ", name=" + name + ", account=" + account + "]";

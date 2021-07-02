@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Lecturer</title>
+    <meta charset="UTF-8">
+    <title>Lecturer</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/caps.css}" />
 </head>
+
 <body>
-	
-	<table th:object="${lecturer}">
-	<tr> 
-	<td><h1>Welcome <span th:text="${lecturer.position}">13</span> <span th:text="${lecturer.name}">13</span></h1></td>
-	</tr>
-	<tr>
-	<td><a th:href="@{/logout}">Log out</a></td>
-	</tr>
-	<tr>
-	<td><h2><a href="CourseList.html"
-			th:href="@{/lecturer/ViewCourse/}+${lecturer.id}">View Courses Taught</a></h2></td>
-	</tr>
-	<tr>
-	<td><h2><a href="LecturerCourses.html" 
-	         th:href="@{/lecturer/ViewCourseStudents/}+${lecturer.id}">View Course Enrollment</a></h2></td>
-	</tr>
-	</table>
+    bravo you are logged in <span th:text="${lecturer.position}">&nbsp;</span><span th:text="${lecturer.name}"></span>
+    <header th:replace="fragments/general.html :: header"></header>
+    <div th:replace="fragments/general.html :: menubar"></div>
+    <table class="Buttontbl">
+        <tr>
+            <th class="btndiv"><a href="CourseList.html" th:href="@{/lecturer/ViewCourse/}+${lecturer.id}">View Course Taught</a></th>
+        </tr>
+        <tr>
+            <th class="btndiv"><a href="LecturerCourses.html" th:href="@{/lecturer/ViewCourseStudents/}+${lecturer.id}">View Course Enrollment</a></th>
+        </tr>
+    </table>
+
+    <br>
+
+    
+    <div th:replace="fragments/general.html :: footer"></div>
 </body>
+
 </html>

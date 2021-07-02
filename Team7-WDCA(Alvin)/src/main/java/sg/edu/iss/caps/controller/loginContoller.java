@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import sg.edu.iss.caps.domain.Accounts;
+import sg.edu.iss.caps.domain.Admin;
+import sg.edu.iss.caps.domain.Lecturer;
 import sg.edu.iss.caps.domain.RoleType;
 import sg.edu.iss.caps.domain.Student;
+import sg.edu.iss.caps.service.AdminService;
+import sg.edu.iss.caps.service.LecturerService;
 import sg.edu.iss.caps.service.StudentService;
 import sg.edu.iss.caps.service.UserInterface;
 
@@ -22,8 +26,13 @@ public class loginContoller {
 	StudentService sservice;
 	
 	@Autowired
-	UserInterface u;
+	AdminService aservice;
+	
 	@Autowired
+	UserInterface u;
+	
+	@Autowired
+	LecturerService lservice;
 	public void setUserInterface(UserInterface uimpl) {
 		this.u = uimpl;
 	}
@@ -37,7 +46,7 @@ public class loginContoller {
 	
 	@PostMapping("/authenticate")
 	public String authenticate(@ModelAttribute("user")Accounts user, HttpSession session, Model model) {
-		String returnPage;
+		String returnPage = null;
 		if (u.authenticateUser(user))
 		{
 			
@@ -53,13 +62,19 @@ public class loginContoller {
 			}
 			else if (loggeduser.getRole() == RoleType.ADMIN)
 			{
+				String username= user.getUsername();
+				Admin login_user = aservice.findAdminByUsername(username);
 				session.setAttribute("admin", loggeduser);
+				model.addAttribute("admin", login_user);
 				return "AdminMainPage";	
 			}
 			else 
 			{
+				Lecturer login_user=lservice.findLecturerByUsername(user.getUsername());
+				model.addAttribute("lecturer", login_user);
 				session.setAttribute("lect", loggeduser);
-				return  "LecturerMainPage";
+				session.setAttribute("currentLecturer", login_user);
+				return "LecturerMainPage";	
 			}
 		}
 		else

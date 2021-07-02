@@ -13,11 +13,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
 import sg.edu.iss.caps.domain.Accounts;
+import sg.edu.iss.caps.domain.Admin;
 import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Coursedetail;
 import sg.edu.iss.caps.domain.Lecturer;
 import sg.edu.iss.caps.domain.RoleType;
 import sg.edu.iss.caps.domain.Student;
+import sg.edu.iss.caps.repo.AdminRepository;
 //import net.bytebuddy.build.ToStringPlugin.Exclude;
 //import sg.edu.iss.caps.domain.Accounts;
 //import sg.edu.iss.caps.domain.RoleType;
@@ -58,6 +60,9 @@ public class Team7WadcaApplication {
 	
 	@Autowired
 	LecturerRepository lrepo;
+	
+	@Autowired
+	AdminRepository adminrepo;
 
 
 	public static void main(String[] args) {
@@ -71,8 +76,16 @@ public class Team7WadcaApplication {
 			Lecturer l1=new Lecturer("John","Professor");
 			Lecturer l2=new Lecturer("Venkat", "Senior Professor");
 
-			
 			lrepo.save(l1);lrepo.save(l2);
+			
+			SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
+			String hashedPass9 = sCryptPasswordEncoder.encode("john");
+			Accounts ac9 = new Accounts("john@gmail.com", hashedPass9, RoleType.LECTURER, l1);
+			urepo.save(ac9);
+			
+			String hashedPass10 = sCryptPasswordEncoder.encode("venkat");
+			Accounts ac10 = new Accounts("venkat@gmail.com", hashedPass10, RoleType.LECTURER, l2);
+			urepo.save(ac10);
 			
 //			Course cl1 = new Course("BA3802", "Change Management", 4, l1);
 //			Course cl2 = new Course("CH1150", "Organic Chemistry", 4, l1);
@@ -327,7 +340,6 @@ public class Team7WadcaApplication {
 			Student s1 = new Student("Steve", "Rogers", "History", sc1);
 			srepo.save(s1);
 			
-			SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
 			String hashedPass2 = sCryptPasswordEncoder.encode("steve");
 			Accounts ac3 = new Accounts("steverogers", hashedPass2, RoleType.STUDENT, s1);
 			urepo.save(ac3);
@@ -490,6 +502,19 @@ public class Team7WadcaApplication {
 			cdrepo.save(cd1);
 			cdrepo.save(cd2);			
 			cdrepo.save(cd3);
+			
+			
+			
+			
+			
+			
+			// Create Admin
+			Admin admin = new Admin("Admin", null);
+			String hashedPass99 = sCryptPasswordEncoder.encode("admin");
+			Accounts ac99 = new Accounts("admin", hashedPass99, RoleType.ADMIN, admin);
+			adminrepo.save(admin);
+			urepo.save(ac99);
+
 			
 //			Student s15 = new Student("Peter", "Quill", "Business Studies");
 //			srepo.save(s15);

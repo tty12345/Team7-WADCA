@@ -48,6 +48,14 @@ public class Accounts {
 		this.studentacc = stu;
 	}
 	
+	public Accounts(String username, String password, RoleType role, Admin admin) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.admin = admin;
+	}
+	
 
 	public Accounts() {
 		super();
