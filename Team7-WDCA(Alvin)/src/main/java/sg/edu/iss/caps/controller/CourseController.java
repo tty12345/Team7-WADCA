@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Coursedetail;
@@ -50,12 +51,24 @@ public class CourseController {
 		
 		if (!uservice.checkSession(session, "stu"))
 			return "index";
+		
 		int currentpage = 0;
 		
-		List<Coursedetail> listWithPagination = cdservice.getAllStudents(currentpage, 5);
+		List<Coursedetail> listWithPagination = cdservice.getAllCourseDetails(currentpage, 5);
 
-//		List<Coursedetail> listOfAllCourses = cdservice.findAllCoursedetail();
-		model.addAttribute("coursedetails", listWithPagination);
+		model.addAttribute("courses", listWithPagination);
+		
+		model.addAttribute("currentPage", currentpage);
+		
+		return "CourseList.html";
+	}
+	
+	@GetMapping(value = "/navigate")
+	public String customlist(@RequestParam(value = "pageNo") int pageNo, Model model) {
+
+		List<Coursedetail> listWithPagination = cdservice.getAllCourseDetails(pageNo-1, 5);
+		model.addAttribute("courses", listWithPagination);
+		model.addAttribute("currentPage", pageNo-1);
 		return "CourseList.html";
 	}
 	
@@ -64,13 +77,13 @@ public class CourseController {
 		Integer i = Integer.parseInt(pageNo);
 		if (i == 2)
 			i--;
-		List<Student> listWithPagination = sservice.getAllStudents(i+1, 5);
+		List<Coursedetail> listWithPagination = cdservice.getAllCourseDetails(i+1, 5);
 		
-		model.addAttribute("students", listWithPagination);
+		model.addAttribute("courses", listWithPagination);
 		
 		model.addAttribute("currentPage", i+1);
 		
-		return "StudentList-stu.html";
+		return "CourseList.html";
 	}
 
 	@GetMapping(value = "/backward/{currentPage}")
@@ -78,13 +91,13 @@ public class CourseController {
 		Integer i = Integer.parseInt(pageNo);
 		if (i == 0)
 			i++;
-		List<Student> listWithPagination = sservice.getAllStudents(i-1, 5);
+		List<Coursedetail> listWithPagination = cdservice.getAllCourseDetails(i-1, 5);
 		
-		model.addAttribute("students", listWithPagination);
+		model.addAttribute("courses", listWithPagination);
 		
 		model.addAttribute("currentPage", i-1);
 		
-		return "StudentList-stu.html";
+		return "CourseList.html";
 	}
 	
 	@GetMapping(value = "/info/{code}")
@@ -111,7 +124,7 @@ public class CourseController {
 		int capacity = cd.getCourseCapacity();
 		
 		if (count < capacity) {
-			Course registered = new Course (currentCourse.getCode(), currentCourse.getDescription(), currentCourse.getCredits());
+			Course registered = new Course (currentCourse.getCode(), currentCourse.getName(), currentCourse.getCredits());
 			Student student = (Student)session.getAttribute("currentStudent");
 			registered.setStudent(student);
 			cservice.save(registered);
@@ -128,35 +141,35 @@ public class CourseController {
 	public String addCourse(Model model, HttpSession session) {
 		if (!uservice.checkSession(session, "stu"))
 			return "index";
-		
+
 		model.addAttribute("course", new Course());
 		return "forward:/course/list";
-}
-	
-	   public void sendEmail(Model model, @PathVariable("id") Integer id) throws MessagingException {
-		   
-		   Student StudentToEmail = sservice.findStudentById(id);
-		   	   
-		   Properties props = new Properties();
-		   props.put("mail.smtp.auth", "true");
-		   props.put("mail.smtp.starttls.enable", "true");
-		   props.put("mail.smtp.host", "smtp.gmail.com");
-		   props.put("mail.smtp.port", "587");
-		   
-		   Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-		      protected PasswordAuthentication getPasswordAuthentication() {
-		         return new PasswordAuthentication("a0124939w@gmail.com", "P@ssw0rd666");
-		      }
-		   });
-		   
-		   Message msg = new MimeMessage(session);
-		   msg.setFrom(new InternetAddress("a0124939w@gmail.com", false));
+	}
 
-		   msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("a0124939w@gmail.com"));
-		   msg.setSubject("Testing");
-		   msg.setContent(StudentToEmail.getFirstName(), "text/html");
-		   msg.setSentDate(new Date());
+	public void sendEmail(Model model, @PathVariable("id") Integer id) throws MessagingException {
 
-		   Transport.send(msg);   
-	   }   
+		Student StudentToEmail = sservice.findStudentById(id);
+
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("a0124939w@gmail.com", "P@ssw0rd666");
+			}
+		});
+
+		Message msg = new MimeMessage(session);
+		msg.setFrom(new InternetAddress("a0124939w@gmail.com", false));
+
+		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("a0124939w@gmail.com"));
+		msg.setSubject("Testing");
+		msg.setContent(StudentToEmail.getFirstName(), "text/html");
+		msg.setSentDate(new Date());
+
+		Transport.send(msg);
+	}   
 }

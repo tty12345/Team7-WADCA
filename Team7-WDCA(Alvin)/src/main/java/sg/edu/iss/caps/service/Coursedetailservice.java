@@ -9,7 +9,7 @@ public interface Coursedetailservice {
 	
 	public Coursedetail findCoursedetailbyCode(String code);
 	public List<Coursedetail> findAllCoursedetail();
-	public List<Coursedetail> getAllStudents(int pageNo, int pageSize);
+	public List<Coursedetail> getAllCourseDetails(int pageNo, int pageSize);
 	
 
 }

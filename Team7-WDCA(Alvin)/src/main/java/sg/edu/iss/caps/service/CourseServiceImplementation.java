@@ -23,7 +23,7 @@ public class CourseServiceImplementation implements CourseService {
 	CourseRepository crepo;
 
 	@Override
-	public List<Course> getAllStudents(int pageNo, int pageSize){
+	public List<Course> getAllCourses(int pageNo, int pageSize){
 		Pageable paging = PageRequest.of(pageNo, pageSize);
 		
 		Page<Course> pageResult = crepo.findAll(paging);
