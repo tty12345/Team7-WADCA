@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Course Form for Lecturer</h1>
+<form action="" th:object="${course}" th:action="@{/admin/saveLecCourse}" method="get">
+        <fieldset>
+		     <input type="hidden" th:field="*{id}">  
+		</fieldset>
+		<fieldset>
+			Name: <input type="text" th:field="*{name}">
+			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+		</fieldset>
+		
+		<fieldset>
+			Code: <input type="text" th:field="*{code}">
+			<p th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></p>
+		</fieldset>
+		
+		<fieldset>
+			Credits:
+			<input type="text" th:field="*{credits}">
+				
+			<p th:if="${#fields.hasErrors('credits')}" th:errors="*{credits}"></p>	
+		</fieldset>
+		<fieldset>
+			Detail:
+			<input type="text" th:field="*{detail}">
+				
+			<p th:if="${#fields.hasErrors('detail')}" th:errors="*{detail}"></p>	
+		</fieldset>
+		
+		<fieldset>
+			<input type="submit" value="Save"/>
+			&nbsp; &nbsp; 	
+			<input type="reset" value="Reset"/>
+		</fieldset>
+</form>
+
+</body>
+</html>

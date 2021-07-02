@@ -29,9 +29,7 @@ public class StudentController {
 	// For lecturer or admin to view full list of students
 	@GetMapping(value = "/list")
 	public String list(Model model, HttpSession session) {
-		// List<Student> listOfAllStudents = sservice.listAllStudents();
-
-		// model.addAttribute("students", listOfAllStudents);
+		
 		if (!uservice.checkSession(session, "stu"))
 			return "index";
 		

@@ -5,7 +5,22 @@
 <title>Lecturer</title>
 </head>
 <body>
-	Welcome Dr.Suria
-	<a th:href="@{/logout}">Log out</a>
+	
+	<table th:object="${lecturer}">
+	<tr> 
+	<td><h1>Welcome <span th:text="${lecturer.position}">13</span> <span th:text="${lecturer.name}">13</span></h1></td>
+	</tr>
+	<tr>
+	<td><a th:href="@{/logout}">Log out</a></td>
+	</tr>
+	<tr>
+	<td><h2><a href="CourseList.html"
+			th:href="@{/lecturer/ViewCourse/}+${lecturer.id}">View Courses Taught</a></h2></td>
+	</tr>
+	<tr>
+	<td><h2><a href="LecturerCourses.html" 
+	         th:href="@{/lecturer/ViewCourseStudents/}+${lecturer.id}">View Course Enrollment</a></h2></td>
+	</tr>
+	</table>
 </body>
 </html>

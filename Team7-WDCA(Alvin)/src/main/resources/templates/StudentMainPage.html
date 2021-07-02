@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    bravo you are logged in Mr. <span th:text="${student.firstName}">Student</span>
+    bravo you are logged in Mr. <span th:text="${student.secondName}">Student</span>
     <header th:replace="fragments/general.html :: header"></header>
     <div th:replace="fragments/general.html :: menubar"></div>
     <table class="Buttontbl">
@@ -16,10 +16,10 @@
             <th class="btndiv"><a th:href="@{/student/list}" class="actionbtn">View Students</a></th>
         </tr>
         <tr>
-            <th class="btndiv"><a th:href="@{/student/info/}+${student.id}" class="actionbtn">view your courses</a></th>
+            <th class="btndiv"><a th:href="@{/student/info/}+${student.id}" class="actionbtn">View Student Information</a></th>
         </tr>
         <tr>
-            <th class="btndiv"><a th:href="@{/course/list}">Manage Courses</a></th>
+            <th class="btndiv"><a th:href="@{/course/list}" class="actionbtn">View Courses</a></th>
         </tr>
         <tr>
             <th class="btndiv"><a th:href="@{/student/info/}+${student.id}">view your information</a></th>

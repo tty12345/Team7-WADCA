@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/caps.css}"/>
+</head>
+<body>
+<h1>Course Form</h1>
+<form action="" th:object="${coursedetail}" th:action="@{/admin/saveCourse}" method="get">
+        <fieldset>
+		     <input type="hidden" th:field="*{id}">
+		</fieldset>
+		<fieldset>
+			Course Name: <input type="text" th:field="*{courseName}">
+			<p th:if="${#fields.hasErrors('*{courseName}')}" th:errors="*{courseName}"></p>
+		</fieldset>	
+		<fieldset>
+			Code: <input type="text" th:field="*{code}">
+			<p th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></p>
+		</fieldset>	
+		<fieldset>
+			CourseCapacity: <input type="text" th:field="*{courseCapacity}">
+			<p th:if="${#fields.hasErrors('courseCapacity')}" th:errors="*{courseCapacity}"></p>
+		</fieldset>	
+		<fieldset>
+			Lecturer: <input type="text" th:field="*{lecturer.id}">
+			<p th:if="${#fields.hasErrors('lecturer.id')}" th:errors="*{lecturer.id}"></p>
+		</fieldset>	
+		<fieldset>
+			<input type="submit" value="Save"/>
+			&nbsp; &nbsp; 	
+			<input type="reset" value="Reset"/>
+		</fieldset>
+</form>
+
+</body>
+</html>

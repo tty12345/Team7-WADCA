@@ -3,18 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <title>LogIn Page</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/caps.css}"/>
 </head>
 <body>
-	<form th:action="@{/authenticate}" th:object="${user}">
-		<fieldset>
-			Name: <input type="text" th:field="*{username}">
-		</fieldset>
-		<fieldset>
-			Password: <input type="password" th:field="*{password}">
-		</fieldset>
-		<fieldset>
-			<button>Log In</button>
-		</fieldset>
-	</form>
+	<header th:replace="fragments/general.html :: header"></header>
+	<div th:replace="fragments/general.html :: menubar"></div>
+	
+	 <form th:action="@{/authenticate}" th:object="${user}" method="POST">
+		 <table class="login">
+	       		<tr>
+	                <td class="place">Username:</td>
+	                <td class="place"><input type="text" placeholder="Enter your name" th:field="*{username}"/></td>
+	            </tr>
+	            <tr>
+	                <td class="place">Password:</td>
+	                <td class="place"><input type="password" placeholder="Enter your password" th:field="*{password}"/></td>
+	            </tr>
+	            <tr>
+	                <td class="place" colspan="2"><button class="btn">Login</button></td>
+	            </tr>
+	    </table>
+    </form>
 </body>
 </html>
+

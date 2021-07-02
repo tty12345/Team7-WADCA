@@ -109,13 +109,14 @@ public class CourseController {
 		return "courselist";
 	}
 	
-	@GetMapping(value = "/list/{code}")
+	@GetMapping(value = "/info/{code}")
 	public String view(@PathVariable("code") String code, Model model, HttpSession session) {
 		
 		if (!uservice.checkSession(session, "stu"))
 			return "index";
 		
 		Coursedetail cd = cdservice.findCoursedetailbyCode(code);
+
 		model.addAttribute("courses", cd);
 		return "CourseView.html";
 	}
@@ -131,7 +132,7 @@ public class CourseController {
 		Coursedetail cd = cdservice.findCoursedetailbyCode(code); 
 		int capacity = cd.getCourseCapacity();
 		
-		if (count<capacity) {
+		if (count < capacity) {
 			Course registered = new Course (currentCourse.getCode(), currentCourse.getName(), currentCourse.getCredits());
 			Student student = (Student)session.getAttribute("currentStudent");
 			registered.setStudent(student);
@@ -139,17 +140,17 @@ public class CourseController {
 			List<Course> Course123 = cservice.findCoursesByStudent(student);
 			model.addAttribute("Course123", Course123);
 			sendEmail(model,student.getId());
-			return "forward:/student/info/"+student.getId();
+			return "EnrollSuccess.html";
 			
 		} else
-			return "error.html";
+			return "EnrolError.html";
 	}
 	
 	@GetMapping(value = "/add")
 	public String addCourse(Model model, HttpSession session) {
 		if (!uservice.checkSession(session, "stu"))
 			return "index";
-		
+
 		model.addAttribute("course", new Course());
 		return "forward:/course/list";
 }

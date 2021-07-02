@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Course Registered</title>
+
+</head>
+<body>
+	<h1>Course Registered</h1>
+	<table>
+		<tr >
+			<th>CourseID</th>
+			<th>Course Name</th>
+			<th>Credits</th>
+<!-- 			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Status</th>
+			<th>Withdraw</th> -->
+		</tr>
+		<tr th:each="Course:${Course123}" >
+			<td th:text=${Course.id}>CourseId</td>
+			<td th:text=${Course.name}>Course Name</td>
+			<td th:text=${Course.credits}>Credits</td>
+<!-- 			<td th:text="${#temporals.format(Course.startDate, 'dd-MM-yyyy')}">Start Date</td>
+			<td th:text="${#temporals.format(Course.endDate, 'dd-MM-yyyy')}">End Date</td>
+			<td th:text=${enrol.status}>status</td>
+			<td ><a href="Withdraw.html"
+				th:href="@{/enrol/withdraw/}+${course.courseId}" 
+				th:if="${enrol.status == T(sg.edu.iss.caps.domain.Enrollmentstatus).SUBMITTED}">Withdraw</a></td> -->
+		</tr>
+	</table>
+    <br/>
+	
+	
+</body>
+</html>

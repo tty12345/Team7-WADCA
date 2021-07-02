@@ -16,10 +16,9 @@ public interface CourseService {
 	public int showCredits(int id);
 	public List<Course> listAllCourses();
 	public List<Course> findCoursesByLecturer(Lecturer lecturer);
-	public void withdrawCourse(Course course);
 	public boolean checkCapacity(Course course);
 	public List<Course> findCoursesByStudent(Student student);
 	public List<Course> findCoursesByCode(String code);
 	public void save(Course course);
-	public List<Course> getAllStudents(int pageNo, int pageSize);
+	public List<Course> getAllCourses(int pageNo, int pageSize);
 }

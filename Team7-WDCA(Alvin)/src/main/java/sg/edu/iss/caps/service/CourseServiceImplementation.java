@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import sg.edu.iss.caps.domain.Course;
 
 import sg.edu.iss.caps.domain.Coursedetail;
-import sg.edu.iss.caps.domain.Enrollmenstatus;
 import sg.edu.iss.caps.domain.Lecturer;
 
 import sg.edu.iss.caps.domain.Student;
@@ -24,7 +23,7 @@ public class CourseServiceImplementation implements CourseService {
 	CourseRepository crepo;
 
 	@Override
-	public List<Course> getAllStudents(int pageNo, int pageSize){
+	public List<Course> getAllCourses(int pageNo, int pageSize){
 		Pageable paging = PageRequest.of(pageNo, pageSize);
 		
 		Page<Course> pageResult = crepo.findAll(paging);
@@ -71,12 +70,6 @@ public class CourseServiceImplementation implements CourseService {
 	public List<Course> listAllCourses() {
 		List<Course> all = crepo.findAll();
 		return all;
-	}
-
-	@Override
-	public void withdrawCourse(Course course) {
-		course.setStatus(Enrollmenstatus.WITHDRAWN);
-		crepo.save(course);
 	}
 
 	@Override
