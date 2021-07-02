@@ -41,8 +41,7 @@
 			<p th:if="${#fields.hasErrors('account.password')}" th:errors="*{account.password}"></p>	
 		</fieldset>
 		<fieldset>
-			Role: <input type="text" th:field="*{account.role}" >
-			<p th:if="${#fields.hasErrors('account.role')}" th:errors="*{account.role}"></p>
+			<input type="hidden" th:field="*{account.role}">
 		</fieldset>
 		
 		<fieldset>

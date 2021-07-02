@@ -24,6 +24,10 @@
 			<p th:if="${#fields.hasErrors('courseCapacity')}" th:errors="*{courseCapacity}"></p>
 		</fieldset>	
 		<fieldset>
+			Description: <input type="text" th:field="*{description}">
+			<p th:if="${#fields.hasErrors('*{description}')}" th:errors="*{*{description}}"></p>
+		</fieldset>	
+		<fieldset>
 			Lecturer: <input type="text" th:field="*{lecturer.id}">
 			<p th:if="${#fields.hasErrors('lecturer.id')}" th:errors="*{lecturer.id}"></p>
 		</fieldset>	

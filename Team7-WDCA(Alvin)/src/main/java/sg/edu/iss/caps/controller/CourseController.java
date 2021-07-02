@@ -186,26 +186,28 @@ public class CourseController {
 			List<Coursedetail> allCourses = cdservice.findAllCoursedetail();
 			List<Course> allEnrolledCourses = cservice.findCoursesByStudent(student);
 			List<Coursedetail> avaliableCourses = new ArrayList<Coursedetail>();
-			
-			Boolean test = false;
-			
-			for(Coursedetail x: allCourses) {		
+			if(!allEnrolledCourses.isEmpty()) {
+				Boolean test = false;
 				
-					for(Course y:allEnrolledCourses) {
-						String A = x.getCode();
-						String B = y.getCode();
-						
-							if( A.equals(B)) {
-								test = false;
-								break;
-							}
-							else
-								test = true;
-					}			
-				if (test)
-					avaliableCourses.add(x);
-			}
-				
+				for(Coursedetail x: allCourses) {		
+					
+						for(Course y:allEnrolledCourses) {
+							String A = x.getCode();
+							String B = y.getCode();
+							
+								if( A.equals(B)) {
+									test = false;
+									break;
+								}
+								else
+									test = true;
+						}			
+					if (test)
+						avaliableCourses.add(x);
+					}
+				}
+			else
+				avaliableCourses = allCourses;
 			cdservice.saveTempCourses(avaliableCourses);
 			
 	   }

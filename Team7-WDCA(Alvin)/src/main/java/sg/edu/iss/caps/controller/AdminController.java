@@ -18,6 +18,7 @@ import sg.edu.iss.caps.domain.Accounts;
 import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Coursedetail;
 import sg.edu.iss.caps.domain.Lecturer;
+import sg.edu.iss.caps.domain.RoleType;
 import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.repo.CourseRepository;
 import sg.edu.iss.caps.repo.CoursedetailRepository;
@@ -77,6 +78,7 @@ public class AdminController {
 		String password = sCryptPasswordEncoder.encode(acc.getPassword());
 		acc.setStudent(student);
 		acc.setPassword(password);
+		acc.setRole(RoleType.STUDENT);
 		arepo.save(acc);
 		return "forward:/admin/listStudents";
 	}
@@ -124,6 +126,14 @@ public class AdminController {
 			if (bindingResult.hasErrors()) {
 				return "LecturerForm";
 			}
+			lservice.save(lecturer);
+			Accounts acc = lecturer.getAccount();
+			SCryptPasswordEncoder sCryptPasswordEncoder = new SCryptPasswordEncoder();
+			String password = sCryptPasswordEncoder.encode(acc.getPassword());
+			acc.setLecturer(lecturer);
+			acc.setPassword(password);
+			acc.setRole(RoleType.LECTURER);
+			arepo.save(acc);
 			lservice.save(lecturer);
 			return "forward:/admin/listLecturers";
 		}
@@ -186,25 +196,26 @@ public class AdminController {
 			}
 			
 			@GetMapping("/saveCourse")
-			public String saveCourseForm(@ModelAttribute("course") @Valid Course course, BindingResult bindingResult, Model model) {
+			public String saveCourseForm(@ModelAttribute("coursedetail") @Valid Coursedetail coursedetail, BindingResult bindingResult, Model model) {
 				
 				if (bindingResult.hasErrors()) {
 					return "CourseForm";
 				}
-				crepo.save(course);
-				return "forward:/admin/listCoursesDetail";
+				coursedetail.setLecturer(coursedetail.getLecturer());
+				cdrepo.save(coursedetail);
+				return "forward:/admin/listCourseDetails";
 			}
 			
 			@GetMapping("/listCourseDetails")
 			public String listCourses(Model model) {
 				model.addAttribute("coursedetails", cdrepo.findAll());
-				return "AdCourseList";
+				return "CourseList-Admin";
 			}
 		
 			@GetMapping("/editCourse/{id}")
 			  public String showEditCorForm(Model model, @PathVariable("id") Integer id) {
 				model.addAttribute("course", crepo.findById(id).get());
-				return "CourseForm";
+				return "CourseDetailForm";
 			  }
 		  
 			  @GetMapping("/deleteCourse/{id}")
