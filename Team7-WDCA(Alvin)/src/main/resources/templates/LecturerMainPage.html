@@ -8,17 +8,36 @@
 </head>
 
 <body>
-    bravo you are logged in <span th:text="${lecturer.position}">&nbsp;</span><span th:text="${lecturer.name}"></span>
+    bravo you are logged in<span th:text="${lecturer.name}"></span>
     <header th:replace="fragments/general.html :: header"></header>
     <div th:replace="fragments/general.html :: menubar"></div>
-    <table class="Buttontbl">
-        <tr>
-            <th class="btndiv"><a href="CourseList.html" th:href="@{/lecturer/ViewCourse/}+${lecturer.id}">View Course Taught</a></th>
-        </tr>
-        <tr>
-            <th class="btndiv"><a href="LecturerCourses.html" th:href="@{/lecturer/ViewCourseStudents/}+${lecturer.id}">View Course Enrollment</a></th>
-        </tr>
-    </table>
+<body>
+	<header th:replace="fragments/general.html :: header"></header>
+    <div th:replace="fragments/general.html :: menubar"></div>
+
+	<table th:object="${lecturer}" class="Buttontbl">
+	<tr> 
+	<td><h1>Welcome <span th:text="${lecturer.position}">13</span> <span th:text="${lecturer.name}">13</span></h1></td>
+	</tr>
+	<tr>
+	<td class="btndiv"><a th:href="@{/logout}" class="actionbtn">Log out</a></td>
+	</tr>
+	<tr>
+	<td class="btndiv"><a href="LecCourseList.html"
+			th:href="@{/lecturer/ViewCourse/}+${lecturer.id}" class="actionbtn">View Courses Taught</a></td>
+	</tr>
+	<tr>
+	<td class="btndiv"><a href="LecturerCourses.html" 
+	         th:href="@{/lecturer/ViewCourseStudents/}+${lecturer.id}" class="actionbtn">View Course Enrollment</a></td>
+	 </tr>
+	<tr>
+	<td class="btndiv"><a href="LecCoursegrade.html" 
+	         th:href="@{/lecturer/gradecourse/}+${lecturer.id}" class="actionbtn">Grade a course</a></td>
+	</tr>
+	</table>
+	 <br/>
+	<div th:replace="fragments/general.html :: footer"></div>
+</body>
 
     <br>
 

@@ -6,7 +6,7 @@
 </head>
 <body>
 <header th:insert="fragments/general.html :: header"> </header>
-	<div th:replace="fragments/general.html :: menu"></div>
+	<div th:replace="fragments/general.html :: menubar"></div>
 
 	<h1>Student List</h1>
 	<h1 th:text="${message}">default</h1>
@@ -17,18 +17,14 @@
 			<th >Student ID</th>
 			<th >First Name</th>
 			<th >Second Name</th>
-			<th >Major</th>
-			<th >Credits Taken</th>
-			<th >Current GPA</th>
+			<th >Grade</th>
 
 		</tr>
-		<tr th:each="student:${students}" class="table-row">
-			<td th:text=${student.id}>Id</td>
-			<td th:text=${student.firstName}>First Name</td>
-			<td th:text=${student.secondName}>Second Name</td>
-			<td th:text=${student.major}>Major</td>
-			<td th:text=${student.creditsTaken}>Credits Taken</td>
-			<td th:text=${student.gpa}>Current GPA</td>
+		<tr th:each="course:${courses}" class="table-row">
+			<td th:text=${course.student.id}>Id</td>
+			<td th:text=${course.student.firstName}>First Name</td>
+			<td th:text=${course.student.secondName}>Second Name</td>
+			<td th:text=${course.grade}>Grade</td>
 		</tr>
 	</table>
 	<div>

@@ -8,7 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import sg.edu.iss.caps.domain.Course;
 import sg.edu.iss.caps.domain.Coursedetail;
+import sg.edu.iss.caps.domain.Lecturer;
 import sg.edu.iss.caps.domain.Student;
 import sg.edu.iss.caps.domain.TempCourses;
 import sg.edu.iss.caps.repo.CoursedetailRepository;
@@ -68,6 +70,13 @@ public class Coursedetailserviceimplementation implements Coursedetailservice {
 			trepo.save(temp);
 			cdrepo.save(cd);
 		}
+	}
+
+	@Override
+	public List<Coursedetail> findCoursesByLecturer(Lecturer lecturer) {
+		// TODO Auto-generated method stub
+		List<Coursedetail> courses=cdrepo.findCoursesByLecturer(lecturer);
+		return courses;
 	}
 	
 	
